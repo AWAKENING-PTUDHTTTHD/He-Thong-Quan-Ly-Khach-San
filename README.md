@@ -1,4 +1,4 @@
-# Nội dung của dự án
+### Nội dung của dự án
 
 # 1. Quy trình hoạt động của dự án
 
