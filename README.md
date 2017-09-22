@@ -1,6 +1,6 @@
-### Nội dung của dự án
+# Nội dung của dự án
 
-# 1. Quy trình hoạt động của dự án
+### 1. Quy trình hoạt động của dự án
 
 - Phân tích: PT Nghiệp vụ và PT Hệ thống
 
@@ -14,7 +14,7 @@
 
 - Sản phẩm
 
-# 2. Giai đoạn phân tích
+### 2. Giai đoạn phân tích
 
 a. Phân tích nghiệp vụ
 
