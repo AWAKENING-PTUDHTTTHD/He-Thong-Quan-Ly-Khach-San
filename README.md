@@ -3,9 +3,10 @@
 ### 1. Quy trình hoạt động của dự án
 
 a. Phân tích: 
-a.1 PT Nghiệp vụ
 
-a.2 PT Hệ thống
+- PT Nghiệp vụ
+
+- PT Hệ thống
 
 b. Thiết kế
 
