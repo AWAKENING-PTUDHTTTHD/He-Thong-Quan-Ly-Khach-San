@@ -2,23 +2,17 @@
 
 ### 1. Quy trình hoạt động của dự án
 
-a. Phân tích: 
+1. Phân tích: 
 
 - PT Nghiệp vụ
 
 - PT Hệ thống
 
-b. Thiết kế
+2. Thiết kế
 
-c. Cài đặt
+3. Cài đặt
 
-d. Kiểm thử
+4. Kiểm thử
 
-e. Sản phẩm
+5. Sản phẩm
 
-
-### 2. Seminar
-
-a. Solid in .Net
-
-b. Solid in Java
