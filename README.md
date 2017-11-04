@@ -10,6 +10,10 @@
 
 2. Thiết kế
 
+- Thiết kế cơ bản
+
+- Thiết kế chi tiết
+
 3. Cài đặt
 
 4. Kiểm thử
