@@ -4,11 +4,15 @@
 
 1. Phân tích: 
 
-- PT Nghiệp vụ
+   - PT Nghiệp vụ
 
-- PT Hệ thống
+   - PT Hệ thống
 
 2. Thiết kế
+
+   - Thiết kế cơ bản
+
+   - Thiết kế chi tiết
 
 3. Cài đặt
 
