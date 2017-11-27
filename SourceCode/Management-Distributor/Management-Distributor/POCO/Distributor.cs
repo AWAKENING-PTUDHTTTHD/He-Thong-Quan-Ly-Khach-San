@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -10,21 +11,30 @@ namespace Management_Distributor.POCO
     {
         Distributor()
         {
-            Region = new Region();
+            Status = "";
         }
         [Key]
         public string DistributorId { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Name is required")]
         public string DistributorName { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Address is required")]
         public string DistributorAddress { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Email is required")]
         public string DistributorEmail { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Phone Number is required")]
         public string DistributorPhoneNumber { get; set; }
+
         public string Description { get; set; }
-        [Required]
+
+        [Required(ErrorMessage = "Status is required")]
         public string Status { get; set; }
-        public virtual Region Region { get;set;}
+
+
+        [ForeignKey("Regions")]
+        public virtual string RegionId { get;set;}
     }
 }
