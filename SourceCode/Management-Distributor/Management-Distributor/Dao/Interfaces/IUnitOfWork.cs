@@ -6,12 +6,11 @@ using System.Threading.Tasks;
 
 namespace Management_Distributor.Dao.Interfaces
 {
-    interface IUnitOfWork : IDisposable
+    public interface IUnitOfWork : IDisposable
     {
         IRepository<T> Repository<T>() where T : class;
         void SaveChange();
         void Dispose(bool disposing);
         new void Dispose();
-
     }
 }

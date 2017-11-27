@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Management_Distributor.Dao.Interfaces
 {
-    interface IRepository<T> where T:class
+    public interface IRepository<T> where T : class
     {
         IEnumerable<T> GetAll(Func<T, bool> predicate = null);
         T Get(Func<T, bool> predicate);
