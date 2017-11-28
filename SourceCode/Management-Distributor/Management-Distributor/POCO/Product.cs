@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
 namespace Management_Distributor.POCO
 {
-    public class Products
+    public class Product
     {
         [Key]
         public string ProductId { get; set; }
@@ -19,7 +20,9 @@ namespace Management_Distributor.POCO
 
         public string Description { get; set; } 
 
-        [ForeignKey("Categorys")]
-        public virtual string CategoryId { get;set }
+        //[ForeignKey("Category")]
+        public string CategoryCategoryId { get; set; }
+
+        public virtual Category Category { get; set; }
     }
 }

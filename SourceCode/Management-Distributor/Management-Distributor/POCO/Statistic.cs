@@ -7,11 +7,12 @@ using System.Web;
 
 namespace Management_Distributor.POCO
 {
-    public class Statistics
+    public class Statistic
     {
-        Statistics()
+        Statistic()
         {
             NumbOfEdit = 1;
+            CreatedDate = DateTime.Now;
         }
         [Key]
         public string StatisticId { get; set; }
@@ -33,8 +34,9 @@ namespace Management_Distributor.POCO
 
         public int NumbOfEdit { get; set; }
 
-        [ForeignKey("Employees")]
-        public virtual string EmployeeId { get; set; }
+        public string EmployeeEmployeeId { get; set; }
+
+        public virtual Employee Employee { get; set; }
 
     }
 }

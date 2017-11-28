@@ -25,7 +25,7 @@ namespace Management_Distributor.Dao._DbContext
         public DbSet<Product> _Product { get; set; }
 
         public DbSet<Order> _Order { get; set; }
-        public DbSet<OrdersDetails> _OrdersDetails { get; set; }
+        public DbSet<OrderDetail> _OrderDetail { get; set; }
         public DbSet<Invoice> _Invoice { get; set; }
         public DbSet<Payment> _Payment { get; set; }
         public DbSet<DeliveryPlan> _DeliveryPlan { get; set; }

@@ -7,15 +7,23 @@ using System.Web;
 
 namespace Management_Distributor.POCO
 {
-    public class Departments
+    public class Department
     {
+        Department()
+        {
+            this.Employees = new HashSet<Employee>();
+        }
         [Key]
         public string DepartmentId { get; set; }
         [Required(ErrorMessage = "Name is required")]
         public string DepartmentName { get; set; }
         [Required(ErrorMessage = "Department is required")]
 
-        [ForeignKey("Employees")]
-        public string DepartmentChief { get; set; }
+        //[ForeignKey("Employees")]
+        public string EmployeeEmployeeId { get; set; }
+
+        public virtual Employee Employee { get; set; }
+
+        public virtual ICollection<Employee> Employees { get; set; }
     }
 }

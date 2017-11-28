@@ -7,7 +7,7 @@ using System.Web;
 
 namespace Management_Distributor.POCO
 {
-    public class Invoices
+    public class Invoice
     {
         [Key]
         public string InvoiceId { get; set; }
@@ -17,14 +17,16 @@ namespace Management_Distributor.POCO
 
         public DateTime? CreatedDate { get; set; }
 
-        [Required(ErrorMessage = "RequireDeliveryDate is required")]
-        public DateTime RequireDeliveryDate { get; set; }
-
         [Required(ErrorMessage = "Amount is required")]
         public decimal Amount { get; set; }
 
-        [ForeignKey("Orders")]
-        public virtual string OrderId { get; set; }
+        public string OrderOrderId { get; set; }
+        public virtual Order Order { get; set; }
+
+        public virtual Payment Payment { get; set; }
+
+        public string EmployeeEmployeeId { get; set; }
+        public virtual Employee Employee { get; set; }
 
     }
 }

@@ -38,9 +38,14 @@ namespace Management_Distributor.Dao.Implementations
         {
             if (predicate != null)
             {
-                _context.Set<T>().Where(predicate);
+                return _context.Set<T>().Where(predicate);
             }
             return _context.Set<T>().AsEnumerable<T>();
+        }
+
+        public T GetById(string id)
+        {
+            return _context.Set<T>().Find(id);
         }
     }
 }

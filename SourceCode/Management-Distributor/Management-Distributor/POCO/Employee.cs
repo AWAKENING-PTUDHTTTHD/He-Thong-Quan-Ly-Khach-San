@@ -19,12 +19,14 @@ namespace Management_Distributor.POCO
 
         // temporary skip avatar image 
         [Required(ErrorMessage = "Phone number is required!")]
+        [DataType(DataType.PhoneNumber, ErrorMessage = "Phone Number is not valid")]
         public string PhoneNumber { get; set; }
         [Required(ErrorMessage = "Email is required!")]
         //[RegularExpression("^[a-zA-Z0-9_\\.-]+@([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$", ErrorMessage = "E-mail is not valid")]
         [DataType(DataType.EmailAddress,ErrorMessage = "Email is not valid")]
         public string EmpEmail { get; set; }
 
+       
         [Required(ErrorMessage = "Username is required")]
         [MaxLength(20, ErrorMessage = "Username maximum is 20 character"), MinLength(5, ErrorMessage = "Username could not less than 5 character")]
         public string UserName { get; set; }

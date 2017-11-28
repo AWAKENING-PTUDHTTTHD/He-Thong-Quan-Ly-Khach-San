@@ -9,9 +9,9 @@ namespace Management_Distributor.POCO
 {
     public class Distributor
     {
-        Distributor()
+        Distributor ()
         {
-            Status = "";
+            this.Contracts = new HashSet<Contract>();
         }
         [Key]
         public string DistributorId { get; set; }
@@ -33,8 +33,11 @@ namespace Management_Distributor.POCO
         [Required(ErrorMessage = "Status is required")]
         public string Status { get; set; }
 
+        //[ForeignKey("Regions")]
+        public string RegionRegionId { get;set;}
 
-        [ForeignKey("Regions")]
-        public virtual string RegionId { get;set;}
+        public virtual Region Region { get; set; }
+
+        public virtual ICollection<Contract> Contracts { get; set; }
     }
 }

@@ -7,15 +7,17 @@ using System.Web;
 
 namespace Management_Distributor.POCO
 {
-    public class OrdersDetails
+    public class OrderDetail
     {
         [Key]
-        [ForeignKey("Orders")]
-        public virtual string OrderId { get; set; }
+        public string OrderDetailId { get; set; }
+        //[ForeignKey("Orders")]
 
-        [Key]
-        [ForeignKey("Products")]
-        public virtual string ProductId { get; set; }
+        public string OrderOrderId { get; set; }
+        public virtual Order Order { get; set; }
+
+        public string ProductProductId { get; set; }
+        public virtual Product Product { get; set; }
 
 
         [Required(ErrorMessage = "Unit is required")]

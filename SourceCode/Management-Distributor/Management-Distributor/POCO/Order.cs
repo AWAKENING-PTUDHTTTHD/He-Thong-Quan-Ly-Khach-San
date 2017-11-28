@@ -7,8 +7,12 @@ using System.Web;
 
 namespace Management_Distributor.POCO
 {
-    public class Orders
+    public class Order
     {
+        Order()
+        {
+            this.OrderDetails = new HashSet<OrderDetail>();
+        }
         [Key]
         public string OrderId { get; set; }
 
@@ -18,11 +22,20 @@ namespace Management_Distributor.POCO
 
         public string Status { get; set; }
 
-        [ForeignKey("Employees")]
-        public virtual string EmployeeId { get; set; }
+        //[ForeignKey("Employees")]
+        public string EmployeeEmployeeId { get; set; }
 
-        [ForeignKey("Contracts")]
-        public virtual string ContractId { get; set; }
+        public virtual Employee Employee { get; set; }
+
+        //[ForeignKey("Contracts")]
+        public virtual string ContractContractId { get; set; }
+        public virtual Contract Contract { get; set; }
+
+        public int DistributorDistributorId { get; set; }
+        public virtual Distributor Distributor { get; set; }
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+
+        public virtual Invoice Invoice { get; set; }
 
     }
 }

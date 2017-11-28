@@ -6,17 +6,17 @@ using System.Web;
 
 namespace Management_Distributor.POCO
 {
-    public class Regions
+    public class Region
     {
-        //Region()
-        //{
-        //    //Distributor = new List<Distributor>();
-        //}
+        Region()
+        {
+            this.Distributors = new HashSet<Distributor>();
+        }
         [Key]
         public string RegionId { get; set; }
         [MinLength(5, ErrorMessage ="Region name could not be less than 5 character")]
         [MaxLength(50, ErrorMessage = "Region name could not be much than 50 character")]
         public string RegionName { get; set; }
-        //public virtual ICollection<Distributor> Distributor { get; set; }
+        public virtual ICollection<Distributor> Distributors { get; set; }
     }
 }

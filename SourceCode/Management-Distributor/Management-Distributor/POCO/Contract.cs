@@ -7,9 +7,9 @@ using System.Web;
 
 namespace Management_Distributor.POCO
 {
-    public class Contracts
+    public class Contract
     {
-        Contracts()
+        Contract()
         {
             Status = "";
         }

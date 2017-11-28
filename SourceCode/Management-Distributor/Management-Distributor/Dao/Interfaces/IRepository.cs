@@ -13,5 +13,7 @@ namespace Management_Distributor.Dao.Interfaces
         void Add(T entity);
         void Attach(T entity);
         void Delete(T entity);
+
+        T GetById(string id);
     }
 }

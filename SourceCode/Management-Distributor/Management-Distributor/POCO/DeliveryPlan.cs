@@ -10,8 +10,11 @@ namespace Management_Distributor.POCO
     public class DeliveryPlan
     {
         [Key]
-        [ForeignKey("Orders")]
-        public virtual string OrderId { get; set; }
+        public string DeliveryPlanId { get; set; }
+
+        public string OrderOrderId { get; set; }
+
+        public virtual Order Order { get; set; }
 
         [Required(ErrorMessage = "Delivery Date is required")]
         public DateTime  DeliveryDate { get; set; }

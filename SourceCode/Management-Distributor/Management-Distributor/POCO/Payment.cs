@@ -7,12 +7,13 @@ using System.Web;
 
 namespace Management_Distributor.POCO
 {
-    public class Payments
+    public class Payment
     {
         [Key]
         public string PaymentId { get; set; }
 
         [Required(ErrorMessage = "Name is required")]
+        [DataType(DataType.CreditCard, ErrorMessage = "Cart Number is invalid")]
         public string Cardnumber { get; set; }
 
         [Required(ErrorMessage = "Status is required")]
@@ -31,11 +32,12 @@ namespace Management_Distributor.POCO
         [Required(ErrorMessage = "Amount is required")]
         public decimal Amount { get; set; }
 
-        [ForeignKey("Invoices")]
-        public virtual string InvoiceId { get; set; }
+        public string InvoiceInvoiceId { get; set; }
 
-        [ForeignKey("Employees")]
-        public virtual string EmployeeId { get; set; }
+        public virtual Invoice Invoice { get; set; }
+
+        public string EmployeeEmployeeId { get; set; }
+        public virtual Employee Employee { get; set; }
 
     }
 }
