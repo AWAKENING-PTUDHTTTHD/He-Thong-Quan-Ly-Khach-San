@@ -9,28 +9,24 @@ namespace Management_Distributor.Dao._DbContext
 {
     public class ManagementDistributorDbContext:DbContext
     {
-        public ManagementDistributorDbContext() :base("name=connectionString")
-        {
+        public ManagementDistributorDbContext() : base("name=connectionString") { }
+        public DbSet<Department> Departments { get; set; }
+        public DbSet<Employee> Employees { get; set; }
 
-        }
+        public DbSet<Region> Regions { get; set; }
+        public DbSet<Distributor> Distributors { get; set; }
+        public DbSet<Contract> Contracts { get; set; }
 
-        public DbSet<Department> _Department { get; set; }
-        public DbSet<Employee> _Employees { get; set; }
+        public DbSet<Category> Categories { get; set; }
+        public DbSet<Product> Products { get; set; }
 
-        public DbSet<Region> _Region { get; set; }
-        public DbSet<Distributor> _Distributor { get; set; }
-        public DbSet<Contract> _Contract { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<Invoice> Invoices { get; set; }
+        public DbSet<Payment> Payments { get; set; }
+        public DbSet<DeliveryPlan> DeliveryPlans { get; set; }
 
-        public DbSet<Category> _Category { get; set; }
-        public DbSet<Product> _Product { get; set; }
-
-        public DbSet<Order> _Order { get; set; }
-        public DbSet<OrderDetail> _OrderDetail { get; set; }
-        public DbSet<Invoice> _Invoice { get; set; }
-        public DbSet<Payment> _Payment { get; set; }
-        public DbSet<DeliveryPlan> _DeliveryPlan { get; set; }
-
-        public DbSet<Report> _Report { get; set; }
-        public DbSet<Statistic> _Statistic { get; set; }
+        public DbSet<Report> Reports { get; set; }
+        public DbSet<Statistic> Statistics { get; set; }
     }
 }
