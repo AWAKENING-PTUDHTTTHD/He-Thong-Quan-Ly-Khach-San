@@ -9,10 +9,10 @@ namespace Management_Distributor.POCO
 {
     public class Distributor
     {
-        Distributor ()
-        {
-            this.Contracts = new HashSet<Contract>();
-        }
+        //Distributor ()
+        //{
+        //    this.Contracts = new HashSet<Contract>();
+        //}
         [Key]
         public string DistributorId { get; set; }
 
@@ -23,9 +23,11 @@ namespace Management_Distributor.POCO
         public string DistributorAddress { get; set; }
 
         [Required(ErrorMessage = "Email is required")]
+        [DataType(DataType.EmailAddress, ErrorMessage = "The email provided is invalid!")]
         public string DistributorEmail { get; set; }
 
         [Required(ErrorMessage = "Phone Number is required")]
+        [DataType(DataType.PhoneNumber, ErrorMessage = "The email provided is invalid!")]
         public string DistributorPhoneNumber { get; set; }
 
         public string Description { get; set; }

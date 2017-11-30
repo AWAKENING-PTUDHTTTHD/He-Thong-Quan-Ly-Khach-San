@@ -32,10 +32,12 @@ namespace Management_Distributor.POCO
         public DateTime LastEdited { get; set; }
 
 
-        public int NumbOfEdit { get; set; }
+        public Nullable<int> NumbOfEdit { get; set; }
 
-        public string EmployeeEmployeeId { get; set; }
+        // Foreign key
+        public string EmployeeId { get; set; }
 
+        // One to One with Employee
         public virtual Employee Employee { get; set; }
 
     }

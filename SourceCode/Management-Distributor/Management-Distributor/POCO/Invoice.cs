@@ -20,12 +20,13 @@ namespace Management_Distributor.POCO
         [Required(ErrorMessage = "Amount is required")]
         public decimal Amount { get; set; }
 
-        public string OrderOrderId { get; set; }
+        // Foreign key
+        public string OrderId { get; set; }
+        public string EmployeeId { get; set; }
+
+        // One to One with Order, Payment and Employee
         public virtual Order Order { get; set; }
-
         public virtual Payment Payment { get; set; }
-
-        public string EmployeeEmployeeId { get; set; }
         public virtual Employee Employee { get; set; }
 
     }

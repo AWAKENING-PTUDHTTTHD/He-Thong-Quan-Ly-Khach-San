@@ -37,5 +37,18 @@ namespace Management_Distributor.POCO
         public DateTime LastLogged { get; set; }
         public int NumOfLoginAttemp { get; set; }
         public DateTime LastAttemp { get; set; }
+
+        // Foreign Key
+        public string DepartmentId { get; set; }
+
+        // One to one with Department
+        public virtual Department Department { get; set; }
+
+        // Zero->Many with Order, Invoice, Payment, Report and Statistic
+        public virtual ICollection<Order> Orders { get; set; }
+        public virtual ICollection<Invoice> Invoices { get; set; }
+        public virtual ICollection<Payment> Payments { get; set; }
+        public virtual ICollection<Report> Reports { get; set; }
+        public virtual ICollection<Statistic> Statistics { get; set; }
     }
 }

@@ -9,6 +9,7 @@ namespace Management_Distributor.POCO
 {
     public class Report
     {
+        // Construct some prop
         Report ()
         {
             NumbOfEdit = 1;
@@ -21,7 +22,6 @@ namespace Management_Distributor.POCO
         public string ReportName { get; set; }
 
         [Required(ErrorMessage = "ReportType is required")]
-
         public string ReportType { get; set; }
 
         [Required(ErrorMessage = "ReportContent is required")]
@@ -36,10 +36,12 @@ namespace Management_Distributor.POCO
         public DateTime LastEdited { get; set; }
 
 
-        public int NumbOfEdit { get; set; }
+        public Nullable<int> NumbOfEdit { get; set; }
 
-        public string EmployeeEmployeeId { get; set; }
+        // Foreign Key
+        public string EmployeeId { get; set; }
 
+        // One to One with Employee
         public virtual Employee Employee { get; set; }
 
     }

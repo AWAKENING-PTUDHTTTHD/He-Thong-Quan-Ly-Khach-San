@@ -8,15 +8,18 @@ namespace Management_Distributor.POCO
 {
     public class Region
     {
-        Region()
-        {
-            this.Distributors = new HashSet<Distributor>();
-        }
+        //Region()
+        //{
+        //    this.Distributors = new HashSet<Distributor>();
+        //}
         [Key]
         public string RegionId { get; set; }
+                
         [MinLength(5, ErrorMessage ="Region name could not be less than 5 character")]
         [MaxLength(50, ErrorMessage = "Region name could not be longer than 50 character")]
         public string RegionName { get; set; }
+
+        // Danh Sach nha PP
         public virtual ICollection<Distributor> Distributors { get; set; }
     }
 }

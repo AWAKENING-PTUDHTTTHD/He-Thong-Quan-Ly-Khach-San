@@ -8,10 +8,10 @@ namespace Management_Distributor.POCO
 {
     public class Category
     {
-        public Category()
-        {
-            this.Products = new HashSet<Product>();
-        }
+        //public Category()
+        //{
+        //    this.Products = new HashSet<Product>();
+        //}
         [Key]
         public string CategoryId { get; set; }
 

@@ -12,19 +12,19 @@ namespace Management_Distributor.POCO
         [Key]
         public string DeliveryPlanId { get; set; }
 
-        public string OrderOrderId { get; set; }
-
-        public virtual Order Order { get; set; }
-
         [Required(ErrorMessage = "Delivery Date is required")]
         public DateTime  DeliveryDate { get; set; }
-
-
         public string Description { get; set; }
 
         [Required(ErrorMessage = "Status is required")]
         public string Status { get; set; }
 
-  
+        // Foreign key
+        public string OrderId { get; set; }
+        
+        // One to One with Order
+        public virtual Order Order { get; set; }
+
+
     }
 }

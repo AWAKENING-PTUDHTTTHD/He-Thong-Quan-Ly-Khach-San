@@ -20,9 +20,13 @@ namespace Management_Distributor.POCO
 
         public string Description { get; set; } 
 
-        //[ForeignKey("Category")]
-        public string CategoryCategoryId { get; set; }
+        // Foreign Key
+        public string CategoryId { get; set; }
 
+        // One to One with category
         public virtual Category Category { get; set; }
+
+        // One to Many with OrderDetail
+        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
     }
 }

@@ -19,9 +19,7 @@ namespace Management_Distributor.POCO
         [Required(ErrorMessage = "Status is required")]
         public string Status { get; set; }
 
-        [Required(ErrorMessage = "Note is required")]
         public string Note { get; set; }
-
 
         [Required(ErrorMessage = "ExceedDate is required")]
         public DateTime ExceedDate { get; set; }
@@ -32,11 +30,11 @@ namespace Management_Distributor.POCO
         [Required(ErrorMessage = "Amount is required")]
         public decimal Amount { get; set; }
 
-        public string InvoiceInvoiceId { get; set; }
-
+        // Foreign  key
+        public string InvoiceId { get; set; }
+        public string EmployeeId { get; set; }
+        // One to One with Invoice and Employee
         public virtual Invoice Invoice { get; set; }
-
-        public string EmployeeEmployeeId { get; set; }
         public virtual Employee Employee { get; set; }
 
     }
