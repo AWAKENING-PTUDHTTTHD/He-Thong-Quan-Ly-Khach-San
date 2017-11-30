@@ -9,7 +9,11 @@ namespace Management_Distributor.Dao._DbContext
 {
     public class ManagementDistributorDbContext:DbContext
     {
-        public ManagementDistributorDbContext() : base("name=connectionString") { }
+        public ManagementDistributorDbContext() 
+            : base("name=DbContext")
+        {
+            Database.SetInitializer<ManagementDistributorDbContext>(new CreateDatabaseIfNotExists<ManagementDistributorDbContext>());
+        }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Employee> Employees { get; set; }
 
