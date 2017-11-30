@@ -10,6 +10,9 @@ namespace Management_Distributor.Service.Interfaces
     public interface IProductService
     {
         List<Product> GetAll();
+        Product GetOne(string id);
+
+        bool Edit(Product product);
     }
     
 }

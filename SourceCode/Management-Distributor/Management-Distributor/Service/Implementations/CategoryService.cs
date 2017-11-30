@@ -5,16 +5,20 @@ using System.Linq;
 using System.Web;
 using Management_Distributor.POCO;
 using Management_Distributor.Dao.Interfaces;
+using Management_Distributor.Dao.Implementations;
 
 namespace Management_Distributor.Service.Implementations
 {
     public class CategoryService : ICategoryService
     {
-        private IUnitOfWork _uow;
+
+        private IUnitOfWork uow = null;
+        public CategoryService() { uow = new GenericUnitOfWork(); }
         public void Add(Category category)
         {
-            _uow.Repository<Category>().Add(category);
-            _uow.SaveChange();
+            IRepository<Category> RepoCategory = uow.Repository<Category>();
+            RepoCategory.Add(category);
+            uow.SaveChange();
         }
 
         public List<Category> GetAll()
