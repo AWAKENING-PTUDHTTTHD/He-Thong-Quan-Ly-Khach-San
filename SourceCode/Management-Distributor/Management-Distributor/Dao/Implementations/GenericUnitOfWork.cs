@@ -4,14 +4,16 @@ using System.Linq;
 using System.Web;
 using Management_Distributor.Dao.Interfaces;
 using Management_Distributor.Dao._DbContext;
+using System.Data.Entity;
+
 namespace Management_Distributor.Dao.Implementations
 {
     public class GenericUnitOfWork : IUnitOfWork
     {
-        private ManagementDistributorDbContext _context = null;
-        public GenericUnitOfWork()
+        private DbContext _context = null;
+        public GenericUnitOfWork(DbContext context)
         {
-            _context = new ManagementDistributorDbContext();
+            _context = context;
         }
 
         private Dictionary<Type, object> repositories = new Dictionary<Type, object>();
@@ -31,9 +33,9 @@ namespace Management_Distributor.Dao.Implementations
             return repo;
         }
 
-        public void SaveChange()
+        public int SaveChange()
         {
-            _context.SaveChanges();
+            return _context.SaveChanges();
         }
 
         private bool disposed = false;

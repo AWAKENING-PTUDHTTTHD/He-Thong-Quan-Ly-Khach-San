@@ -8,8 +8,9 @@ namespace Management_Distributor.Dao.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {
+        // Repository equivalent DbSet
         IRepository<T> Repository<T>() where T : class;
-        void SaveChange();
+        int SaveChange();
         void Dispose(bool disposing);
         new void Dispose();
     }

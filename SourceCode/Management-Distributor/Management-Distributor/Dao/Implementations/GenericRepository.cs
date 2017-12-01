@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Data.Entity;
 using Management_Distributor.Dao.Interfaces;
 using Management_Distributor.Dao._DbContext;
 
@@ -9,14 +10,24 @@ namespace Management_Distributor.Dao.Implementations
 {
     public class GenericRepository<T> : IRepository<T> where T : class
     {
-        private ManagementDistributorDbContext _context;
-        public GenericRepository(ManagementDistributorDbContext context)
+        //protected readonly DbContext _context;
+        private readonly DbContext _context;
+        public GenericRepository(DbContext context)
         {
             _context = context;
         }
         public void Add(T entity)
         {
+            if(entity == null)
+            {
+                throw new ArgumentNullException("entity");
+            }
             _context.Set<T>().Add(entity);
+        }
+
+        public void AddRange(IEnumerable<T> entity)
+        {
+            _context.Set<T>().AddRange(entity);
         }
 
         public void Attach(T entity)
@@ -43,7 +54,7 @@ namespace Management_Distributor.Dao.Implementations
             return _context.Set<T>().AsEnumerable<T>();
         }
 
-        public T GetById(string id)
+        public T GetById(object id)
         {
             return _context.Set<T>().Find(id);
         }

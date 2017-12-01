@@ -10,6 +10,9 @@ namespace Management_Distributor.Service.Interfaces
     public interface ICategoryService
     {
         List<Category> GetAll();
-        void Add(Category category);
+        bool Add(Category category);
+        bool Edit(Category category);
+        bool Delete(Category category);
+
     }
 }

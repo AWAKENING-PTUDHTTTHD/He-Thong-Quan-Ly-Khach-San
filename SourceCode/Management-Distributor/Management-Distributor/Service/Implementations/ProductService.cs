@@ -6,12 +6,14 @@ using System.Web;
 using Management_Distributor.POCO;
 using Management_Distributor.Dao.Implementations;
 using Management_Distributor.Dao.Interfaces;
+using NLog;
 
 namespace Management_Distributor.Service.Implementations
 {
 
     public class ProductService : IProductService
     {
+        
         private IUnitOfWork _uow = null;
         private IRepository<Product> _ProductRepo = null;
         public ProductService(IUnitOfWork uow, IRepository<Product> ProductRepo)

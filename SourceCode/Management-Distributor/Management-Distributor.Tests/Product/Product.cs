@@ -14,9 +14,9 @@ namespace Management_Distributor.Tests.Product
         public void TestAddition()
         {
 
-            Category category = new Category() { CategoryName = "Milk" };
-            CategoryService _CategoryService = new CategoryService();
-            _CategoryService.Add(category);
+            //Category category = new Category() { CategoryName = "Milk" };
+            //CategoryService _CategoryService = new CategoryService();
+            //_CategoryService.Add(category);
         }
     }
 }
