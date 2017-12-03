@@ -1,0 +1,89 @@
+﻿@Scripts.Render("~/bundles/datatable")
+@model IEnumerable<Management_Distributor.POCO.Category>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.CategoryName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Description)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.CategoryName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.CategoryId }) |
+            @Html.ActionLink("Details", "Details", new { id=item.CategoryId }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.CategoryId })
+        </td>
+    </tr>
+}
+
+</table>*@
+
+<h2>List categories</h2>
+<div style="width:90%; margin:0 auto;">
+    <table id="categoriesTable">
+        <thead>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.CategoryId)</td>
+                <td>@Html.DisplayNameFor(model => model.CategoryName)</td>
+                <td>@Html.DisplayNameFor(model => model.Description)</td>
+                <td>Action</td>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+<link href="~/Content/DataTables/css/dataTables.bootstrap4.css" rel="stylesheet" />
+@section Scripts {
+<script src="~/Scripts/jquery-3.2.1.js"></script>
+<script src="~/Scripts/DataTables/dataTables.bootstrap4.js"></script>
+    <script>
+        $(document).ready(function(){
+            $('#categoriesTable').Datatable({
+                "ajax": {
+                    "url": "/categories/loadData",
+                    "type": "GET",
+                    "datatype": "json",
+                    "columns": [
+                        {
+                            "data": "CategoryId",
+                            "autoWidth" : true
+                        },
+                        {
+                            "data": "CategoryName",
+                            "autoWidth": true
+                        },
+                        {
+                            "data": "Description",
+                            "autoWidth": true
+                        }
+                    ],
+                    "language": {
+                        "emptyTable" : "Currently no data found. Please click on <b>Add New</b> button"
+                    }
+                }
+            });
+        });
+    </script>
+    }

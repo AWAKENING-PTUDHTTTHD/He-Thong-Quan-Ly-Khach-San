@@ -9,7 +9,7 @@ namespace Management_Distributor.POCO
 {
     public class Invoice
     {
-        [Key]
+        [Key, ForeignKey("Order")]
         public string InvoiceId { get; set; }
 
         [Required(ErrorMessage = "Name is required")]

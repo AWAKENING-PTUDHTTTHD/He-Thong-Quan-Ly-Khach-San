@@ -8,6 +8,11 @@ namespace Management_Distributor
         // For more information on bundling, visit https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
+            // datatable bootstrap js
+            bundles.Add(new ScriptBundle("~/bundle/datatable").Include(
+                        "~/Scripts/DataTables/dataTables.bootstrap4.js"));
+
+            
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 
@@ -25,7 +30,8 @@ namespace Management_Distributor
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/DataTables/dataTables.bootstrap4.css"));
         }
     }
 }

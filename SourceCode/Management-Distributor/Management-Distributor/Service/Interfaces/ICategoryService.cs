@@ -14,5 +14,7 @@ namespace Management_Distributor.Service.Interfaces
         bool Edit(Category category);
         bool Delete(Category category);
 
+        bool AddRange(List<Category> categories);
+
     }
 }

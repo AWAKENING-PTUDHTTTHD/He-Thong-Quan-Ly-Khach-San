@@ -14,9 +14,13 @@ namespace Management_Distributor.Service.Implementations
 {
     public class CategoryService : ICategoryService
     {
+        #region member
         private readonly ILogger _logger;
         private IUnitOfWork _uow = null;
         private IRepository<Category> repoCategory = null;
+        #endregion
+
+        #region method
         public CategoryService(IUnitOfWork uow, ILogger logger)
         {
             _logger = logger;
@@ -25,10 +29,23 @@ namespace Management_Distributor.Service.Implementations
         }
         public bool Add(Category category)
         {
+            bool success;
             _logger.Info("Start add new Category");
             repoCategory.Add(category);
             _logger.Info("End add new Category");
-            return  (_uow.SaveChange() > 0 );
+            success = (_uow.SaveChange() > 0) ? true : false;
+            return  success;
+        }
+
+        public bool AddRange(List<Category> categories)
+        {
+            bool success;
+            _logger.Info("Start add a list Category");
+            repoCategory.AddRange(categories);
+            success = (_uow.SaveChange() == categories.Count()) ? true : false;
+
+            _logger.Info("End add a list Category");
+            return success;
         }
 
         public bool Delete(Category category)
@@ -47,5 +64,6 @@ namespace Management_Distributor.Service.Implementations
         {
             return repoCategory.GetAll().ToList();
         }
+        #endregion method
     }
 }
