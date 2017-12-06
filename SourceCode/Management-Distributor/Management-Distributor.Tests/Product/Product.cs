@@ -27,22 +27,22 @@ namespace Management_Distributor.Tests.Product
         //      ;
         //}
 
-        [TestMethod]
-        public void TestUpdate()
-        {
-            GenericUnitOfWork uow = new GenericUnitOfWork();
-            CategoryService ctgr = new CategoryService(uow);
-            Category category = ctgr.GetOne("C000000002");
-            bool success = false;
-            if(category!= null)
-            {
-                category.Description = "lol";
-                if(ctgr.Edit(category))
-                {
-                    success = true;
-                }
-            }
-            Assert.AreEqual(true, success);
-        }
+        //[TestMethod]
+        //public void TestUpdate()
+        //{
+        //    GenericUnitOfWork uow = new GenericUnitOfWork();
+        //    CategoryService ctgr = new CategoryService(uow);
+        //    Category category = ctgr.GetOne("C000000002");
+        //    bool success = false;
+        //    if(category!= null)
+        //    {
+        //        category.Description = "lol";
+        //        if(ctgr.Edit(category))
+        //        {
+        //            success = true;
+        //        }
+        //    }
+        //    Assert.AreEqual(true, success);
+        //}
     }
 }

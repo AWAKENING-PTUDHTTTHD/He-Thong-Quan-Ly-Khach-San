@@ -172,7 +172,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\NinjectWebCommon.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\DepartmentsController.cs" />
+    <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Dao\Implementations\GenericUnitOfWork.cs" />
     <Compile Include="Dao\_DbContext\ManagementDistributorDbContext.cs" />
@@ -182,6 +185,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="MyRoleProvider.cs" />
     <Compile Include="POCO\Category.cs" />
     <Compile Include="POCO\Contract.cs" />
     <Compile Include="POCO\Distributor.cs" />
@@ -198,7 +202,11 @@
     <Compile Include="POCO\Region.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\Implementations\CategoryService.cs" />
+    <Compile Include="Service\Implementations\DepartmentService.cs" />
+    <Compile Include="Service\Implementations\EmployeeService.cs" />
     <Compile Include="Service\Implementations\ProductService.cs" />
+    <Compile Include="Service\Interfaces\IDepartmentService.cs" />
+    <Compile Include="Service\Interfaces\IEmployeeService.cs" />
     <Compile Include="Service\Interfaces\ICategoryService.cs" />
     <Compile Include="Service\Interfaces\IProductService.cs" />
     <Compile Include="Utils\Hashing.cs" />
@@ -211,6 +219,7 @@
     <Content Include="Content\bootstrap-4-litera.css" />
     <Content Include="Content\bootstrap-4-materia.css" />
     <Content Include="Content\bootstrap-4-minty.css" />
+    <Content Include="Content\bootstrap-4-sandstone.css" />
     <Content Include="Content\bootstrap-4-slate.css" />
     <Content Include="Content\bootstrap-4-solar.css" />
     <Content Include="Content\bootstrap-cyborg.css" />
@@ -604,6 +613,17 @@
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Categories\AddOrEdit.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Departments\Create.cshtml" />
+    <Content Include="Views\Departments\Delete.cshtml" />
+    <Content Include="Views\Departments\Details.cshtml" />
+    <Content Include="Views\Departments\Edit.cshtml" />
+    <Content Include="Views\Departments\Index.cshtml" />
+    <Content Include="Views\Employees\Create.cshtml" />
+    <Content Include="Views\Employees\Delete.cshtml" />
+    <Content Include="Views\Employees\Details.cshtml" />
+    <Content Include="Views\Employees\Edit.cshtml" />
+    <Content Include="Views\Employees\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

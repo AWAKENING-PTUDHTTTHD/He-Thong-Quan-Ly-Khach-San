@@ -1,0 +1,88 @@
+﻿using Management_Distributor.Service.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using Management_Distributor.POCO;
+using NLog;
+using Management_Distributor.Dao.Interfaces;
+
+namespace Management_Distributor.Service.Implementations
+{
+    public class DepartmentService : IDeparmentService
+    {
+        #region member
+        private readonly ILogger _logger = LogManager.GetCurrentClassLogger();
+        private IUnitOfWork _uow = null;
+        private IRepository<Department> repoDept = null;
+        #endregion
+
+
+        public DepartmentService(IUnitOfWork uow)
+        {
+            _uow = uow;
+            repoDept = _uow.Repository<Department>();
+        }
+
+        public bool Add(Department dept)
+        {
+            bool success;
+            _logger.Info("Start add new Deparment");
+            repoDept.Add(dept);
+            _logger.Info("End add new Deparment");
+            success = (_uow.SaveChange() > 0) ? true : false;
+            return success;
+        }
+
+        public bool AddRange(List<Department> depts)
+        {
+            bool success;
+            _logger.Info("Start add a list Deparments");
+            repoDept.AddRange(depts);
+            success = (_uow.SaveChange() == depts.Count()) ? true : false;
+
+            _logger.Info("End add a list Deparments");
+            return success;
+        }
+
+        public bool Delete(Employee employee)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Delete(Department dept)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Edit(Employee employee)
+        {
+            throw new NotImplementedException();
+        }
+
+        public bool Edit(Department dept)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Employee> GetAll()
+        {
+            throw new NotImplementedException();
+        }
+
+        public Department GetByUserNameOrEmail(string UsernameOrEmail)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Category GetOne(string id)
+        {
+            throw new NotImplementedException();
+        }
+
+        List<Department> IDeparmentService.GetAll()
+        {
+            throw new NotImplementedException();
+        }
+    }
+}

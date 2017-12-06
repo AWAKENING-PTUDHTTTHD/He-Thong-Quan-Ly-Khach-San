@@ -13,7 +13,7 @@ namespace Management_Distributor.POCO
         //    this.Products = new HashSet<Product>();
         //}
         [Key]
-        public string CategoryId { get; set; }
+        public int CategoryId { get; set; }
 
         [Required(ErrorMessage = "Name is required")]
         public string CategoryName { get; set; }

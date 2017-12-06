@@ -9,7 +9,7 @@
     <link href="~/Content/bootstrap-4-beta.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-3.2.1.js"></script>
     <script src="~/Scripts/umd/popper.js"></script>
-    <link href="~/Content/bootstrap-4-materia.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-4-sandstone.css" rel="stylesheet" />
     <script src="~/Scripts/bootstrap-4-beta.js"></script>
     <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
@@ -73,9 +73,21 @@
                     <li class="nav-item">
                         @Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })
                     </li>
-                    <li class="nav-item">
-                        @Html.ActionLink("Categories", "Index", "Categories", null, new { @class = "nav-link" })
-                    </li>
+                    <!-- Authentication URL -->
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        @if (User.IsInRole("A"))
+                        {
+                            <li class="nav-item">
+                                @Html.ActionLink("Categories", "Index", "Categories", null, new { @class = "nav-link" })
+                            </li>
+                        }
+
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Welcome Mr/Ms: @User.Identity.Name</a>
+                        </li>
+                    }
+                   
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="download">Minty <span class="caret"></span></a>
                         <div class="dropdown-menu" aria-labelledby="download">
@@ -91,12 +103,20 @@
                 </ul>
 
                 <ul class="nav navbar-nav ml-auto">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        <li class="nav-item">
+                            @Html.ActionLink("LogOut", "Logout", "Account", null, new { @class = "nav-link" })
+                        </li>
+                    }
+                    else  {
                     <li class="nav-item">
-                        <a class="nav-link" href="http://builtwithbootstrap.com/" target="_blank">Built With Bootstrap</a>
+                        @*<a class="nav-link" href="http://builtwithbootstrap.com/" target="_blank">Built With Bootstrap</a>*@
+                        @Html.ActionLink("Login", "Login", "Account", null, new { @class = "nav-link" })
                     </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://wrapbootstrap.com/?ref=bsw" target="_blank">WrapBootstrap</a>
-                    </li>
+                    }
+                    
+                    
                 </ul>
 
             </div>

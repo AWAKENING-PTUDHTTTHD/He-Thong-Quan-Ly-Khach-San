@@ -69,6 +69,8 @@ namespace Management_Distributor.App_Start
         {
             kernel.Bind<IUnitOfWork>().To<GenericUnitOfWork>();
             kernel.Bind<ICategoryService>().To<CategoryService>();
+            kernel.Bind<IEmployeeService>().To<EmployeeService>();
+            kernel.Bind<IDeparmentService>().To<DepartmentService>();
         }        
     }
 }

@@ -36,7 +36,7 @@ namespace Management_Distributor.POCO
         public string Status { get; set; }
 
         //[ForeignKey("Regions")]
-        public string RegionRegionId { get;set;}
+        public string RegionId { get;set;}
 
         public virtual Region Region { get; set; }
 

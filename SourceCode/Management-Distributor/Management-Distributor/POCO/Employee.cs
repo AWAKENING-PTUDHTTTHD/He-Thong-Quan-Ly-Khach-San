@@ -38,6 +38,8 @@ namespace Management_Distributor.POCO
         public int NumOfLoginAttemp { get; set; }
         public DateTime LastAttemp { get; set; }
 
+        public string[] Role { get; set; }
+
         // Foreign Key
         public string DepartmentId { get; set; }
 

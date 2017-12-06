@@ -24,9 +24,9 @@ namespace Management_Distributor.Controllers
         }
 
         [HttpGet]
-        public ActionResult AddOrEdit(string id="")
+        public ActionResult AddOrEdit(string id = null)
         {
-            if (id == "")
+            if (id == null)
             {
                 return View(new Category());
             }
@@ -41,7 +41,7 @@ namespace Management_Distributor.Controllers
         [HttpPost]
         public ActionResult AddOrEdit(Category category)
         {
-            if (category.CategoryId == "")
+            if (category.CategoryId == null)
             {
                 if (categoryService.Add(category))
                 {
@@ -68,7 +68,7 @@ namespace Management_Distributor.Controllers
         }
 
         // GET: Categories
-        //[Authorize]
+        [Authorize]
         public ActionResult Index()
         {
             return View();

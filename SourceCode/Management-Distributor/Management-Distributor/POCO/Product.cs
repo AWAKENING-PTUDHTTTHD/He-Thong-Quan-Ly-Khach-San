@@ -21,7 +21,7 @@ namespace Management_Distributor.POCO
         public string Description { get; set; } 
 
         // Foreign Key
-        public string CategoryId { get; set; }
+        public int CategoryId { get; set; }
 
         // One to One with category
         public virtual Category Category { get; set; }

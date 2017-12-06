@@ -17,6 +17,7 @@ namespace Management_Distributor
     {
         protected void Application_Start()
         {
+            GlobalFilters.Filters.Add(new AuthorizeAttribute());
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
@@ -30,6 +31,33 @@ namespace Management_Distributor
             //              new POCO.Category { CategoryId = "C000000005", CategoryName = "Whey"}
             //        })
             // ;
+
+
+            //GenericUnitOfWork uow = new GenericUnitOfWork();
+            //EmployeeService emp = new EmployeeService(uow);
+            //emp.Add({
+            //    new Employee()
+            //    {
+            //        Department
+            //    }
+            //});
+
+            //GenericUnitOfWork uow = new GenericUnitOfWork();
+            //DepartmentService dept = new DepartmentService(uow);
+            //dept.AddRange(new List<Department>()
+            //{
+            //    new Department()
+            //    {
+            //        DepartmentId = "D000000001",
+            //        DepartmentName = "IT Support"
+            //    },
+            //    new Department()
+            //    {
+            //        DepartmentId = "D000000002",
+            //        DepartmentName = "Sale"
+            //    }
+            //}
+            //);
 
         }
     }

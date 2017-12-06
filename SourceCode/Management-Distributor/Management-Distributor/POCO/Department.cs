@@ -9,10 +9,10 @@ namespace Management_Distributor.POCO
 {
     public class Department
     {
-        Department()
-        {
-            this.Employees = new HashSet<Employee>();
-        }
+        //public Department()
+        //{
+        //    this.Employees = new HashSet<Employee>();
+        //}
         [Key]
         public string DepartmentId { get; set; }
         [Required(ErrorMessage = "Name is required")]
@@ -20,7 +20,7 @@ namespace Management_Distributor.POCO
         [Required(ErrorMessage = "Department is required")]
 
         //[ForeignKey("Employees")]
-        public string EmployeeEmployeeId { get; set; }
+        public string EmployeeId { get; set; }
 
         public virtual Employee Employee { get; set; }
 
