@@ -13,20 +13,36 @@ namespace Management_Distributor.Tests.Product
     [TestClass]
     public class Product
     {
-        [TestMethod]
-        public void TestAddition()
-        {
+        //[TestMethod]
+        //public void TestAddition()
+        //{
+        //    GenericUnitOfWork uow = new GenericUnitOfWork();
+        //    CategoryService ctgr = new CategoryService(uow);
+        //    ctgr.AddRange(new List<Category>()
+        //            {
+        //                  new POCO.Category { CategoryId = "C000000003", CategoryName = "Milk"},
+        //                  new POCO.Category { CategoryId = "C000000004", CategoryName = "Yourgut"},
+        //                  new POCO.Category { CategoryId = "C000000005", CategoryName = "Whey"}
+        //            })
+        //      ;
+        //}
 
-            ManagementDistributorDbContext context = new ManagementDistributorDbContext();
-            GenericUnitOfWork uow = new GenericUnitOfWork(context);
-            CategoryService ctgr = new CategoryService(uow, LogManager.GetCurrentClassLogger());
-            ctgr.AddRange(new List<Category>()
-                    {
-                          new POCO.Category { CategoryId = "C000000003", CategoryName = "Milk"},
-                          new POCO.Category { CategoryId = "C000000004", CategoryName = "Yourgut"},
-                          new POCO.Category { CategoryId = "C000000005", CategoryName = "Whey"}
-                    })
-              ;
+        [TestMethod]
+        public void TestUpdate()
+        {
+            GenericUnitOfWork uow = new GenericUnitOfWork();
+            CategoryService ctgr = new CategoryService(uow);
+            Category category = ctgr.GetOne("C000000002");
+            bool success = false;
+            if(category!= null)
+            {
+                category.Description = "lol";
+                if(ctgr.Edit(category))
+                {
+                    success = true;
+                }
+            }
+            Assert.AreEqual(true, success);
         }
     }
 }

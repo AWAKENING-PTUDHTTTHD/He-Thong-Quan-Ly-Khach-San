@@ -2,6 +2,7 @@ C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Di
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor.Tests\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor.Tests\bin\Debug\NLog.config
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor.Tests\bin\Debug\Management-Distributor.Tests.dll.config
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor.Tests\bin\Debug\Management-Distributor.Tests.dll
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor.Tests\bin\Debug\Management-Distributor.Tests.pdb
@@ -20,7 +21,6 @@ C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Di
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor.Tests\bin\Debug\System.Web.WebPages.dll
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor.Tests\bin\Debug\System.Web.WebPages.Razor.dll
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor.Tests\bin\Debug\WebActivatorEx.dll
-C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor.Tests\bin\Debug\System.Web.Optimization.dll
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor.Tests\bin\Debug\Ninject.Web.Common.dll
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor.Tests\bin\Debug\Ninject.dll
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor.Tests\bin\Debug\BCrypt.Net.dll
@@ -38,7 +38,6 @@ C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Di
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor.Tests\bin\Debug\System.Web.WebPages.xml
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor.Tests\bin\Debug\System.Web.WebPages.Deployment.xml
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor.Tests\bin\Debug\System.Web.WebPages.Razor.xml
-C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor.Tests\bin\Debug\System.Web.Optimization.xml
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor.Tests\bin\Debug\Ninject.Web.Common.xml
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor.Tests\bin\Debug\Ninject.xml
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor.Tests\bin\Debug\BCrypt.Net.pdb
@@ -47,4 +46,3 @@ C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Di
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor.Tests\obj\Debug\Management-Distributor.Tests.csproj.CoreCompileInputs.cache
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor.Tests\obj\Debug\Management-Distributor.Tests.dll
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor.Tests\obj\Debug\Management-Distributor.Tests.pdb
-C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor.Tests\bin\Debug\NLog.config

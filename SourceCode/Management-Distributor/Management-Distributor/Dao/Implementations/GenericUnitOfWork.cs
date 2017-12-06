@@ -11,9 +11,9 @@ namespace Management_Distributor.Dao.Implementations
     public class GenericUnitOfWork : IUnitOfWork
     {
         private DbContext _context = null;
-        public GenericUnitOfWork(DbContext context)
+        public GenericUnitOfWork()
         {
-            _context = context;
+            _context = new ManagementDistributorDbContext();
         }
 
         private Dictionary<Type, object> repositories = new Dictionary<Type, object>();

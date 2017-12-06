@@ -15,6 +15,7 @@ namespace Management_Distributor.App_Start
     using Management_Distributor.Dao.Interfaces;
     using Management_Distributor.Dao.Implementations;
     using NLog;
+    using System.Data.Entity;
 
     public static class NinjectWebCommon 
     {
@@ -66,7 +67,6 @@ namespace Management_Distributor.App_Start
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            kernel.Bind<ILogger>().To<Logger>();
             kernel.Bind<IUnitOfWork>().To<GenericUnitOfWork>();
             kernel.Bind<ICategoryService>().To<CategoryService>();
         }        

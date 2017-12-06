@@ -9,34 +9,87 @@ using System.Web;
 using System.Web.Mvc;
 using Management_Distributor.Dao._DbContext;
 using Management_Distributor.POCO;
+using Management_Distributor.Service.Interfaces; 
 
 namespace Management_Distributor.Controllers
 {
+
     public class CategoriesController : Controller
     {
-        private ManagementDistributorDbContext db = new ManagementDistributorDbContext();
+        private ICategoryService categoryService =  null;
+
+        public CategoriesController(ICategoryService categoryService)
+        {
+            this.categoryService = categoryService;
+        }
+
+        [HttpGet]
+        public ActionResult AddOrEdit(string id="")
+        {
+            if (id == "")
+            {
+                return View(new Category());
+            }
+            else
+            {
+                Category category = categoryService.GetOne(id);
+                return View(category);
+            }
+
+        }
+
+        [HttpPost]
+        public ActionResult AddOrEdit(Category category)
+        {
+            if (category.CategoryId == "")
+            {
+                if (categoryService.Add(category))
+                {
+                    return Json(new { success = true, message = "Add successfully" }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(new { success = false, message = "Failed to add" }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+                
+                if (categoryService.Edit(category))
+                {
+                    return Json(new { success = true, message = "Edit successfully" }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(new { success = false, message = "Failed to edit" }, JsonRequestBehavior.AllowGet);
+                }
+
+            }
+        }
 
         // GET: Categories
+        //[Authorize]
         public ActionResult Index()
         {
             return View();
-            // return View(await db.Categories.ToListAsync());
+            
         }
 
-        public ActionResult loadData()
+        public JsonResult loadData()
         {
-            var data = db.Categories.ToListAsync();
-            return Json(new { data = data }, JsonRequestBehavior.AllowGet);
+            //var data = db.Categories.ToList();
+            var data = categoryService.GetAll();
+            return Json(new { data = data}, JsonRequestBehavior.AllowGet);
         }
 
         // GET: Categories/Details/5
-        public async Task<ActionResult> Details(string id)
+        public ActionResult Details(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = await db.Categories.FindAsync(id);
+            Category category = categoryService.GetOne(id);
             if (category == null)
             {
                 return HttpNotFound();
@@ -55,12 +108,11 @@ namespace Management_Distributor.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "CategoryId,CategoryName,Description")] Category category)
+        public ActionResult Create([Bind(Include = "CategoryId,CategoryName,Description")] Category category)
         {
             if (ModelState.IsValid)
             {
-                db.Categories.Add(category);
-                await db.SaveChangesAsync();
+                categoryService.Add(category);
                 return RedirectToAction("Index");
             }
 
@@ -68,13 +120,13 @@ namespace Management_Distributor.Controllers
         }
 
         // GET: Categories/Edit/5
-        public async Task<ActionResult> Edit(string id)
+        public ActionResult Edit(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = await db.Categories.FindAsync(id);
+            Category category = categoryService.GetOne(id);
             if (category == null)
             {
                 return HttpNotFound();
@@ -87,25 +139,24 @@ namespace Management_Distributor.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "CategoryId,CategoryName,Description")] Category category)
+        public ActionResult Edit([Bind(Include = "CategoryId,CategoryName,Description")] Category category)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(category).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                categoryService.Edit(category);
                 return RedirectToAction("Index");
             }
             return View(category);
         }
 
         // GET: Categories/Delete/5
-        public async Task<ActionResult> Delete(string id)
+        public ActionResult Delete(string id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Category category = await db.Categories.FindAsync(id);
+            Category category = categoryService.GetOne(id);
             if (category == null)
             {
                 return HttpNotFound();
@@ -116,21 +167,19 @@ namespace Management_Distributor.Controllers
         // POST: Categories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(string id)
         {
-            Category category = await db.Categories.FindAsync(id);
-            db.Categories.Remove(category);
-            await db.SaveChangesAsync();
+            Category category = categoryService.GetOne(id);
+            categoryService.Delete(category);
             return RedirectToAction("Index");
         }
 
-        protected override void Dispose(bool disposing)
+        [HttpPost]
+        public ActionResult Remove(string id)
         {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
+            Category category = categoryService.GetOne(id);
+            categoryService.Delete(category);
+            return Json(new {success=true, message="Removal success!" }, JsonRequestBehavior.AllowGet);
         }
     }
 }

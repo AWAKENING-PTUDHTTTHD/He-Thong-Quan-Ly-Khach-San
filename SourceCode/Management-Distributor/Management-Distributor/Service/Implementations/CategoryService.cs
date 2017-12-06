@@ -15,15 +15,14 @@ namespace Management_Distributor.Service.Implementations
     public class CategoryService : ICategoryService
     {
         #region member
-        private readonly ILogger _logger;
+        private readonly ILogger _logger = LogManager.GetCurrentClassLogger();
         private IUnitOfWork _uow = null;
         private IRepository<Category> repoCategory = null;
         #endregion
 
         #region method
-        public CategoryService(IUnitOfWork uow, ILogger logger)
+        public CategoryService(IUnitOfWork uow)
         {
-            _logger = logger;
             _uow = uow;
             repoCategory = _uow.Repository<Category>();
         }
@@ -63,6 +62,13 @@ namespace Management_Distributor.Service.Implementations
         public List<Category> GetAll()
         {
             return repoCategory.GetAll().ToList();
+        }
+
+        public Category GetOne(string id)
+        {
+            Category category = null;
+            category = repoCategory.GetById(id);
+            return category;
         }
         #endregion method
     }

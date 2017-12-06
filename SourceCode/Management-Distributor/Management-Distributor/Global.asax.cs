@@ -20,10 +20,9 @@ namespace Management_Distributor
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
-            ManagementDistributorDbContext context = new ManagementDistributorDbContext();
-            GenericUnitOfWork uow = new GenericUnitOfWork(context);
-            CategoryService ctgr = new CategoryService(uow,LogManager.GetCurrentClassLogger());
+            //BundleConfig.RegisterBundles(BundleTable.Bundles);
+            //GenericUnitOfWork uow = new GenericUnitOfWork();
+            //CategoryService ctgr = new CategoryService(uow);
             //ctgr.AddRange(new List<Category>()
             //        {
             //              new POCO.Category { CategoryId = "C000000003", CategoryName = "Milk", Description = "1st majority categories"},

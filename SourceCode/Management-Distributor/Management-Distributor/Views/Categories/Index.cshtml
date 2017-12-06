@@ -1,44 +1,15 @@
-﻿@Scripts.Render("~/bundles/datatable")
-@model IEnumerable<Management_Distributor.POCO.Category>
+﻿
+@model Management_Distributor.POCO.Category
 
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
-
+<a class="btn btn-primary" onclick="PopupForm('@Url.Action("AddOrEdit", "Categories")')"><i class="fa fa-plus-circle">  Add New</i></a>
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-@*<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.CategoryName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.CategoryName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.CategoryId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.CategoryId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.CategoryId })
-        </td>
-    </tr>
-}
-
-</table>*@
-
 <h2>List categories</h2>
 <div style="width:90%; margin:0 auto;">
     <table id="categoriesTable">
@@ -47,43 +18,164 @@
                 <td>@Html.DisplayNameFor(model => model.CategoryId)</td>
                 <td>@Html.DisplayNameFor(model => model.CategoryName)</td>
                 <td>@Html.DisplayNameFor(model => model.Description)</td>
-                <td>Action</td>
+                <td>Edit</td>
+                <td>Remove</td>
             </tr>
         </thead>
         <tbody></tbody>
     </table>
 </div>
 
-<link href="~/Content/DataTables/css/dataTables.bootstrap4.css" rel="stylesheet" />
 @section Scripts {
-<script src="~/Scripts/jquery-3.2.1.js"></script>
-<script src="~/Scripts/DataTables/dataTables.bootstrap4.js"></script>
+<script src="~/Scripts/jquery.dataTables-1.10.5.js"></script>
+@*<script src="~/Scripts/DataTables/dataTables.bootstrap4.js"></script>*@
     <script>
-        $(document).ready(function(){
-            $('#categoriesTable').Datatable({
+        var Popup, datatable;
+        /* Process datatable */
+        $(document).ready(function () {
+            let $table = $('#categoriesTable');
+            if ($table.length) {
+                console.log('Inside the table');
+            }
+            datatable = $table.DataTable({
+                lengthMenu: [[3, 5, 10, -1], ['3', '5', '10', 'All']],
+                pageLength: 5,
                 "ajax": {
-                    "url": "/categories/loadData",
+                    "url": "/Categories/loadData",
                     "type": "GET",
-                    "datatype": "json",
+                    "datatype": "json"
+                },
                     "columns": [
                         {
-                            "data": "CategoryId",
-                            "autoWidth" : true
+                            "data": "CategoryId"
+                            
                         },
                         {
-                            "data": "CategoryName",
-                            "autoWidth": true
+                            "data": "CategoryName"
+                           
                         },
                         {
-                            "data": "Description",
-                            "autoWidth": true
+                            "data": "Description"
+                           
                         }
+                        ,
+                        {
+                            "data": "CategoryId",
+                            bSortable: false,
+                            searchable: false,
+                            mRender: (data, type, row) => {
+                                let opt = '';
+                                //opt += '<a href="Categories/Edit/'+data+'" class="btn btn-success"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
+                                opt += "<a class='btn btn-success btn-sm' onclick=PopupForm('@Url.Action("AddOrEdit","Categories")/"+data+"')><i class='fa fa-pencil-square-o' aria-hidden='true'></i></a>";
+                                return opt;
+
+                            }
+                        },
+                        {
+                            "data": "CategoryId",
+                            bSortable: false,
+                            searchable: false,
+                            mRender: (data, type, row) => {
+                                let opt = '';
+                                //opt += '<a href="Categories/Delete/' + data + '"" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>';
+                                opt += "<a class='btn btn-danger btn-sm' onclick=Delete('" + data + "')><i class='fa fa-trash' aria-hidden='true'></i></a>";
+                                return opt;
+
+                            }
+                        },
+
                     ],
                     "language": {
                         "emptyTable" : "Currently no data found. Please click on <b>Add New</b> button"
                     }
-                }
             });
         });
+        /* End Process datatable */
+
+        /* Show add/edit Form */
+        function PopupForm(url)
+        {
+            var formDiv = $('<div/>');
+            $.get(url)
+            .done(function (response) {
+                formDiv.html(response)
+                Popup = formDiv.dialog({
+                    autoOpen: true,
+                    resizable: false,
+                    
+                    title: 'Add/Update Category',
+                    height: 500,
+                    width: 700,
+                    close: function()
+                    {
+                        Popup.dialog('destroy')
+                            .remove();
+                    }
+                });
+            });
+        }
+        /* End Show add/edit Form */
+
+        /* Submit add/Edit Form*/
+        function SubmitForm(form) {
+            $.validator.unobtrusive.parse(form);
+            if ($(form).valid()) {
+                $.ajax({
+                    type: "POST",
+                    url: form.action,
+                    data: $(form).serialize(),
+                    success: function (data) {
+                        if (data.success == true) {
+                            Popup.dialog('close');
+                            datatable.ajax.reload();
+
+                            $.notify(data.message, {
+                                globalPosition: "top center",
+                                className : "success"
+                            });
+                        }
+                        else {
+                            $.notify(data.message, {
+                                globalPosition: "top center",
+                                className: "Error"
+                            });
+                        }
+                    }
+                });
+            }
+            return false;
+        }
+        /* End Submit add/Edit Form*/
+
+        /* Remove record opt */
+
+        function Delete(id) {
+            if(confirm('Are you Sure to remove this category record ?'))
+            {
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("Remove", "Categories")/' + id,
+                    success: function (data) {
+                        if (data.success) {
+                            datatable.ajax.reload();
+
+                            $.notify(data.message, {
+                                globalPosition: "top center",
+                                className: "success"
+                            });
+                        
+                        }
+                        else {
+                            $.notify(data.message, {
+                                globalPosition: "top center",
+                                className: "Error"
+                            });
+                        }
+                    }
+                });
+            }
+        }
+
+        /* End Remove record opt */
     </script>
     }

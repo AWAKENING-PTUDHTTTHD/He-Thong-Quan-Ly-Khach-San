@@ -13,7 +13,7 @@ namespace Management_Distributor.Service.Interfaces
         bool Add(Category category);
         bool Edit(Category category);
         bool Delete(Category category);
-
+        Category GetOne(string id);
         bool AddRange(List<Category> categories);
 
     }
