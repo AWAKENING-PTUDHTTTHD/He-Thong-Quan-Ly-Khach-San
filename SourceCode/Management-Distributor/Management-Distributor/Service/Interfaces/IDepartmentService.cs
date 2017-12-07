@@ -13,7 +13,7 @@ namespace Distributor.Service.Interfaces
         bool Add(Department dept);
         bool Edit(Department dept);
         bool Delete(Department dept);
-        Category GetOne(int id);
+        Department GetOne(int id);
         bool AddRange(List<Department> depts);
 
     }

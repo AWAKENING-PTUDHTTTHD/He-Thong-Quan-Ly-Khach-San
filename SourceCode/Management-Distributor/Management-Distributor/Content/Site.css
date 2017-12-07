@@ -73,7 +73,7 @@ input .input-validation-error {
 /* end custom errors message */
 
 /* navbar logo */
-.navbar-brand {
+/*.navbar-brand {
     padding: 0px;
 }
 
@@ -81,5 +81,5 @@ input .input-validation-error {
         height: 100%;
         padding: 15px;
         width: auto;
-    }
+    }*/
 /* end navbar logo */

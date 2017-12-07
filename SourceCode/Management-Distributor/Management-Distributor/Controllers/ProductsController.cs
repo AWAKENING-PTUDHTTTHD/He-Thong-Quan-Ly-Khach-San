@@ -24,10 +24,67 @@ namespace Distributor.Controllers
             categoryService = _categoryService;
         }
         // GET: Products
+
+
+        public JsonResult LoadData()
+        {
+            //var data = db.Categories.ToList();
+            var data = productService.GetAll();
+            return Json(new { data = data }, JsonRequestBehavior.AllowGet);
+        }
+
+
+        [HttpGet]
+        public ActionResult AddOrEdit(int id = 0)
+        {
+            List<Category> categories = categoryService.GetAll();
+            ViewBag.CategoryId = new SelectList(categories, "CategoryId", "CategoryName");
+            if (id == 0)
+            {
+                return View(new Product());
+            }
+            else
+            {
+                Product product = productService.GetOne(id);
+                return View(product);
+            }
+
+        }
+
+        [HttpPost]
+        public ActionResult AddOrEdit(Product product)
+        {
+            if (product.ProductId == 0)
+            {
+                if (productService.Add(product))
+                {
+                    return Json(new { success = true, message = "Add successfully" }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(new { success = false, message = "Failed to add" }, JsonRequestBehavior.AllowGet);
+                }
+            }
+            else
+            {
+
+                if (productService.Edit(product))
+                {
+                    return Json(new { success = true, message = "Edit successfully" }, JsonRequestBehavior.AllowGet);
+                }
+                else
+                {
+                    return Json(new { success = false, message = "Failed to edit" }, JsonRequestBehavior.AllowGet);
+                }
+
+            }
+        }
+
         public ActionResult Index()
         {
-            var products = productService.GetAll();
-            return View(products);
+            //var products = productService.GetAll();
+            // return View(products);
+            return View();
         }
 
         // GET: Products/Details/5

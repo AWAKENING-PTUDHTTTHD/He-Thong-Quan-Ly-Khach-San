@@ -7,6 +7,7 @@
     
     <link href="~/Content/Site.css" rel="stylesheet" />
     <link href="~/Content/bootstrap-4-beta.css" rel="stylesheet" />
+    <link id="changeable"href="" rel="stylesheet" />
     @*<link href="~/Content/bootstrap-4-sandstone.css" rel="stylesheet" />*@
     <script src="~/Scripts/jquery-3.2.1.js"></script>
     <script src="~/Scripts/umd/popper.js"></script>
@@ -19,6 +20,44 @@
     <link href="~/Content/font-awesome.css" rel="stylesheet" />
     <script src="~/Scripts/bootbox.min.js"></script>
 
+    <!-- self script -->
+    <script>
+        $(document).ready(() =>{
+            $('#united').on('click', () => {
+                $('link#changeable').removeAttr("href");
+                $('link#changeable').attr("href", "https://bootswatch.com/4/united/bootstrap.css");
+            });
+        });
+
+        $(document).ready(() => {
+            $('#darkly').on('click', () => {
+                $('link#changeable').removeAttr("href");
+                $('link#changeable').attr("href", "https://bootswatch.com/4/darkly/bootstrap.css");
+            });
+        });
+
+        $(document).ready(() => {
+            $('#pulse').on('click', () => {
+                $('link#changeable').removeAttr("href");
+                $('link#changeable').attr("href", "https://bootswatch.com/4/pulse/bootstrap.min.css");
+            });
+        });
+
+        $(document).ready(() => {
+            $('#flatly').on('click', () => {
+                $('link#changeable').removeAttr("href");
+                $('link#changeable').attr("href", "https://bootswatch.com/4/flatly/bootstrap.min.css");
+            });
+        });
+
+        $(document).ready(() => {
+            $('#minty').on('click', () => {
+                $('link#changeable').removeAttr("href");
+                $('link#changeable').attr("href", "https://bootswatch.com/4/minty/bootstrap.min.css");
+            });
+        });
+    </script>
+    <!-- self script -->
     <link href="~/Content/jquery.dataTables.-1.10.5.css" rel="stylesheet" />
     <link href="~/Content/DataTables/css/dataTables.bootstrap4.css" rel="stylesheet" />
 
@@ -28,9 +67,9 @@
     Custom nvbar color
     fixed-top
     -->
-    <div class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="navbar navbar-expand-lg navbar-dark bg-success">
         <div class="container">
-            <a href="../" class="navbar-brand"><img src="~/Content/images/logo.png"/></a>
+            <a href="../" class="navbar-brand"><img src="~/Content/images/logos.png" alt="Awakening"/></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -39,44 +78,21 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="themes">Themes <span class="caret"></span></a>
                         <div class="dropdown-menu" aria-labelledby="themes">
-                            <a class="dropdown-item" href="../default/">Default</a>
+                            <a id="united"class="dropdown-item" href="#">united</a>
                             <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="../cerulean/">Cerulean</a>
-                            <a class="dropdown-item" href="../cosmo/">Cosmo</a>
-                            <a class="dropdown-item" href="../cyborg/">Cyborg</a>
-                            <a class="dropdown-item" href="../darkly/">Darkly</a>
-                            <a class="dropdown-item" href="../flatly/">Flatly</a>
-                            <a class="dropdown-item" href="../journal/">Journal</a>
-                            <a class="dropdown-item" href="../litera/">Litera</a>
-                            <a class="dropdown-item" href="../lumen/">Lumen</a>
-                            <a class="dropdown-item" href="../lux/">Lux</a>
-                            <a class="dropdown-item" href="../materia/">Materia</a>
-                            <a class="dropdown-item" href="../minty/">Minty</a>
-                            <a class="dropdown-item" href="../pulse/">Pulse</a>
-                            <a class="dropdown-item" href="../sandstone/">Sandstone</a>
-                            <a class="dropdown-item" href="../simplex/">Simplex</a>
-                            <a class="dropdown-item" href="../sketchy/">Sketchy</a>
-                            <a class="dropdown-item" href="../slate/">Slate</a>
-                            <a class="dropdown-item" href="../solar/">Solar</a>
-                            <a class="dropdown-item" href="../spacelab/">Spacelab</a>
-                            <a class="dropdown-item" href="../superhero/">Superhero</a>
-                            <a class="dropdown-item" href="../united/">United</a>
-                            <a class="dropdown-item" href="../yeti/">Yeti</a>
+                            <a id="darkly"class="dropdown-item" href="#">darkly</a>
+                            <div class="dropdown-divider"></div>
+                            <a id="pulse"class="dropdown-item" href="#">pulse</a>
+                            <div class="dropdown-divider"></div>
+                            <a id="flatly"class="dropdown-item" href="#">flatly</a>
+                            <div class="dropdown-divider"></div>
+                            <a id="minty"class="dropdown-item" href="#">minty</a>
                         </div>
                     </li>
                     <li class="nav-item">
                        @Html.ActionLink("Home", "Index", "Home", null, new { @class= "nav-link"} )
                     </li>
-                    <li class="nav-item">
-                       @Html.ActionLink("About", "About", "Home", null, new { @class = "nav-link" })
-                    </li>
-                    <li class="nav-item">
-                        @Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })
-                    </li>
-                    
-                    
-
-                    
+     
                    
                     <!-- Authentication URL -->
                     @if (User.Identity.IsAuthenticated)
@@ -99,28 +115,18 @@
                             </li>
                         }
 
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">Welcome Mr/Ms: @User.Identity.Name</a>
-                        </li>
+                        
                     }
                    
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" id="download">Minty <span class="caret"></span></a>
-                        <div class="dropdown-menu" aria-labelledby="download">
-                            <a class="dropdown-item" href="https://jsfiddle.net/bootswatch/3bojykn2/">Open in JSFiddle</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="../4/minty/bootstrap.min.css">bootstrap.min.css</a>
-                            <a class="dropdown-item" href="../4/minty/bootstrap.css">bootstrap.css</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="../4/minty/_variables.scss">_variables.scss</a>
-                            <a class="dropdown-item" href="../4/minty/_bootswatch.scss">_bootswatch.scss</a>
-                        </div>
-                    </li>
                 </ul>
 
                 <ul class="nav navbar-nav ml-auto">
                     @if (User.Identity.IsAuthenticated)
                     {
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">Welcome @User.Identity.Name</a>
+                        </li>
+
                         <li class="nav-item">
                             @Html.ActionLink("LogOut", "Logout", "Account", null, new { @class = "nav-link" })
                         </li>
@@ -145,7 +151,7 @@
         @RenderBody()
         <hr />
         <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+            <p>&copy; @DateTime.Now.Year - Awakening's Distributor Management Application</p>
         </footer>
     </div>
     @*@Styles.Render("~/Content/css")

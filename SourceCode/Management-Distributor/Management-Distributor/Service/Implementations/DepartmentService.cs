@@ -72,7 +72,7 @@ namespace Distributor.Service.Implementations
             dept = repoDept.GetById(id);
             return dept;
         }
-        Category IDeparmentService.GetOne(int id)
+        Department IDeparmentService.GetOne(int id)
         {
             throw new NotImplementedException();
         }

@@ -1,51 +1,185 @@
-﻿@model IEnumerable<Distributor.POCO.Product>
+﻿@model Distributor.POCO.Product
 
 @{
     ViewBag.Title = "Index";
 }
 
 <h2>Index</h2>
+<a class="btn btn-default" onclick="PopupForm('@Url.Action("AddOrEdit", "Categories")')"><i class="fa fa-plus-circle">  Add New</i></a>
+<h2>List Products</h2>
+<div style="width:90%; margin:0 auto;">
+    <table id="productsTable">
+        <thead>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.ProductId)</td>
+                <td>@Html.DisplayNameFor(model => model.ProductName)</td>
+                <td>@Html.DisplayNameFor(model => model.CategoryId)</td>
+                <td>@Html.DisplayNameFor(model => model.Price)</td>
+                <td>@Html.DisplayNameFor(model => model.Description)</td>
+                <td>Edit</td>
+                <td>Remove</td>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Category.CategoryName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.ProductName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Price)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Description)
-        </th>
-        <th></th>
-    </tr>
+@section Scripts {
+    <script src="~/Scripts/jquery.dataTables-1.10.5.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.bootstrap4.js"></script>
+    <script>
+        var Popup, datatable;
+        /* Process datatable */
+        $(document).ready(function () {
+            let $table = $('#productsTable');
+            if ($table.length) {
+                console.log('Inside the table');
+            }
+            datatable = $table.DataTable({
+                lengthMenu: [[3, 5, 10, -1], ['3', '5', '10', 'All']],
+                pageLength: 5,
+                "ajax": {
+                    "url": "/Products/LoadData",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                    "columns": [
+                        {
+                            "data": "ProductId"
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Category.CategoryName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.ProductName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Price)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.ProductId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.ProductId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.ProductId })
-        </td>
-    </tr>
+                        },
+                        {
+                            "data": "ProductName"
+
+                        },
+                        {
+                            "data": "CategoryId"
+
+                        },
+                        {
+                            "data": "Price"
+
+                        },
+                        {
+                            "data": "Description"
+
+                        }
+                        ,
+                        {
+                            "data": "ProductId",
+                            bSortable: false,
+                            searchable: false,
+                            mRender: (data, type, row) => {
+                                let opt = '';
+                                opt += "<a class='btn btn-success btn-sm' onclick=PopupForm('@Url.Action("AddOrEdit","Products")/"+data+"')><i class='fa fa-pencil-square-o' aria-hidden='true'></i></a>";
+                                return opt;
+
+                            }
+                        },
+                        {
+                            "data": "ProductId",
+                            bSortable: false,
+                            searchable: false,
+                            mRender: (data, type, row) => {
+                                let opt = '';
+                                opt += "<a class='btn btn-danger btn-sm' onclick=Delete('" + data + "')><i class='fa fa-trash' aria-hidden='true'></i></a>";
+                                return opt;
+
+                            }
+                        },
+
+                    ],
+                    "language": {
+                        "emptyTable" : "Currently no data found. Please click on <b>Add New</b> button"
+                    }
+            });
+        });
+        /* End Process datatable */
+
+        /* Show add/edit Form */
+        function PopupForm(url)
+        {
+            var formDiv = $('<div/>');
+            $.get(url)
+            .done(function (response) {
+                formDiv.html(response)
+                Popup = formDiv.dialog({
+                    autoOpen: true,
+                    resizable: false,
+
+                    title: 'Add/Update Product',
+                    height: 500,
+                    width: 700,
+                    close: function()
+                    {
+                        Popup.dialog('destroy')
+                            .remove();
+                    }
+                });
+            });
+        }
+        /* End Show add/edit Form */
+
+        /* Submit add/Edit Form*/
+        function SubmitForm(form) {
+            $.validator.unobtrusive.parse(form);
+            if ($(form).valid()) {
+                $.ajax({
+                    type: "POST",
+                    url: form.action,
+                    data: $(form).serialize(),
+                    success: function (data) {
+                        if (data.success == true) {
+                            Popup.dialog('close');
+                            datatable.ajax.reload();
+
+                            $.notify(data.message, {
+                                globalPosition: "top center",
+                                className : "success"
+                            });
+                        }
+                        else {
+                            $.notify(data.message, {
+                                globalPosition: "top center",
+                                className: "Error"
+                            });
+                        }
+                    }
+                });
+            }
+            return false;
+        }
+        /* End Submit add/Edit Form*/
+
+        /* Remove record opt */
+
+        function Delete(id) {
+            if(confirm('Are you Sure to remove this product record ?'))
+            {
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("Remove", "Products")/' + id,
+                    success: function (data) {
+                        if (data.success) {
+                            datatable.ajax.reload();
+
+                            $.notify(data.message, {
+                                globalPosition: "top center",
+                                className: "success"
+                            });
+
+                        }
+                        else {
+                            $.notify(data.message, {
+                                globalPosition: "top center",
+                                className: "Error"
+                            });
+                        }
+                    }
+                });
+            }
+        }
+
+        /* End Remove record opt */
+    </script>
 }
-
-</table>

@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Distributor.Dao._DbContext;
 using Distributor.POCO;
+using Distributor.Service.Interfaces;
 
 namespace Management_Distributor.Controllers
 {
@@ -15,23 +16,28 @@ namespace Management_Distributor.Controllers
     [Authorize(Roles = "Admin")]
     public class EmployeesController : Controller
     {
-        private ManagementDistributorDbContext db = new ManagementDistributorDbContext();
-
+        IEmployeeService EmpService = null;
+        IDeparmentService DeptService = null;
+        public EmployeesController(IEmployeeService _EmpService, IDeparmentService _DeptService)
+        {
+            EmpService = _EmpService;
+            DeptService = _DeptService;
+        }
         // GET: Employees
         public ActionResult Index()
         {
-            var employees = db.Employees.Include(e => e.Department);
+            var employees = EmpService.GetAll();
             return View(employees.ToList());
         }
 
         // GET: Employees/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult Details(int id)
         {
-            if (id == null)
+            if (id == 0)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = db.Employees.Find(id);
+            Employee employee = EmpService.GetOne(id);
             if (employee == null)
             {
                 return HttpNotFound();
@@ -42,7 +48,7 @@ namespace Management_Distributor.Controllers
         // GET: Employees/Create
         public ActionResult Create()
         {
-            ViewBag.DepartmentId = new SelectList(db.Departments, "DepartmentId", "DepartmentName");
+            ViewBag.DepartmentId = new SelectList(DeptService.GetAll(), "DepartmentId", "DepartmentName");
             return View();
         }
 
@@ -55,28 +61,27 @@ namespace Management_Distributor.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Employees.Add(employee);
-                db.SaveChanges();
+                EmpService.Add(employee);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.DepartmentId = new SelectList(db.Departments, "DepartmentId", "DepartmentName", employee.DepartmentId);
+            ViewBag.DepartmentId = new SelectList(DeptService.GetAll(), "DepartmentId", "DepartmentName", employee.DepartmentId);
             return View(employee);
         }
 
         // GET: Employees/Edit/5
-        public ActionResult Edit(int? id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
+            if (id == 0)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = db.Employees.Find(id);
+            Employee employee = EmpService.GetOne(id);
             if (employee == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.DepartmentId = new SelectList(db.Departments, "DepartmentId", "DepartmentName", employee.DepartmentId);
+            ViewBag.DepartmentId = new SelectList(DeptService.GetAll(), "DepartmentId", "DepartmentName", employee.DepartmentId);
             return View(employee);
         }
 
@@ -89,22 +94,21 @@ namespace Management_Distributor.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(employee).State = EntityState.Modified;
-                db.SaveChanges();
+                EmpService.Edit(employee);
                 return RedirectToAction("Index");
             }
-            ViewBag.DepartmentId = new SelectList(db.Departments, "DepartmentId", "DepartmentName", employee.DepartmentId);
+            ViewBag.DepartmentId = new SelectList(DeptService.GetAll(), "DepartmentId", "DepartmentName", employee.DepartmentId);
             return View(employee);
         }
 
         // GET: Employees/Delete/5
-        public ActionResult Delete(int? id)
+        public ActionResult Delete(int id)
         {
-            if (id == null)
+            if (id == 0)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Employee employee = db.Employees.Find(id);
+            Employee employee = EmpService.GetOne(id);
             if (employee == null)
             {
                 return HttpNotFound();
@@ -117,19 +121,9 @@ namespace Management_Distributor.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Employee employee = db.Employees.Find(id);
-            db.Employees.Remove(employee);
-            db.SaveChanges();
+            Employee employee = EmpService.GetOne(id);
+            EmpService.Delete(employee);
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }

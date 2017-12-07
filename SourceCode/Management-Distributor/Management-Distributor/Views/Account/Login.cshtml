@@ -3,22 +3,21 @@
 @{
     ViewBag.Title = "Login";
 }
-
-<h2>Login Here</h2>
+<div class="container" style="margin:20px auto;">
+    <h2>Login Here</h2>
 
 @using (Html.BeginForm("Login", "Account", FormMethod.Post)) 
 {
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        <h4>Employee</h4>
         @if (!string.IsNullOrEmpty(ViewBag.Msg))
         {
             <div class="alert alert-danger alert-dismissible fade show" role="alert">
                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
-                <strong>Failed</strong> @ViewBag.Msg
+                <strong>Failed </strong> @ViewBag.Msg
             </div>
         }
         <hr />
@@ -42,12 +41,13 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+                <input type="submit" value="Login" class="btn btn-primary" />
             </div>
         </div>
     </div>
 }
 
 <div>
-    @Html.ActionLink("Back to List", "Index")
 </div>
+</div>
+

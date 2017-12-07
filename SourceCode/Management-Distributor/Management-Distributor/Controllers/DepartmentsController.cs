@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using Distributor.Dao._DbContext;
 using Distributor.POCO;
+using Distributor.Service.Interfaces;
 
 namespace Distributor.Controllers
 {
@@ -18,23 +19,29 @@ namespace Distributor.Controllers
     [Authorize(Roles = "Admin")]
     public class DepartmentsController : Controller
     {
-        private ManagementDistributorDbContext db = new ManagementDistributorDbContext();
+        IEmployeeService EmpService = null;
+        IDeparmentService DeptService = null;
 
-        //[Authorize(Roles = "V,A")]
-        public async Task<ActionResult> Index()
+        public DepartmentsController(IEmployeeService _EmpService, IDeparmentService _DeptService)
         {
-            var departments = db.Departments.Include(d => d.Employee);
-            return View(await departments.ToListAsync());
+            EmpService = _EmpService;
+            DeptService = _DeptService;
+        }
+        //[Authorize(Roles = "V,A")]
+        public ActionResult Index()
+        {
+            var departments = DeptService.GetAll();
+            return View(departments);
         }
 
         // GET: Departments/Details/5
-        public async Task<ActionResult> Details(string id)
+        public ActionResult Details(int id)
         {
-            if (id == null)
+            if (id == 0)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Department department = await db.Departments.FindAsync(id);
+            Department department = DeptService.GetOne(id);
             if (department == null)
             {
                 return HttpNotFound();
@@ -46,7 +53,7 @@ namespace Distributor.Controllers
         // GET: Departments/Create
         public ActionResult Create()
         {
-            ViewBag.EmployeeEmployeeId = new SelectList(db.Employees, "EmployeeId", "EmpName");
+            ViewBag.EmployeeEmployeeId = new SelectList(EmpService.GetAll(), "EmployeeId", "EmpName");
             return View();
         }
 
@@ -55,32 +62,31 @@ namespace Distributor.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "DepartmentId,DepartmentName,EmployeeId")] Department department)
+        public ActionResult Create([Bind(Include = "DepartmentId,DepartmentName,EmployeeId")] Department department)
         {
             if (ModelState.IsValid)
             {
-                db.Departments.Add(department);
-                await db.SaveChangesAsync();
+                DeptService.Add(department);
                 return RedirectToAction("Index");
             }
 
-            ViewBag.EmployeeEmployeeId = new SelectList(db.Employees, "EmployeeId", "EmpName", department.EmployeeId);
+            ViewBag.EmployeeEmployeeId = new SelectList(EmpService.GetAll(), "EmployeeId", "EmpName", department.EmployeeId);
             return View(department);
         }
 
         // GET: Departments/Edit/5
-        public async Task<ActionResult> Edit(string id)
+        public async Task<ActionResult> Edit(int id)
         {
-            if (id == null)
+            if (id == 0)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Department department = await db.Departments.FindAsync(id);
+            Department department = DeptService.GetOne(id);
             if (department == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.EmployeeEmployeeId = new SelectList(db.Employees, "EmployeeId", "EmpName", department.EmployeeId);
+            ViewBag.EmployeeEmployeeId = new SelectList(EmpService.GetAll(), "EmployeeId", "EmpName", department.EmployeeId);
             return View(department);
         }
 
@@ -89,26 +95,25 @@ namespace Distributor.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "DepartmentId,DepartmentName,EmployeeId")] Department department)
+        public ActionResult  Edit([Bind(Include = "DepartmentId,DepartmentName,EmployeeId")] Department department)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(department).State = EntityState.Modified;
-                await db.SaveChangesAsync();
+                DeptService.Edit(department);
                 return RedirectToAction("Index");
             }
-            ViewBag.EmployeeEmployeeId = new SelectList(db.Employees, "EmployeeId", "EmpName", department.EmployeeId);
+            ViewBag.EmployeeEmployeeId = new SelectList(EmpService.GetAll(), "EmployeeId", "EmpName", department.EmployeeId);
             return View(department);
         }
 
         // GET: Departments/Delete/5
-        public async Task<ActionResult> Delete(string id)
+        public async Task<ActionResult> Delete(int id)
         {
-            if (id == null)
+            if (id == 0)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Department department = await db.Departments.FindAsync(id);
+            Department department = DeptService.GetOne(id);
             if (department == null)
             {
                 return HttpNotFound();
@@ -119,21 +124,10 @@ namespace Distributor.Controllers
         // POST: Departments/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(int id)
         {
-            Department department = await db.Departments.FindAsync(id);
-            db.Departments.Remove(department);
-            await db.SaveChangesAsync();
+            Department department = DeptService.GetOne(id);
             return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
         }
     }
 }
