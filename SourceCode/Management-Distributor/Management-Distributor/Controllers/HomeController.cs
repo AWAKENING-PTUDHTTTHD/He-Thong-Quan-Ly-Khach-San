@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace Management_Distributor.Controllers
+namespace Distributor.Controllers
 {
     [AllowAnonymous]
     public class HomeController : Controller

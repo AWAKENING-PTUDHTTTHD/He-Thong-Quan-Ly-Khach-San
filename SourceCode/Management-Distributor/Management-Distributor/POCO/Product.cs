@@ -5,12 +5,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace Management_Distributor.POCO
+namespace Distributor.POCO
 {
     public class Product
     {
         [Key]
-        public string ProductId { get; set; }
+        public int ProductId { get; set; }
 
         [Required(ErrorMessage = "Name is required")]
         public string ProductName { get; set; }

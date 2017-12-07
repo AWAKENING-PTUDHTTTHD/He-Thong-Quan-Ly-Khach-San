@@ -5,16 +5,16 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace Management_Distributor.POCO
+namespace Distributor.POCO
 {
     public class Order
     {
-        Order()
-        {
-            this.OrderDetails = new HashSet<OrderDetail>();
-        }
+        //Order()
+        //{
+        //    this.OrderDetails = new HashSet<OrderDetail>();
+        //}
         [Key]
-        public string OrderId { get; set; }
+        public int OrderId { get; set; }
 
         public DateTime? OrderDate { get; set; }
 
@@ -23,16 +23,16 @@ namespace Management_Distributor.POCO
         public string Status { get; set; }
 
         //[ForeignKey("Employees")]
-        public string EmployeeEmployeeId { get; set; }
+        public int EmployeeId { get; set; }
 
         public virtual Employee Employee { get; set; }
 
         //[ForeignKey("Contracts")]
-        public virtual string ContractContractId { get; set; }
+        public virtual int ContractId { get; set; }
         public virtual Contract Contract { get; set; }
 
-        public int DistributorDistributorId { get; set; }
-        public virtual Distributor Distributor { get; set; }
+        public int DistributorId { get; set; }
+        public virtual _Distributor Distributor { get; set; }
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
 
         public virtual Invoice Invoice { get; set; }

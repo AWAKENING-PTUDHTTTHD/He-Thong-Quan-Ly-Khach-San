@@ -4,10 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Web.Mvc;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Management_Distributor;
-using Management_Distributor.Controllers;
+using Distributor;
+using Distributor.Controllers;
 
-namespace Management_Distributor.Tests.Controllers
+namespace Distributor.Tests.Controllers
 {
     [TestClass]
     public class CategoryControllerTest

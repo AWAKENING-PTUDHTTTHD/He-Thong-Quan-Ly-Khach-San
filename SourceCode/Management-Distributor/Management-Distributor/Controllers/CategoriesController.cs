@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Management_Distributor.Dao._DbContext;
-using Management_Distributor.POCO;
-using Management_Distributor.Service.Interfaces; 
+using Distributor.Dao._DbContext;
+using Distributor.POCO;
+using Distributor.Service.Interfaces; 
 
-namespace Management_Distributor.Controllers
+namespace Distributor.Controllers
 {
-
+    [AllowAnonymous]
     public class CategoriesController : Controller
     {
         private ICategoryService categoryService =  null;
@@ -24,9 +24,9 @@ namespace Management_Distributor.Controllers
         }
 
         [HttpGet]
-        public ActionResult AddOrEdit(string id = null)
+        public ActionResult AddOrEdit(int id = 0)
         {
-            if (id == null)
+            if (id == 0)
             {
                 return View(new Category());
             }
@@ -41,7 +41,7 @@ namespace Management_Distributor.Controllers
         [HttpPost]
         public ActionResult AddOrEdit(Category category)
         {
-            if (category.CategoryId == null)
+            if (category.CategoryId == 0)
             {
                 if (categoryService.Add(category))
                 {
@@ -68,14 +68,14 @@ namespace Management_Distributor.Controllers
         }
 
         // GET: Categories
-        [Authorize]
+        //[Authorize]
         public ActionResult Index()
         {
             return View();
             
         }
 
-        public JsonResult loadData()
+        public JsonResult LoadData()
         {
             //var data = db.Categories.ToList();
             var data = categoryService.GetAll();
@@ -83,9 +83,9 @@ namespace Management_Distributor.Controllers
         }
 
         // GET: Categories/Details/5
-        public ActionResult Details(string id)
+        public ActionResult Details(int id)
         {
-            if (id == null)
+            if (id == 0)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -120,9 +120,9 @@ namespace Management_Distributor.Controllers
         }
 
         // GET: Categories/Edit/5
-        public ActionResult Edit(string id)
+        public ActionResult Edit(int id)
         {
-            if (id == null)
+            if (id == 0)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -150,9 +150,9 @@ namespace Management_Distributor.Controllers
         }
 
         // GET: Categories/Delete/5
-        public ActionResult Delete(string id)
+        public ActionResult Delete(int id)
         {
-            if (id == null)
+            if (id == 0)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -167,7 +167,7 @@ namespace Management_Distributor.Controllers
         // POST: Categories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(string id)
+        public ActionResult DeleteConfirmed(int id)
         {
             Category category = categoryService.GetOne(id);
             categoryService.Delete(category);
@@ -175,7 +175,7 @@ namespace Management_Distributor.Controllers
         }
 
         [HttpPost]
-        public ActionResult Remove(string id)
+        public ActionResult Remove(int id)
         {
             Category category = categoryService.GetOne(id);
             categoryService.Delete(category);

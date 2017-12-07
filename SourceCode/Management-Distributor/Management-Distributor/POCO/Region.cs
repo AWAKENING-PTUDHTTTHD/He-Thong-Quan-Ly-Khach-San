@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace Management_Distributor.POCO
+namespace Distributor.POCO
 {
     public class Region
     {
@@ -13,13 +13,13 @@ namespace Management_Distributor.POCO
         //    this.Distributors = new HashSet<Distributor>();
         //}
         [Key]
-        public string RegionId { get; set; }
+        public int RegionId { get; set; }
                 
         [MinLength(5, ErrorMessage ="Region name could not be less than 5 character")]
         [MaxLength(50, ErrorMessage = "Region name could not be longer than 50 character")]
         public string RegionName { get; set; }
 
         // Danh Sach nha PP
-        public virtual ICollection<Distributor> Distributors { get; set; }
+        public virtual ICollection<_Distributor> Distributors { get; set; }
     }
 }

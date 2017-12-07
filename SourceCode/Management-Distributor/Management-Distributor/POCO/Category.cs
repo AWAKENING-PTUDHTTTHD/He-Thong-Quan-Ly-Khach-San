@@ -4,19 +4,16 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Web;
 
-namespace Management_Distributor.POCO
+namespace Distributor.POCO
 {
     public class Category
     {
-        //public Category()
-        //{
-        //    this.Products = new HashSet<Product>();
-        //}
         [Key]
         public int CategoryId { get; set; }
 
         [Required(ErrorMessage = "Name is required")]
         public string CategoryName { get; set; }
+
         public string Description { get; set; }
 
         public virtual ICollection<Product> Products { get; set; }

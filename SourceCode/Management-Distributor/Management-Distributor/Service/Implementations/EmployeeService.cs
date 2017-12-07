@@ -1,13 +1,13 @@
-﻿using Management_Distributor.Service.Interfaces;
+﻿using Distributor.Service.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Management_Distributor.POCO;
+using Distributor.POCO;
 using NLog;
-using Management_Distributor.Dao.Interfaces;
+using Distributor.Dao.Interfaces;
 
-namespace Management_Distributor.Service.Implementations
+namespace Distributor.Service.Implementations
 {
     public class EmployeeService : IEmployeeService
     {
@@ -41,17 +41,19 @@ namespace Management_Distributor.Service.Implementations
 
         public bool Delete(Employee employee)
         {
-            throw new NotImplementedException();
+            repoEmployee.Delete(employee);
+            return (_uow.SaveChange() > 0);
         }
 
         public bool Edit(Employee employee)
         {
-            throw new NotImplementedException();
+            repoEmployee.Attach(employee);
+            return (_uow.SaveChange() > 0);
         }
 
-        public List<Employee> GetAll()
+            public List<Employee> GetAll()
         {
-            throw new NotImplementedException();
+            return repoEmployee.GetAll().ToList();
         }
 
         public Employee GetByUserNameOrEmail(string UsernameOrEmail)

@@ -5,18 +5,18 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace Management_Distributor.POCO
+namespace Distributor.POCO
 {
     public class OrderDetail
     {
         [Key]
-        public string OrderDetailId { get; set; }
+        public int OrderDetailId { get; set; }
         //[ForeignKey("Orders")]
 
-        public string OrderOrderId { get; set; }
+        public int OrderId { get; set; }
         public virtual Order Order { get; set; }
 
-        public string ProductProductId { get; set; }
+        public int ProductId { get; set; }
         public virtual Product Product { get; set; }
 
 

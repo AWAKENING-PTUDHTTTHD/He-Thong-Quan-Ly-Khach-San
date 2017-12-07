@@ -1,16 +1,16 @@
-﻿using Management_Distributor.Service.Interfaces;
+﻿using Distributor.Service.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Management_Distributor.POCO;
-using Management_Distributor.Dao.Interfaces;
-using Management_Distributor.Dao.Implementations;
+using Distributor.POCO;
+using Distributor.Dao.Interfaces;
+using Distributor.Dao.Implementations;
 using System.Data.Entity;
 
 using NLog;
 
-namespace Management_Distributor.Service.Implementations
+namespace Distributor.Service.Implementations
 {
     public class CategoryService : ICategoryService
     {
@@ -64,7 +64,7 @@ namespace Management_Distributor.Service.Implementations
             return repoCategory.GetAll().ToList();
         }
 
-        public Category GetOne(string id)
+        public Category GetOne(int id)
         {
             Category category = null;
             category = repoCategory.GetById(id);

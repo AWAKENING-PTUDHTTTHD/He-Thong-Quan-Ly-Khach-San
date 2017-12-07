@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
-using Management_Distributor.Dao._DbContext;
-using Management_Distributor.POCO;
+using Distributor.Dao._DbContext;
+using Distributor.POCO;
 
-namespace Management_Distributor.Controllers
+namespace Distributor.Controllers
 {
     [Authorize]
     public class DepartmentsController : Controller
@@ -52,7 +52,7 @@ namespace Management_Distributor.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Create([Bind(Include = "DepartmentId,DepartmentName,EmployeeEmployeeId")] Department department)
+        public async Task<ActionResult> Create([Bind(Include = "DepartmentId,DepartmentName,EmployeeId")] Department department)
         {
             if (ModelState.IsValid)
             {
@@ -61,7 +61,7 @@ namespace Management_Distributor.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.EmployeeEmployeeId = new SelectList(db.Employees, "EmployeeId", "EmpName", department.EmployeeEmployeeId);
+            ViewBag.EmployeeEmployeeId = new SelectList(db.Employees, "EmployeeId", "EmpName", department.EmployeeId);
             return View(department);
         }
 
@@ -77,7 +77,7 @@ namespace Management_Distributor.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.EmployeeEmployeeId = new SelectList(db.Employees, "EmployeeId", "EmpName", department.EmployeeEmployeeId);
+            ViewBag.EmployeeEmployeeId = new SelectList(db.Employees, "EmployeeId", "EmpName", department.EmployeeId);
             return View(department);
         }
 
@@ -86,7 +86,7 @@ namespace Management_Distributor.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<ActionResult> Edit([Bind(Include = "DepartmentId,DepartmentName,EmployeeEmployeeId")] Department department)
+        public async Task<ActionResult> Edit([Bind(Include = "DepartmentId,DepartmentName,EmployeeId")] Department department)
         {
             if (ModelState.IsValid)
             {
@@ -94,7 +94,7 @@ namespace Management_Distributor.Controllers
                 await db.SaveChangesAsync();
                 return RedirectToAction("Index");
             }
-            ViewBag.EmployeeEmployeeId = new SelectList(db.Employees, "EmployeeId", "EmpName", department.EmployeeEmployeeId);
+            ViewBag.EmployeeEmployeeId = new SelectList(db.Employees, "EmployeeId", "EmpName", department.EmployeeId);
             return View(department);
         }
 

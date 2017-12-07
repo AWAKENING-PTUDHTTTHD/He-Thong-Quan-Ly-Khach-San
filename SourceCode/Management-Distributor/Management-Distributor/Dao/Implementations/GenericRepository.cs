@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Data.Entity;
-using Management_Distributor.Dao.Interfaces;
-using Management_Distributor.Dao._DbContext;
+using Distributor.Dao.Interfaces;
+using Distributor.Dao._DbContext;
 
-namespace Management_Distributor.Dao.Implementations
+namespace Distributor.Dao.Implementations
 {
     public class GenericRepository<T> : IRepository<T> where T : class
     {

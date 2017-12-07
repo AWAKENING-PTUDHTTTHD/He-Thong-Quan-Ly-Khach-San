@@ -175,8 +175,8 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
     <Compile Include="Controllers\DepartmentsController.cs" />
-    <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductsController.cs" />
     <Compile Include="Dao\Implementations\GenericUnitOfWork.cs" />
     <Compile Include="Dao\_DbContext\ManagementDistributorDbContext.cs" />
     <Compile Include="Dao\Implementations\GenericRepository.cs" />
@@ -188,7 +188,7 @@
     <Compile Include="MyRoleProvider.cs" />
     <Compile Include="POCO\Category.cs" />
     <Compile Include="POCO\Contract.cs" />
-    <Compile Include="POCO\Distributor.cs" />
+    <Compile Include="POCO\_Distributor.cs" />
     <Compile Include="POCO\Department.cs" />
     <Compile Include="POCO\Employee.cs" />
     <Compile Include="POCO\DeliveryPlan.cs" />
@@ -222,6 +222,7 @@
     <Content Include="Content\bootstrap-4-sandstone.css" />
     <Content Include="Content\bootstrap-4-slate.css" />
     <Content Include="Content\bootstrap-4-solar.css" />
+    <Content Include="Content\bootstrap-4-yeti.css" />
     <Content Include="Content\bootstrap-cyborg.css" />
     <Content Include="Content\bootstrap-darkly.css" />
     <Content Include="Content\bootstrap-theme.css" />
@@ -388,6 +389,7 @@
     <Content Include="Content\DataTables\swf\flashExport.swf" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
+    <Content Include="Content\images\logo.png" />
     <Content Include="Content\jquery.dataTables-1.10.16.css" />
     <Content Include="Content\jquery.dataTables.-1.10.5.css" />
     <Content Include="Content\themes\base\accordion.css" />
@@ -619,11 +621,11 @@
     <Content Include="Views\Departments\Details.cshtml" />
     <Content Include="Views\Departments\Edit.cshtml" />
     <Content Include="Views\Departments\Index.cshtml" />
-    <Content Include="Views\Employees\Create.cshtml" />
-    <Content Include="Views\Employees\Delete.cshtml" />
-    <Content Include="Views\Employees\Details.cshtml" />
-    <Content Include="Views\Employees\Edit.cshtml" />
-    <Content Include="Views\Employees\Index.cshtml" />
+    <Content Include="Views\Products\Create.cshtml" />
+    <Content Include="Views\Products\Delete.cshtml" />
+    <Content Include="Views\Products\Details.cshtml" />
+    <Content Include="Views\Products\Edit.cshtml" />
+    <Content Include="Views\Products\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

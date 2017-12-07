@@ -5,16 +5,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace Management_Distributor.POCO
+namespace Distributor.POCO
 {
     public class Contract
     {
-        //Contract()
-        //{
-        //    Status = "";
-        //}
         [Key]
-        public string ContractId { get; set; }
+        public int ContractId { get; set; }
 
         public DateTime? SignedDate { get; set; }
         public string Description { get; set; }
@@ -23,11 +19,11 @@ namespace Management_Distributor.POCO
         public string Status { get; set; }
 
         // Foreign Key
-        public string EmployeeId { get; set; }
-        public string DistributorId { get; set; }
+        public int DistributorId { get; set; }
+        //public int EmployeeId { get; set; }
 
         // One to One with Employee and Distributor
-        public virtual Employee Employee { get; set; }
-        public virtual Distributor Distributor { get; set; }
+        //public virtual Employee Employee { get; set; }
+        public virtual _Distributor Distributor { get; set; }
     }
 }

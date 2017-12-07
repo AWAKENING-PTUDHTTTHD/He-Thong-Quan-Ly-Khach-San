@@ -1,7 +1,7 @@
-﻿using Management_Distributor.Dao._DbContext;
-using Management_Distributor.Dao.Implementations;
-using Management_Distributor.POCO;
-using Management_Distributor.Service.Implementations;
+﻿using Distributor.Dao._DbContext;
+using Distributor.Dao.Implementations;
+using Distributor.POCO;
+using Distributor.Service.Implementations;
 using NLog;
 using System;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
 
-namespace Management_Distributor
+namespace Distributor
 {
     public class MvcApplication : System.Web.HttpApplication
     {

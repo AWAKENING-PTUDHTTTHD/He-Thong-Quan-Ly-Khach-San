@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Management_Distributor.Dao.Interfaces;
-using Management_Distributor.Dao._DbContext;
+using Distributor.Dao.Interfaces;
+using Distributor.Dao._DbContext;
 using System.Data.Entity;
 
-namespace Management_Distributor.Dao.Implementations
+namespace Distributor.Dao.Implementations
 {
     public class GenericUnitOfWork : IUnitOfWork
     {

@@ -1,13 +1,13 @@
-﻿using Management_Distributor.Service.Interfaces;
+﻿using Distributor.Service.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-using Management_Distributor.POCO;
+using Distributor.POCO;
 using NLog;
-using Management_Distributor.Dao.Interfaces;
+using Distributor.Dao.Interfaces;
 
-namespace Management_Distributor.Service.Implementations
+namespace Distributor.Service.Implementations
 {
     public class DepartmentService : IDeparmentService
     {
@@ -45,14 +45,10 @@ namespace Management_Distributor.Service.Implementations
             return success;
         }
 
-        public bool Delete(Employee employee)
-        {
-            throw new NotImplementedException();
-        }
-
         public bool Delete(Department dept)
         {
-            throw new NotImplementedException();
+            repoDept.Delete(dept);
+            return (_uow.SaveChange() > 0);
         }
 
         public bool Edit(Employee employee)

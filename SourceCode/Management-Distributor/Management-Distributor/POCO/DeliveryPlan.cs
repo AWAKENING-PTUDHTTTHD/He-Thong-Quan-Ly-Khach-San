@@ -5,12 +5,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace Management_Distributor.POCO
+namespace Distributor.POCO
 {
     public class DeliveryPlan
     {
         [Key]
-        public string DeliveryPlanId { get; set; }
+        public int DeliveryPlanId { get; set; }
 
         [Required(ErrorMessage = "Delivery Date is required")]
         public DateTime  DeliveryDate { get; set; }
@@ -20,7 +20,7 @@ namespace Management_Distributor.POCO
         public string Status { get; set; }
 
         // Foreign key
-        public string OrderId { get; set; }
+        public int OrderId { get; set; }
         
         // One to One with Order
         public virtual Order Order { get; set; }

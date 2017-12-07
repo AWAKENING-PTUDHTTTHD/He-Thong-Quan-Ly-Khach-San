@@ -1,6 +1,6 @@
-﻿using Management_Distributor.POCO;
-using Management_Distributor.Service.Interfaces;
-using Management_Distributor.ViewModels;
+﻿using Distributor.POCO;
+using Distributor.Service.Interfaces;
+using Distributor.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 
-namespace Management_Distributor.Controllers
+namespace Distributor.Controllers
 {
     [AllowAnonymous]
     public class AccountController : Controller
@@ -27,8 +27,8 @@ namespace Management_Distributor.Controllers
         [HttpPost]
         public ActionResult Login(LoginViewModel user)
         {
-            Employee employee = EmpService.GetByUserNameOrEmail((user.usernameOremail));
-            if (employee == null || Utils.Hashing.ValidatePassword(user.passwordRaw, employee.EncryptedPassword) == false)
+            Employee employee = EmpService.GetByUserNameOrEmail((user.UsernameOrEmail));
+            if (employee == null || Utils.Hashing.ValidatePassword(user.PasswordRaw, employee.EncryptedPassword) == false)
             {
                 ViewBag.Msg = "Invalid User";
                 return View();

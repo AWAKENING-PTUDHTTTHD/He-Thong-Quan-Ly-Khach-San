@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Management_Distributor.Dao.Interfaces
+namespace Distributor.Dao.Interfaces
 {
     public interface IRepository<T> where T : class
     {

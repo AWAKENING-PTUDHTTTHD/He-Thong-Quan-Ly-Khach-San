@@ -5,14 +5,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace Management_Distributor.POCO
+namespace Distributor.POCO
 {
-    public class Distributor
+    public class _Distributor
     {
-        //Distributor ()
-        //{
-        //    this.Contracts = new HashSet<Contract>();
-        //}
         [Key]
         public string DistributorId { get; set; }
 
@@ -35,8 +31,7 @@ namespace Management_Distributor.POCO
         [Required(ErrorMessage = "Status is required")]
         public string Status { get; set; }
 
-        //[ForeignKey("Regions")]
-        public string RegionId { get;set;}
+        public int RegionId { get;set;}
 
         public virtual Region Region { get; set; }
 

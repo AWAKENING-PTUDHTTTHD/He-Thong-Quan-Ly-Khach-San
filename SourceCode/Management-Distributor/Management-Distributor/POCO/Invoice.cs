@@ -5,12 +5,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace Management_Distributor.POCO
+namespace Distributor.POCO
 {
     public class Invoice
     {
         [Key, ForeignKey("Order")]
-        public string InvoiceId { get; set; }
+        public int InvoiceId { get; set; }
 
         [Required(ErrorMessage = "Name is required")]
         public string InvoiceName { get; set; }
@@ -21,8 +21,8 @@ namespace Management_Distributor.POCO
         public decimal Amount { get; set; }
 
         // Foreign key
-        public string OrderId { get; set; }
-        public string EmployeeId { get; set; }
+        public int OrderId { get; set; }
+        public int EmployeeId { get; set; }
 
         // One to One with Order, Payment and Employee
         public virtual Order Order { get; set; }

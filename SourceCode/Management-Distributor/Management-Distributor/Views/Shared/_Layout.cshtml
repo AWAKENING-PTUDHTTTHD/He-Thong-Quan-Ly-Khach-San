@@ -7,9 +7,9 @@
     
     <link href="~/Content/Site.css" rel="stylesheet" />
     <link href="~/Content/bootstrap-4-beta.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-4-minty.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-3.2.1.js"></script>
     <script src="~/Scripts/umd/popper.js"></script>
-    <link href="~/Content/bootstrap-4-sandstone.css" rel="stylesheet" />
     <script src="~/Scripts/bootstrap-4-beta.js"></script>
     <link href="~/Content/themes/base/jquery-ui.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-ui-1.12.1.js"></script>
@@ -30,7 +30,7 @@
     -->
     <div class="navbar navbar-expand-lg navbar-dark bg-primary">
         <div class="container">
-            <a href="../" class="navbar-brand">Awakening</a>
+            <a href="../" class="navbar-brand"><img src="~/Content/images/logo.png"/></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -73,14 +73,22 @@
                     <li class="nav-item">
                         @Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })
                     </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("Categories", "Index", "Categories", null, new { @class = "nav-link" })
+                    </li>
+                    <li class="nav-item">
+                        @Html.ActionLink("products", "Index", "Products", null, new { @class = "nav-link" })
+                    </li>
+
+                    <li class="nav-item">
+                        @Html.ActionLink("employee", "Index", "Employees", null, new { @class = "nav-link" })
+                    </li>
                     <!-- Authentication URL -->
                     @if (User.Identity.IsAuthenticated)
                     {
-                        @if (User.IsInRole("A"))
+                        if (User.IsInRole("A"))
                         {
-                            <li class="nav-item">
-                                @Html.ActionLink("Categories", "Index", "Categories", null, new { @class = "nav-link" })
-                            </li>
+                            
                         }
 
                         <li class="nav-item">

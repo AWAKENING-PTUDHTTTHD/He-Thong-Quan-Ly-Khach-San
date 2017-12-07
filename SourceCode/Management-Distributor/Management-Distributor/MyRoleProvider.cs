@@ -1,22 +1,26 @@
-﻿using Management_Distributor.Dao.Interfaces;
-using Management_Distributor.POCO;
-using Management_Distributor.Service.Implementations;
-using Management_Distributor.Service.Interfaces;
+﻿using Distributor.Dao.Implementations;
+using Distributor.Dao.Interfaces;
+using Distributor.POCO;
+using Distributor.Service.Implementations;
+using Distributor.Service.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Security;
 
-namespace Management_Distributor
+namespace Distributor
 {
     public class MyRoleProvider : RoleProvider
     {
         private IEmployeeService employeeService = null;
+        private IUnitOfWork uow = null;
 
-        public MyRoleProvider(IEmployeeService _employeeService)
+        public MyRoleProvider()
         {
-            employeeService = _employeeService;
+
+            uow = new GenericUnitOfWork();
+            employeeService = new EmployeeService(uow);
         }
         public override string ApplicationName { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
@@ -52,6 +56,7 @@ namespace Management_Distributor
             string role = employeeService.GetOne(username).Role;
             string[] roles = { role };
             return roles;
+            throw new NotImplementedException();
         }
 
         public override string[] GetUsersInRole(string roleName)

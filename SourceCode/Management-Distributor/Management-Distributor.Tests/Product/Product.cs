@@ -1,31 +1,38 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Management_Distributor.POCO;
-using Management_Distributor.Dao._DbContext;
-using Management_Distributor.Service.Interfaces;
-using Management_Distributor.Service.Implementations;
-using Management_Distributor.Dao.Implementations;
+using Distributor.POCO;
+using Distributor.Dao._DbContext;
+using Distributor.Service.Interfaces;
+using Distributor.Service.Implementations;
+using Distributor.Dao.Implementations;
 using NLog;
 using System.Collections.Generic;
 
-namespace Management_Distributor.Tests.Product
+namespace Distributor.Tests.Product
 {
     [TestClass]
     public class Product
     {
-        //[TestMethod]
-        //public void TestAddition()
-        //{
-        //    GenericUnitOfWork uow = new GenericUnitOfWork();
-        //    CategoryService ctgr = new CategoryService(uow);
-        //    ctgr.AddRange(new List<Category>()
-        //            {
-        //                  new POCO.Category { CategoryId = "C000000003", CategoryName = "Milk"},
-        //                  new POCO.Category { CategoryId = "C000000004", CategoryName = "Yourgut"},
-        //                  new POCO.Category { CategoryId = "C000000005", CategoryName = "Whey"}
-        //            })
-        //      ;
-        //}
+        [TestMethod]
+        public void TestAddition()
+        {
+            GenericUnitOfWork uow = new GenericUnitOfWork();
+            CategoryService ctgr = new CategoryService(uow);
+            ctgr.AddRange(new List<Category>()
+                    {
+                          new POCO.Category { CategoryName = "Liquid Milk"},
+                          new POCO.Category { CategoryName = "Yourgut"},
+                          new POCO.Category { CategoryName = "Powdered milk"},
+                          new POCO.Category { CategoryName = "Infant Cereals"},
+                          new POCO.Category { CategoryName = "Condensed Milk"},
+                          new POCO.Category { CategoryName = "Special Nutrition Products for Adults"},
+                          new POCO.Category { CategoryName = "Beverages"},
+                          new POCO.Category { CategoryName = "Ice Cream"},
+                          new POCO.Category { CategoryName = "Cheese"},
+                          new POCO.Category { CategoryName = "Soymilk"}
+                    })
+              ;
+        }
 
         //[TestMethod]
         //public void TestUpdate()

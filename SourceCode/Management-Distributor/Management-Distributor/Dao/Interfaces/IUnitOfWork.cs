@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Management_Distributor.Dao.Interfaces
+namespace Distributor.Dao.Interfaces
 {
     public interface IUnitOfWork : IDisposable
     {

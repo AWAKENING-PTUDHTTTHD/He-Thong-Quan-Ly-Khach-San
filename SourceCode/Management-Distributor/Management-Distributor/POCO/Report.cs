@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
-namespace Management_Distributor.POCO
+namespace Distributor.POCO
 {
     public class Report
     {
@@ -16,7 +16,7 @@ namespace Management_Distributor.POCO
             CreatedDate = DateTime.Now;
         }
         [Key]
-        public string ReportId { get; set; }
+        public int ReportId { get; set; }
 
         [Required(ErrorMessage = "Name is required")]
         public string ReportName { get; set; }
@@ -39,7 +39,7 @@ namespace Management_Distributor.POCO
         public Nullable<int> NumbOfEdit { get; set; }
 
         // Foreign Key
-        public string EmployeeId { get; set; }
+        public int EmployeeId { get; set; }
 
         // One to One with Employee
         public virtual Employee Employee { get; set; }

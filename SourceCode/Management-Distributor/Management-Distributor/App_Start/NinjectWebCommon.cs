@@ -1,7 +1,7 @@
-[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Management_Distributor.App_Start.NinjectWebCommon), "Start")]
-[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(Management_Distributor.App_Start.NinjectWebCommon), "Stop")]
+[assembly: WebActivatorEx.PreApplicationStartMethod(typeof(Distributor.App_Start.NinjectWebCommon), "Start")]
+[assembly: WebActivatorEx.ApplicationShutdownMethodAttribute(typeof(Distributor.App_Start.NinjectWebCommon), "Stop")]
 
-namespace Management_Distributor.App_Start
+namespace Distributor.App_Start
 {
     using System;
     using System.Web;
@@ -10,10 +10,10 @@ namespace Management_Distributor.App_Start
 
     using Ninject;
     using Ninject.Web.Common;
-    using Management_Distributor.Service.Interfaces;
-    using Management_Distributor.Service.Implementations;
-    using Management_Distributor.Dao.Interfaces;
-    using Management_Distributor.Dao.Implementations;
+    using Distributor.Service.Interfaces;
+    using Distributor.Service.Implementations;
+    using Distributor.Dao.Interfaces;
+    using Distributor.Dao.Implementations;
     using NLog;
     using System.Data.Entity;
 
@@ -71,6 +71,7 @@ namespace Management_Distributor.App_Start
             kernel.Bind<ICategoryService>().To<CategoryService>();
             kernel.Bind<IEmployeeService>().To<EmployeeService>();
             kernel.Bind<IDeparmentService>().To<DepartmentService>();
+            kernel.Bind<IProductService>().To<ProductService>();
         }        
     }
 }
