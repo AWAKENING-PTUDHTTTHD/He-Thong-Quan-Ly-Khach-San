@@ -36,7 +36,13 @@ namespace Distributor.Service.Implementations
 
         public bool AddRange(List<Employee> employees)
         {
-            throw new NotImplementedException();
+            bool success;
+            _logger.Info("Start add a list employees");
+            repoEmployee.AddRange(employees);
+            success = (_uow.SaveChange() == employees.Count()) ? true : false;
+
+            _logger.Info("End add a list Category");
+            return success;
         }
 
         public bool Delete(Employee employee)
@@ -61,14 +67,16 @@ namespace Distributor.Service.Implementations
             return repoEmployee.GetAll().Where(emp => emp.UserName == UsernameOrEmail || emp.EmpEmail == UsernameOrEmail).FirstOrDefault();
         }
 
-        public Employee GetOne(string id)
+        public Employee GetOne(int id)
         {
             return repoEmployee.GetById(id);
         }
 
-        Employee IEmployeeService.GetOne(string id)
+        Employee IEmployeeService.GetOne(int id)
         {
-            throw new NotImplementedException();
+            Employee emp = null;
+            emp = repoEmployee.GetById(id);
+            return emp;
         }
     }
 }

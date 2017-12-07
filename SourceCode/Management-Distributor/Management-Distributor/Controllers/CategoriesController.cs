@@ -13,7 +13,6 @@ using Distributor.Service.Interfaces;
 
 namespace Distributor.Controllers
 {
-    [AllowAnonymous]
     public class CategoriesController : Controller
     {
         private ICategoryService categoryService =  null;

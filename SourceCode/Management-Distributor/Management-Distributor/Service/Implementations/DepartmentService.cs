@@ -61,22 +61,18 @@ namespace Distributor.Service.Implementations
             throw new NotImplementedException();
         }
 
-        public List<Employee> GetAll()
+        public List<Department> GetAll()
         {
-            throw new NotImplementedException();
+            return repoDept.GetAll().ToList();
         }
 
-        public Department GetByUserNameOrEmail(string UsernameOrEmail)
+        public Department GetOne(int id)
         {
-            throw new NotImplementedException();
+            Department dept = null;
+            dept = repoDept.GetById(id);
+            return dept;
         }
-
-        public Category GetOne(string id)
-        {
-            throw new NotImplementedException();
-        }
-
-        List<Department> IDeparmentService.GetAll()
+        Category IDeparmentService.GetOne(int id)
         {
             throw new NotImplementedException();
         }

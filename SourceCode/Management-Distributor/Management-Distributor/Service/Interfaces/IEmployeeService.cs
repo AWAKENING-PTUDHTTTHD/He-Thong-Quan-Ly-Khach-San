@@ -13,7 +13,7 @@ namespace Distributor.Service.Interfaces
         bool Add(Employee employee);
         bool Edit(Employee employee);
         bool Delete(Employee employee);
-        Employee GetOne(string id);
+        Employee GetOne(int id);
         bool AddRange(List<Employee> employees);
 
         Employee GetByUserNameOrEmail(string UsernameOrEmail);

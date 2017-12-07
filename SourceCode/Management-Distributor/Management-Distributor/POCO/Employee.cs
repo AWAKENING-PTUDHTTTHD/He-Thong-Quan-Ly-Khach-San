@@ -39,20 +39,22 @@ namespace Distributor.POCO
         [Required(ErrorMessage = "Salf is required")]
         public string Salt { get; set; }
 
-        [DefaultValue(typeof(DateTime))]
-        public DateTime LastLogged { get; set; }
+        [Column(TypeName = "datetime2")]
+        public Nullable<DateTime> LastLogged { get; set; }
 
         [DefaultValue(0)]
         public int NumOfLoginAttemp { get; set; }
-        public DateTime LastAttemp { get; set; }
 
-        public string Role { get; set; }
+        [Column(TypeName = "datetime2")]
+        public DateTime? LastAttemp { get; set; }
+
+        public string Rolez { get; set; }
 
         // Foreign Key
         [Required(ErrorMessage = "Department is required")]
 
-        [ForeignKey("DeparmentId")]
-
+        [ForeignKey("Department")]
+        public int DepartmentId { get; set; }
         // One to one with Department
         public virtual Department Department { get; set; }
 

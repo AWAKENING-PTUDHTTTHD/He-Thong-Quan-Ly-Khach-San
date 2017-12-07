@@ -15,8 +15,11 @@ namespace Distributor.POCO
         [Required(ErrorMessage = "Name is required")]
         public string DepartmentName { get; set; }
 
-        public int EmployeeId { get; set; }
+        [ForeignKey("Employee")]
+        public int? EmployeeId { get; set; }
 
         public virtual Employee Employee { get; set; }
+
+        public virtual ICollection<Employee> Employees { get; set; }
     }
 }

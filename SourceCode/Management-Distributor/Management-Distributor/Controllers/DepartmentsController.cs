@@ -12,12 +12,15 @@ using Distributor.POCO;
 
 namespace Distributor.Controllers
 {
-    [Authorize]
+    //[AllowAnonymous]
+    //[Authorize]
+
+    [Authorize(Roles = "Admin")]
     public class DepartmentsController : Controller
     {
         private ManagementDistributorDbContext db = new ManagementDistributorDbContext();
 
-        [Authorize(Roles = "V,A")]
+        //[Authorize(Roles = "V,A")]
         public async Task<ActionResult> Index()
         {
             var departments = db.Departments.Include(d => d.Employee);
@@ -39,7 +42,7 @@ namespace Distributor.Controllers
             return View(department);
         }
 
-        [Authorize(Roles = "A")]
+        //[Authorize(Roles = "A")]
         // GET: Departments/Create
         public ActionResult Create()
         {

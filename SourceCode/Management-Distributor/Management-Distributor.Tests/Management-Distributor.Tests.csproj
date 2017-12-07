@@ -102,7 +102,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Product\Product.cs" />
+    <Compile Include="Employee\DepartmentTest.cs" />
+    <Compile Include="Employee\EmployeeTest.cs" />
+    <Compile Include="Product\ProductTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\CategoryControllerTest.cs" />
   </ItemGroup>

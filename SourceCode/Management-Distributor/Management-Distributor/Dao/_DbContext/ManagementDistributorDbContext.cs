@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Web;
 
@@ -39,5 +40,11 @@ namespace Distributor.Dao._DbContext
         //    base.OnModelCreating(modelBuilder);
         //    modelBuilder.Entity<_Distributor>().HasMany(i => i.Contracts).WithRequired().WillCascadeOnDelete(false);
         //}
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+            modelBuilder.Conventions.Remove<OneToManyCascadeDeleteConvention>();
+
+        }
     }
 }

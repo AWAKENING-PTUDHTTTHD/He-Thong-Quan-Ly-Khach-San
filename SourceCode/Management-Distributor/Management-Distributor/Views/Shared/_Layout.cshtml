@@ -7,7 +7,7 @@
     
     <link href="~/Content/Site.css" rel="stylesheet" />
     <link href="~/Content/bootstrap-4-beta.css" rel="stylesheet" />
-    <link href="~/Content/bootstrap-4-minty.css" rel="stylesheet" />
+    @*<link href="~/Content/bootstrap-4-sandstone.css" rel="stylesheet" />*@
     <script src="~/Scripts/jquery-3.2.1.js"></script>
     <script src="~/Scripts/umd/popper.js"></script>
     <script src="~/Scripts/bootstrap-4-beta.js"></script>
@@ -20,7 +20,7 @@
     <script src="~/Scripts/bootbox.min.js"></script>
 
     <link href="~/Content/jquery.dataTables.-1.10.5.css" rel="stylesheet" />
-    @*<link href="~/Content/DataTables/css/dataTables.bootstrap4.css" rel="stylesheet" />*@
+    <link href="~/Content/DataTables/css/dataTables.bootstrap4.css" rel="stylesheet" />
 
 </head>
 <body>
@@ -73,22 +73,30 @@
                     <li class="nav-item">
                         @Html.ActionLink("Contact", "Contact", "Home", null, new { @class = "nav-link" })
                     </li>
-                    <li class="nav-item">
-                        @Html.ActionLink("Categories", "Index", "Categories", null, new { @class = "nav-link" })
-                    </li>
-                    <li class="nav-item">
-                        @Html.ActionLink("products", "Index", "Products", null, new { @class = "nav-link" })
-                    </li>
+                    
+                    
 
-                    <li class="nav-item">
-                        @Html.ActionLink("employee", "Index", "Employees", null, new { @class = "nav-link" })
-                    </li>
+                    
+                   
                     <!-- Authentication URL -->
                     @if (User.Identity.IsAuthenticated)
                     {
-                        if (User.IsInRole("A"))
+                        <li class="nav-item">
+                            @Html.ActionLink("Categories", "Index", "Categories", null, new { @class = "nav-link" })
+                        </li>
+
+                        <li class="nav-item">
+                            @Html.ActionLink("products", "Index", "Products", null, new { @class = "nav-link" })
+                        </li>
+
+                        if (User.IsInRole("Admin"))
                         {
-                            
+                            <li class="nav-item">
+                                @Html.ActionLink("Departments", "Index", "Departments", null, new { @class = "nav-link" })
+                            </li>
+                            <li class="nav-item">
+                                @Html.ActionLink("employees", "Index", "Employees", null, new { @class = "nav-link" })
+                            </li>
                         }
 
                         <li class="nav-item">
