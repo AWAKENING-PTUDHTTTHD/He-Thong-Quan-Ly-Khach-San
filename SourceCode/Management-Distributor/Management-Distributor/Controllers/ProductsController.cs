@@ -187,5 +187,13 @@ namespace Distributor.Controllers
             productService.Delete(product);
             return RedirectToAction("Index");
         }
+
+        [HttpPost]
+        public ActionResult Remove(int id)
+        {
+            Product product = productService.GetOne(id);
+            productService.Delete(product);
+            return Json(new { success = true, message = "Removal success!" }, JsonRequestBehavior.AllowGet);
+        }
     }
 }

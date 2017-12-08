@@ -44,7 +44,7 @@ namespace Distributor.Service.Implementations
             try
             {
                 _ProductRepo.Attach(product);
-                return true;
+                return (_uow.SaveChange() > 0);
             }
             catch
             {
