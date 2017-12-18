@@ -30,20 +30,20 @@ namespace Distributor.Controllers
             Employee employee = EmpService.GetByUserNameOrEmail((user.UsernameOrEmail));
             if (employee == null || Utils.Hashing.ValidatePassword(user.PasswordRaw, employee.EncryptedPassword) == false)
             {
-                ViewBag.Msg = "Invalid User";
+                ViewBag.Msg = "Username or Password is incorrect. Please try again";
                 return View();
             }
             else
             {
                 FormsAuthentication.SetAuthCookie(employee.UserName, false);
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Dashboard", "Home");
             }
         }
 
         public ActionResult Logout()
         {
             FormsAuthentication.SignOut();
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Login", "Account");
         }
     }
 }

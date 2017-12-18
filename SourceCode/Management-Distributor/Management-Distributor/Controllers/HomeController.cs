@@ -6,12 +6,12 @@ using System.Web.Mvc;
 
 namespace Distributor.Controllers
 {
-    [AllowAnonymous]
+    [Authorize]
     public class HomeController : Controller
     {
-        public ActionResult Index()
+        public ActionResult Dashboard()
         {
-            return View();
+            return View("index");
         }
     }
 }

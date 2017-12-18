@@ -3,100 +3,62 @@
 @{
     ViewBag.Title = "Login";
 }
-<div class="container" style="margin:20px auto;">
-    
-@using (Html.BeginForm("Login", "Account", FormMethod.Post)) 
-{
-    @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-6">
-                <h2>Please Login</h2>
-            </div>
-        </div>
-        <hr />
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-6">
-               @if (!string.IsNullOrEmpty(ViewBag.Msg))
-               {
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    @ViewBag.Msg
+<div class="page login-page">
+    <div class="container d-flex align-items-center">
+        <div class="form-holder has-shadow">
+            <div class="row">
+                <!-- Logo & Information Panel-->
+                <div class="col-lg-6">
+                    <div class="info d-flex align-items-center">
+                        <div class="content">
+                            <div class="logo">
+                                <h1>Login</h1>
+                            </div>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                        </div>
+                    </div>
                 </div>
-               }
-                
-            </div>
-        </div>
-        <hr />
+                <!-- Form Panel    -->
+                <div class="col-lg-6 bg-white">
+                    <div class="form d-flex align-items-center">
+                        <div class="content">
+                            @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken()
 
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-6">
-                <div class="form-group has-danger">
-                    @Html.LabelFor(model => model.UsernameOrEmail, htmlAttributes: new { @class = "control-label sr-only" })
-                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                        <div class="input-group-addon" style="width:2.6rem"><i class="fa fa-at"></i></div>
-                        @Html.EditorFor(model => model.UsernameOrEmail, new { htmlAttributes = new { @class = "form-control", placeholder = "Username or Email" } })
+                                <div class="form-group">
+                                    @Html.EditorFor(model => model.UsernameOrEmail, new { htmlAttributes = new { @class = "input-material", id = "login-username"} })
+                                    @Html.LabelFor(mode => Model.UsernameOrEmail, htmlAttributes: new { @class = "label-material" })
+                                    @Html.ValidationMessageFor(model => model.UsernameOrEmail, "", new { @class = "text-danger" })
+                                </div>
+                                <div class="form-group">
+                                    @Html.PasswordFor(model => model.PasswordRaw, new { @class = "input-material", id = "login-password" })
+                                    @Html.LabelFor(model => model.PasswordRaw, htmlAttributes: new { @class = "label-material" })
+                                    @Html.ValidationMessageFor(model => model.PasswordRaw, "", new { @class = "text-danger" })
+                                </div>
+                                if (!string.IsNullOrEmpty(ViewBag.Msg))
+                                {
+                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                        @ViewBag.Msg
+                                    </div>
+                                }
+                                    <button id="login" type="submit" class="btn btn-primary">Login</button>
+
+                            }
+                            <a href="#" class="forgot-pass">Forgot Password?</a><br><small>Do not have an account? </small><a href="register.html" class="signup">Signup</a>
+                        </div>
                     </div>
                 </div>
             </div>
-            <div class="col-md-4">
-                <div class="form-control-feedback">
-                    <span class="text-danger align-middle">
-                        <i>  @Html.ValidationMessageFor(model => model.UsernameOrEmail, "", new { @class = "text-danger" })</i>
-                    </span>
-                </div>
-            </div>
         </div>
-
-
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-6">
-                <div class="form-group has-danger">
-                    @Html.LabelFor(model => model.PasswordRaw, htmlAttributes: new { @class = "control-label sr-only" })
-                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
-                        <div class="input-group-addon" style="width:2.6rem"><i class="fa fa-key"></i></div>
-                       @Html.PasswordFor(model => model.PasswordRaw, new { @class = "form-control" })
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="form-control-feedback">
-                    <span class="text-danger align-middle">
-                        <i>   @Html.ValidationMessageFor(model => model.PasswordRaw, "", new { @class = "text-danger" })</i>
-                    </span>
-                </div>
-            </div>
-        </div>
-
-
-        <div class="row">
-            <div class="col-md-2"></div>
-            <div class="col-md-6" style="padding-top: .35rem">
-                <div class="form-check mb-2 mr-sm-2 mb-sm-0">
-                    <label class="form-check-label">
-                        <input class="form-check-input" name="remember"
-                               type="checkbox">
-                        <span style="padding-bottom: .15rem">Remember me</span>
-                    </label>
-                </div>
-            </div>
-        </div>
-
-        <div class="row" style="padding-top: 1rem">
-            <div class="col-md-2"></div>
-            <div class="col-md-6">
-                <button type="submit" class="btn" style="background:#36d2a5;color:#fff;"><i class="fa fa-sign-in"></i> Login</button>
-                <a class="btn btn-link" href="/password/reset">Forgot Your Password?</a>
-            </div>
-        </div>
+    </div>
+    <div class="copyrights text-center">
+        <p>Design by <a href="https://bootstrapious.com/admin-templates" class="external">Bootstrapious</a></p>
+        <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
+    </div>
 </div>
-}
-</div>
+
 
