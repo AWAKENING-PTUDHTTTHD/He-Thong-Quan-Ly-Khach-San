@@ -20,6 +20,7 @@
     <link href="~/Content/font-awesome.css" rel="stylesheet" />
     <script src="~/Scripts/bootbox.min.js"></script>
 
+
     <!-- self script -->
     <script>
         $(document).ready(() =>{
@@ -67,7 +68,7 @@
     Custom nvbar color
     fixed-top
     -->
-    <div class="navbar navbar-expand-lg navbar-dark bg-success">
+    <div class="navbar navbar-custom navbar-expand-lg navbar-dark">
         <div class="container">
             <a href="../" class="navbar-brand"><img src="~/Content/images/logos.png" alt="Awakening"/></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -133,19 +134,15 @@
                     }
                     else  {
                     <li class="nav-item">
-                        @*<a class="nav-link" href="http://builtwithbootstrap.com/" target="_blank">Built With Bootstrap</a>*@
                         @Html.ActionLink("Login", "Login", "Account", null, new { @class = "nav-link" })
                     </li>
                     }
                     
                     
                 </ul>
-
             </div>
         </div>
     </div>
-
-
 
     <div class="container body-content">
         @RenderBody()
@@ -154,12 +151,18 @@
             <p>&copy; @DateTime.Now.Year - Awakening's Distributor Management Application</p>
         </footer>
     </div>
+    <div class="loaderbody" id="loaderbody">
+            <div class="loader"></div>
+    </div>
+   
+
     @*@Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")*@
     
     @RenderSection("scripts", required: false)
+    <script src="~/Scripts/ProductAddition.js"></script>
     
 </body>
 </html>

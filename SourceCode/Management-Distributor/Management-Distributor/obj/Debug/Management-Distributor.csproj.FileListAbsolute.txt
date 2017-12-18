@@ -1,3 +1,6 @@
+C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\bin\EntityFramework.xml
+C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\bin\System.Web.Optimization.xml
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\bin\ApplicationInsights.config
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\bin\NLog.config
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\bin\Management-Distributor.dll.config
@@ -34,10 +37,8 @@ C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Di
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\bin\Antlr3.Runtime.pdb
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\bin\BCrypt.Net.pdb
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\bin\BCrypt.Net.xml
-C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\bin\EntityFramework.xml
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\bin\EntityFramework.SqlServer.xml
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\bin\Microsoft.AI.DependencyCollector.xml
-C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\bin\Microsoft.AI.ServerTelemetryChannel.xml
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\bin\Microsoft.AI.Web.xml
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\bin\Microsoft.AI.WindowsServer.xml
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\bin\Microsoft.ApplicationInsights.xml
@@ -50,7 +51,6 @@ C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Di
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\bin\System.Diagnostics.DiagnosticSource.xml
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\bin\System.Web.Helpers.xml
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\bin\System.Web.Mvc.xml
-C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\bin\System.Web.Optimization.xml
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\bin\System.Web.Razor.xml
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\bin\System.Web.WebPages.xml
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\bin\System.Web.WebPages.Deployment.xml
@@ -58,3 +58,4 @@ C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Di
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\obj\Debug\Management-Distributor.csproj.CoreCompileInputs.cache
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\obj\Debug\Management-Distributor.dll
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\obj\Debug\Management-Distributor.pdb
+C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\obj\Debug\Management-Distributor.csprojResolveAssemblyReference.cache

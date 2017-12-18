@@ -9,10 +9,10 @@ namespace Distributor.ViewModels
     public class LoginViewModel
     {
         [Display(Name = "Email or UserName")]
-        [Required(ErrorMessage = "Please provide username or email")]
+        [Required(ErrorMessage = "Email could not be blank!")]
         public string UsernameOrEmail { get; set; }
         [Display(Name = "Password")]
-        [Required(ErrorMessage = "Please provide password associated with your username")]
+        [Required(ErrorMessage = "Password could not be blank!")]
         public string PasswordRaw { get; set; }
     }
 }

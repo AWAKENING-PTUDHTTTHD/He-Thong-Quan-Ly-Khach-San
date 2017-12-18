@@ -23,7 +23,14 @@ textarea {
     max-width: 280px;
 }
 /* Navbar */
+
 .navbar-custom {
+    background-color: #5A5386 !important;
+    color: #ffffff !important;
+    border-radius: 0 !important;
+}
+  
+/*.navbar-custom {
     background-color: #ff5500;
 }
 
@@ -57,7 +64,7 @@ textarea {
         .navbar-custom .dropdown-item:focus {
             color: #333333;
             background-color: rgba(255,255,255,.5);
-        }
+        }*/
 /* end Navbar */
 
 /* custom errors message */
@@ -83,3 +90,88 @@ input .input-validation-error {
         width: auto;
     }*/
 /* end navbar logo */
+
+/*
+   Login Form - START
+*/
+
+#wrapper {
+    margin: 10px 30px;
+}
+
+.wapper-form {
+    box-sizing: border-box;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    margin: 30px 20px 30px 15px;
+    -moz-box-shadow: 3px 3px 5px 6px #ccc;
+    -webkit-box-shadow: 3px 3px 5px 6px #ccc;
+    box-shadow: 3px 3px 5px 6px #ccc;
+}
+
+.btn-custom {
+    background-color: #F41C20;
+    color: #FFF;
+}
+
+/*
+   Login Form - END
+*/
+
+
+/* loader START*/
+
+
+
+.loaderbody {
+    width:100%;
+    height:100%;
+    left: 0;
+    top: 0;
+    position:absolute;
+    background-color: rgba(128, 128, 128,0.2);
+    z-index: 2147483647;
+}
+
+.loader {
+    border: 16px solid #f3f3f3;
+    border-top: 16px solid #36D2A5;
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+    animation: spin 2s linear infinite;
+    position: fixed;
+    top: 45%;
+    left: 40%;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* loader END */
+
+
+
+
+
+.profile-img {
+    margin-top: -5px;
+    margin-right: 5px;
+    float: left;
+    background: url(example.jpg) 50% 50% no-repeat; /* 50% 50% centers image in div */
+    background-size: auto 100%; /* Interchange this value depending on prefering width vs. height */
+    width: 30px;
+    height: 30px;
+}
+
+
+.DatatableImg {
+    width: 100px;
+    height: 100px;
+}

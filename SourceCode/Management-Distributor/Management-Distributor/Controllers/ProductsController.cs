@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using Distributor.Dao._DbContext;
 using Distributor.POCO;
 using Distributor.Service.Interfaces;
+using System.IO;
 
 namespace Distributor.Controllers
 {
@@ -54,6 +55,15 @@ namespace Distributor.Controllers
         [HttpPost]
         public ActionResult AddOrEdit(Product product)
         {
+            if(product.ImageUrl != null)
+            {
+                string fileName = Path.GetFileNameWithoutExtension(product.ImageUpload.FileName);
+                string extension = Path.GetExtension(product.ImageUpload.FileName);
+
+                fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
+                product.ImageUrl = "~/Uploads/ProductImages/" + fileName;
+                product.ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/Uploads/ProductImages/"), fileName));
+            }
             if (product.ProductId == 0)
             {
                 if (productService.Add(product))

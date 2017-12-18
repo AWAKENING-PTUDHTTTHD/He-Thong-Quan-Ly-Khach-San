@@ -9,6 +9,11 @@ namespace Distributor.POCO
 {
     public class Product
     {
+
+        public Product()
+        {
+            ImageUrl = "~/Uploads/ProductImages/No_Image_Available.jpg";
+        }
         [Key]
         public int ProductId { get; set; }
 
@@ -28,5 +33,11 @@ namespace Distributor.POCO
 
         // One to Many with OrderDetail
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
+
+        [Display(Name = "Image Url")]
+        public string ImageUrl { get; set; }
+
+        [NotMapped]
+        public HttpPostedFileBase ImageUpload { get; set; }
     }
 }
