@@ -1,0 +1,106 @@
+﻿
+@{
+    ViewBag.Title = "Order";
+}
+<style>
+    span.error {
+        display: block;
+        visibility: hidden;
+        color: red;
+        font-size: 90%;
+    }
+
+    td.error {
+        background-color: rgba(255,0,0,.35);
+    }
+</style>
+
+<h2>Master details entry form</h2>
+<div class="container">
+    <!-- ORDER -->
+    <div class="master">
+        <h2>Order</h2>
+        <table class="table table-responsive">
+            <tr>
+                <td>Order No</td>
+                <td>
+                    <input type="text" id="orderNo" class="form-control">
+                    <span class="error">Order no required</span>
+                </td>
+                <td>Order data</td>
+                <td>
+                <td>
+                    <input type="text" id="orderDate" class="form-control">
+                    <span class="error">Valid order date required (ex: MM-dd-YYYY)</span>
+                </td>
+            </tr>
+            <tr>
+                <td>Description</td>
+                <td colspan="3">
+                    <textarea id="description" class="form-control"></textarea>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <!-- ORDER DETAILS -->
+    <div class="details">
+        <h2>Order items</h2>
+        <table class="table table-responsive">
+            <tr>
+                <td>Category</td>
+                <td>Product</td>
+                <td>Quantity</td>
+                <td>Price/Unit</td>
+                <td>&nbsp;</td>
+            </tr>
+            <tr class="mycontainer" id="mainrow">
+
+                <td>
+                    <select id="productCategory" class="pc form-control" onchange="loadProduct(this)">
+                        <option value="">Select a Category</option>
+                    </select>
+                    <span class="error">Please select a category first</span>
+                </td>
+
+                <td>
+                    <select id="product" class="product form-control" onchange="loadProduct(this)">
+                        <option value="">Select a Product</option>
+                    </select>
+                    <span class="error">Please select a product</span>
+                </td>
+
+                <td>
+                    <input type="text" id="quantity" class="quantity form-control" />
+                    <span class="error">Valid quantity required</span>
+                </td>
+                <td>
+                    <input type="text" id="price" class="price form-control" />
+                    <span class="error">Valid price required</span>
+                </td>
+                <td>
+                    <input type="button" id="add" style="width: 80px;" class="btn btn-success">
+                </td>
+            </tr>
+        </table>
+        <div id="orderItems">
+            <table class="table table-responsive" id="orderdetailsItems"></table>
+            <span id="orderItemError" style="color:red"></span>
+        </div>
+        <div style="padding: 10px 0;text-align: right;">
+            <input type="button" id="submit" value="Save Order" class="btn btn-warning" style="padding: 10px 20px;">
+        </div>
+    </div>
+</div>
+<!-- Self script -->
+@section Scrips {
+<script src="~/Scripts/jquery-ui-1.12.1.js"></script>
+<script>
+    $(function () {
+        $("#orderDate").datepicker({
+            dateFomat: "mm-dd-yy"
+        });
+    });
+</script>
+<script src="~/Scripts/order.js"></script>
+}
+

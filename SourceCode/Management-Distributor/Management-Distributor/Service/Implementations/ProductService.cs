@@ -46,7 +46,7 @@ namespace Distributor.Service.Implementations
                 _ProductRepo.Attach(product);
                 return (_uow.SaveChange() > 0);
             }
-            catch
+            catch (Exception ex)
             {
                 return false;
             }
@@ -58,6 +58,12 @@ namespace Distributor.Service.Implementations
             var products = _ProductRepo.GetAll().ToList();
             return products;
         }
+
+        public List<Product> GetByCategory(int categoryId)
+        {
+            return _ProductRepo.GetAll(x => x.CategoryId == categoryId).ToList();
+        }
+
 
         public Product GetOne(int id)
         {

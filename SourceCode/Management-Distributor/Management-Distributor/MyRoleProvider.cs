@@ -53,7 +53,7 @@ namespace Distributor
         {
 
 
-            string role = employeeService.GetByUserNameOrEmail(username).Rolez;
+            var role = employeeService.GetByUserNameOrEmail(username).Rolez;
             string[] roles = { role };
             return roles;
             throw new NotImplementedException();

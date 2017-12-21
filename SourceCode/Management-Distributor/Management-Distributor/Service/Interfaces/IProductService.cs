@@ -17,6 +17,8 @@ namespace Distributor.Service.Interfaces
         bool Add(Product product);
 
         bool Delete(Product product);
+
+        List<Product>GetByCategory(int categoryId);
     }
     
 }

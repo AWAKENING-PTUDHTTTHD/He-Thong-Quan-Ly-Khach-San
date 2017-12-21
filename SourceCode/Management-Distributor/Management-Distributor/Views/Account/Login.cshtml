@@ -1,64 +1,107 @@
 ﻿@model Distributor.ViewModels.LoginViewModel
 
 @{
+    Layout = null;
     ViewBag.Title = "Login";
 }
-<div class="page login-page">
-    <div class="container d-flex align-items-center">
-        <div class="form-holder has-shadow">
-            <div class="row">
-                <!-- Logo & Information Panel-->
-                <div class="col-lg-6">
-                    <div class="info d-flex align-items-center">
-                        <div class="content">
-                            <div class="logo">
-                                <h1>Login</h1>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <meta name="description" content="">'
+    <meta name="robots" content="all,follow">
+
+
+    <!-- Bootstrap CSS-->
+    <link rel="stylesheet" href="~/Content/bootstrap-v4.0.0-beta.2.min.css">
+    <!-- Font Awesome CSS-->
+    <link rel="stylesheet" href="~/Content/font-awesome.min.css">
+    <!-- Fontastic Custom icon font-->
+    <link rel="stylesheet" href="~/Content/fontastic.css">
+    <!-- Google fonts - Poppins -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:300,400,700">
+    <!-- theme stylesheet-->
+    <link rel="stylesheet" href="~/Content/bootstrap-4-material-admin.style.default.css" id="theme-stylesheet">
+    <!-- Custom stylesheet - for your changes-->
+    <link rel="stylesheet" href="~/Content/custom.css">
+    <!-- Favicon-->
+    <link rel="shortcut icon" href="img/favicon.ico">
+    </head>
+<body>
+
+    <div class="page login-page">
+        <div class="container d-flex align-items-center">
+            <div class="form-holder has-shadow">
+                <div class="row">
+                    <!-- Logo & Information Panel-->
+                    <div class="col-lg-6">
+                        <div class="info d-flex align-items-center">
+                            <div class="content">
+                                <div class="logo">
+                                    <h1>Login</h1>
+                                </div>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                             </div>
-                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
                         </div>
                     </div>
-                </div>
-                <!-- Form Panel    -->
-                <div class="col-lg-6 bg-white">
-                    <div class="form d-flex align-items-center">
-                        <div class="content">
-                            @using (Html.BeginForm("Login", "Account", FormMethod.Post))
-                            {
-                                @Html.AntiForgeryToken()
-
-                                <div class="form-group">
-                                    @Html.EditorFor(model => model.UsernameOrEmail, new { htmlAttributes = new { @class = "input-material", id = "login-username"} })
-                                    @Html.LabelFor(mode => Model.UsernameOrEmail, htmlAttributes: new { @class = "label-material" })
-                                    @Html.ValidationMessageFor(model => model.UsernameOrEmail, "", new { @class = "text-danger" })
-                                </div>
-                                <div class="form-group">
-                                    @Html.PasswordFor(model => model.PasswordRaw, new { @class = "input-material", id = "login-password" })
-                                    @Html.LabelFor(model => model.PasswordRaw, htmlAttributes: new { @class = "label-material" })
-                                    @Html.ValidationMessageFor(model => model.PasswordRaw, "", new { @class = "text-danger" })
-                                </div>
-                                if (!string.IsNullOrEmpty(ViewBag.Msg))
+                    <!-- Form Panel    -->
+                    <div class="col-lg-6 bg-white">
+                        <div class="form d-flex align-items-center">
+                            <div class="content">
+                                @using (Html.BeginForm("Login", "Account", FormMethod.Post))
                                 {
-                                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
-                                        @ViewBag.Msg
+                                    @Html.AntiForgeryToken()
+
+                                    <div class="form-group">
+                                        @Html.EditorFor(model => model.UsernameOrEmail, new { htmlAttributes = new { @class = "input-material", id = "login-username" } })
+                                        @Html.LabelFor(mode => Model.UsernameOrEmail, htmlAttributes: new { @class = "label-material" })
+                                        @Html.ValidationMessageFor(model => model.UsernameOrEmail, "", new { @class = "text-danger" })
                                     </div>
-                                }
+                                    <div class="form-group">
+                                        @Html.PasswordFor(model => model.PasswordRaw, new { @class = "input-material", id = "login-password" })
+                                        @Html.LabelFor(model => model.PasswordRaw, htmlAttributes: new { @class = "label-material" })
+                                        @Html.ValidationMessageFor(model => model.PasswordRaw, "", new { @class = "text-danger" })
+                                    </div>
+                                    if (!string.IsNullOrEmpty(ViewBag.Msg))
+                                    {
+                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                            @ViewBag.Msg
+                                        </div>
+                                    }
                                     <button id="login" type="submit" class="btn btn-primary">Login</button>
 
-                            }
-                            <a href="#" class="forgot-pass">Forgot Password?</a><br><small>Do not have an account? </small><a href="register.html" class="signup">Signup</a>
+                                }
+                                <a href="#" class="forgot-pass">Forgot Password?</a><br><small>Do not have an account? </small><a href="register.html" class="signup">Signup</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
+        <div class="copyrights text-center">
+            <p>Design by <a href="https://bootstrapious.com/admin-templates" class="external">Bootstrapious</a></p>
+            <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
+        </div>
     </div>
-    <div class="copyrights text-center">
-        <p>Design by <a href="https://bootstrapious.com/admin-templates" class="external">Bootstrapious</a></p>
-        <!-- Please do not remove the backlink to us unless you support further theme's development at https://bootstrapious.com/donate. It is part of the license conditions. Thank you for understanding :)-->
-    </div>
-</div>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="~/Scripts/umd/popper.min.js"> </script>
+    <script src="~/Scripts/bootstrap-v4.0.0-beta.2.min.js"></script>
+    <script src="~/Scripts/jquery-v1.4.1.cookie.js"> </script>
+    <script src="~/Scripts/Chart-2.7.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate-v1.17.0.min.js"></script>
+
+    @*<link href="~/Content/jquery.dataTables-1.10.16.css" rel="stylesheet" />*@
+    <script src="~/Scripts/jquery.dataTables-1.10.16.js"></script>
+    <script src="~/Scripts/ProductAddition.js"></script>
+    <!-- Main File-->
+    <script src="~/Scripts/front.js"></script>  
+</body>
 
 

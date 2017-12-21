@@ -27,10 +27,10 @@ namespace Distributor.Controllers
         // GET: Products
 
 
-        public JsonResult LoadData()
+        public JsonResult LoadData(int categoryId)
         {
             //var data = db.Categories.ToList();
-            var data = productService.GetAll();
+            var data = productService.GetByCategory(categoryId);
             return Json(new { data = data }, JsonRequestBehavior.AllowGet);
         }
 
@@ -55,7 +55,7 @@ namespace Distributor.Controllers
         [HttpPost]
         public ActionResult AddOrEdit(Product product)
         {
-            if(product.ImageUrl != null)
+            if(product.ImageUrl != "")
             {
                 string fileName = Path.GetFileNameWithoutExtension(product.ImageUpload.FileName);
                 string extension = Path.GetExtension(product.ImageUpload.FileName);
