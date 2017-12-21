@@ -1,1 +1,2 @@
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor.Tests\obj\Debug\Management-Distributor.Tests.csproj.CoreCompileInputs.cache
+C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor.Tests\obj\Debug\Management-Distributor.Tests.csprojResolveAssemblyReference.cache
