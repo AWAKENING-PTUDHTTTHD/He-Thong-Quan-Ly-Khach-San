@@ -9,6 +9,7 @@ namespace Distributor.Service.Interfaces
 {
     public interface IEmployeeService
     {
+        List<Employee> Load_Page(int PageNumb);
         List<Employee> GetAll();
         bool Add(Employee employee);
         bool Edit(Employee employee);

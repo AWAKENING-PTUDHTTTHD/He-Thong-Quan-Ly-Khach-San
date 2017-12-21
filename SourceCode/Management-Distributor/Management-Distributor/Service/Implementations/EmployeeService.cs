@@ -17,7 +17,7 @@ namespace Distributor.Service.Implementations
         private IRepository<Employee> repoEmployee = null;
         #endregion
 
-
+      
         public EmployeeService(IUnitOfWork uow)
         {
             _uow = uow;
@@ -77,6 +77,14 @@ namespace Distributor.Service.Implementations
             Employee emp = null;
             emp = repoEmployee.GetById(id);
             return emp;
+        }
+
+        List<Employee> IEmployeeService.Load_Page(int PageNumb)
+        {
+            List<Employee> L = new List<Employee>();
+
+            L = repoEmployee.GetAll().OrderByDescending(x => x.EmployeeId).Skip((PageNumb - 1) * 5).Take(5).ToList();
+            return L;
         }
     }
 }

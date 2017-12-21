@@ -4,96 +4,92 @@
     ViewBag.Title = "Dashboard | Employee";
 }
 
-<h2>Index</h2>
+<h2>Scroll Mouse to See More :))</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Department.DepartmentName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EmpName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EmpAddress)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EmpEmail)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.UserName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.EncryptedPassword)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Salt)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastLogged)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.NumOfLoginAttemp)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.LastAttemp)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Rolez)
-        </th>
-        <th></th>
-    </tr>
+@Html.Hidden("HdfPageIndex")
+<div class="container" id="divEmployees">
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Department.DepartmentName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EmpName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EmpAddress)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.PhoneNumber)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EmpEmail)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.EncryptedPassword)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Salt)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastLogged)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.NumOfLoginAttemp)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastAttemp)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Rolez)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.EmployeeId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.EmployeeId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.EmployeeId })
-        </td>
-    </tr>
-}
+</div>
 
-</table>
+@section Scrips {
+    <script src="~/Scripts/CommonFunctions.js"></script>
+    <script>
+        $(function () {
+            doLoadingMore($("#divEmployees"), 1);
+            $(document).unbind("scroll");
+            var lastScrollTop = 0;
+            $(document).scroll(function (event) {
+                var st = $(this).scrollTop();
+                if (st > lastScrollTop) {
+                    if (st >= ($(document).height() - $(window).height())) {
+                        doLoadingMore($("#divEmployees"), 0);
+                    } else {
+                        //donothing
+                    }
+                    lastScrollTop = st;
+                }
+            });
+
+        });
+
+        function doLoadingMore(that, actiontype) {
+            var $that = $(that);
+            if ($that.data("ajax") == true)
+                return;
+            var hdfPageIndex = $("#HdfPageIndex");
+            var pageIndex = parseInt($(hdfPageIndex).val());
+            if (actiontype == 1) {
+                pageIndex = 1;
+                $(hdfPageIndex).val("1");
+            } else {
+                pageIndex = parseInt(pageIndex) + 1;
+            }
+            var data = "{'pageIndex':'" + pageIndex + "'}";
+            LoadingAjax("Employees/FetchEmployee", data,
+            //Before send
+                function () {
+                    $that.ShowLoadingImange();
+                    $that.data("ajax", true);
+                },
+            //On success
+                function (dt) {
+                    $("#divEmployees").append(dt.d);
+                    if (data.data != '') {
+                        $(hdfPageIndex).val(pageIndex);
+                    }
+                    $that.data("ajax", false);
+                    $that.find(".indicator").remove();
+                },
+            //On error
+                function () {
+                    $that.data("ajax", false);
+                    $that.find(".indicator").remove();
+                }
+            );
+        }
+        //An user function is added to show a loading image while waiting for responding from the server.
+        $.fn.extend({
+            ShowLoadingImange: function () {
+                var img = $(this);
+                $(this).css({ "position": "relative" });
+                var indicator = $("<div>").addClass("indicator").css({
+                    width: img.width(),
+                    height: img.height(),
+                    backgroundColor: "#ffffff",
+                    opacity: 0.3,
+                    display: "block",
+                    position: "absolute",
+                    top: 0,
+                    'z-index': 9999
+                }).append($("<img>", {
+                    src:"/Assets/Images/lg.sandglass-time-loading-gif.gif"
+                }).css({
+                    position: "fixed",
+                    top: $(window).innerHeight() / 2,
+                    left: $(window).innerHeight() / 2 + 300
+                }));
+                return $(this).append(indicator);
+            }
+        });
+    </script>
+    }

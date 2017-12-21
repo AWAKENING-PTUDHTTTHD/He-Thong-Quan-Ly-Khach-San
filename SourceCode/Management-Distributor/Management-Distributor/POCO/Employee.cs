@@ -13,6 +13,12 @@ namespace Distributor.POCO
         [Key]
         public int EmployeeId { get; set; }
 
+        [Display(Name = "Avatar Url")]
+        public string AvatarUrl { get; set; }
+
+        [NotMapped]
+        public HttpPostedFileBase AvatarUpload { get; set; }
+
         [Required(ErrorMessage = "Name is required")]
         public string EmpName { get; set; }
         

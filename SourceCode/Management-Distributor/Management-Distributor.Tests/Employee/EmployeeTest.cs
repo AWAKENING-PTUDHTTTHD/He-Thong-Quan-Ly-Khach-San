@@ -40,9 +40,128 @@ namespace Management_Distributor.Tests.Employee
                         Salt = "Nothingmuch",
                         EncryptedPassword = Distributor.Utils.Hashing.HashPassword("kingkaka"),
                         DepartmentId = 9,
+                        Rolez = "Staff"
+
+                    },
+                     new Distributor.POCO.Employee()
+                    {
+                        EmpName = "Employee3",
+                        UserName = "User3",
+                        EmpEmail = "Employee2@test.test",
+                        EmpAddress = "Address2",
+                        PhoneNumber = "0120-0000-000",
+                        Salt = "Nothingmuch",
+                        EncryptedPassword = Distributor.Utils.Hashing.HashPassword("kingkaka"),
+                        DepartmentId = 9,
+                        Rolez = "Staff"
+
+                    },
+                     new Distributor.POCO.Employee()
+                    {
+                        EmpName = "Employee4",
+                        UserName = "User4",
+                        EmpEmail = "Employee2@test.test",
+                        EmpAddress = "Address2",
+                        PhoneNumber = "0120-0000-000",
+                        Salt = "Nothingmuch",
+                        EncryptedPassword = Distributor.Utils.Hashing.HashPassword("kingkaka"),
+                        DepartmentId = 9,
+                        Rolez = "Staff"
+
+                    },
+                     new Distributor.POCO.Employee()
+                    {
+                        EmpName = "Employee5",
+                        UserName = "User5",
+                        EmpEmail = "Employee2@test.test",
+                        EmpAddress = "Address2",
+                        PhoneNumber = "0120-0000-000",
+                        Salt = "Nothingmuch",
+                        EncryptedPassword = Distributor.Utils.Hashing.HashPassword("kingkaka"),
+                        DepartmentId = 9,
+                        Rolez = "Staff"
+
+                    },
+                     new Distributor.POCO.Employee()
+                    {
+                        EmpName = "Employee6",
+                        UserName = "User6",
+                        EmpEmail = "Employee2@test.test",
+                        EmpAddress = "Address2",
+                        PhoneNumber = "0120-0000-000",
+                        Salt = "Nothingmuch",
+                        EncryptedPassword = Distributor.Utils.Hashing.HashPassword("kingkaka"),
+                        DepartmentId = 9,
+                        Rolez = "Staff"
+
+                    },
+                     new Distributor.POCO.Employee()
+                    {
+                        EmpName = "Employee7",
+                        UserName = "User7",
+                        EmpEmail = "Employee2@test.test",
+                        EmpAddress = "Address2",
+                        PhoneNumber = "0120-0000-000",
+                        Salt = "Nothingmuch",
+                        EncryptedPassword = Distributor.Utils.Hashing.HashPassword("kingkaka"),
+                        DepartmentId = 9,
+                        Rolez = "Staff"
+
+                    },
+                     new Distributor.POCO.Employee()
+                    {
+                        EmpName = "Employee8",
+                        UserName = "User8",
+                        EmpEmail = "Employee2@test.test",
+                        EmpAddress = "Address2",
+                        PhoneNumber = "0120-0000-000",
+                        Salt = "Nothingmuch",
+                        EncryptedPassword = Distributor.Utils.Hashing.HashPassword("kingkaka"),
+                        DepartmentId = 9,
+                        Rolez = "Staff"
+
+                    },
+                     new Distributor.POCO.Employee()
+                    {
+                        EmpName = "Employee9",
+                        UserName = "User9",
+                        EmpEmail = "Employee2@test.test",
+                        EmpAddress = "Address2",
+                        PhoneNumber = "0120-0000-000",
+                        Salt = "Nothingmuch",
+                        EncryptedPassword = Distributor.Utils.Hashing.HashPassword("kingkaka"),
+                        DepartmentId = 9,
+                        Rolez = "Staff"
+
+                    },
+                     new Distributor.POCO.Employee()
+                    {
+                        EmpName = "Employee10",
+                        UserName = "User10",
+                        EmpEmail = "Employee2@test.test",
+                        EmpAddress = "Address2",
+                        PhoneNumber = "0120-0000-000",
+                        Salt = "Nothingmuch",
+                        EncryptedPassword = Distributor.Utils.Hashing.HashPassword("kingkaka"),
+                        DepartmentId = 9,
+                        Rolez = "Staff"
+
+                    },
+                     new Distributor.POCO.Employee()
+                    {
+                        EmpName = "Employee11",
+                        UserName = "User11",
+                        EmpEmail = "Employee2@test.test",
+                        EmpAddress = "Address2",
+                        PhoneNumber = "0120-0000-000",
+                        AvatarUrl = "Krystal-jung.jpg",
+                        Salt = "Nothingmuch",
+                        EncryptedPassword = Distributor.Utils.Hashing.HashPassword("kingkaka"),
+                        DepartmentId = 9,
                         Rolez = "Admin"
 
                     }
+
                };
             bool saveAll = EmpService.AddRange(employees);
             Assert.AreEqual(true, saveAll, "Added 2 employee records");

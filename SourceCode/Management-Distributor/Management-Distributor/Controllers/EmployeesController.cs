@@ -9,6 +9,7 @@ using System.Web.Mvc;
 using Distributor.Dao._DbContext;
 using Distributor.POCO;
 using Distributor.Service.Interfaces;
+using System.Text;
 
 namespace Management_Distributor.Controllers
 {
@@ -23,6 +24,43 @@ namespace Management_Distributor.Controllers
             EmpService = _EmpService;
             DeptService = _DeptService;
         }
+
+
+
+
+        // fetch 
+        public string FetchEmployee(int PageNumber)
+        {
+            
+            var sbToreturn = new StringBuilder();
+            List<Employee> employees = EmpService.Load_Page(PageNumber);
+            System.Threading.Thread.Sleep(1200);
+            for(int i=0;i< employees.Count();i++ )
+            {
+                sbToreturn.AppendFormat(@"
+                                        <div class='card'>
+                                          < img src = '{0}' id='indicator' alt = 'Image no found' style = 'width:100%' >
+                                          < h1 > '{1}' </ h1 >
+                                          < p class='title'>'{2}'</p>
+                                          <p>'{3}'</p>
+                                          <div style = 'margin: 24px 0;' >
+                                            < a href= '#' >< i class='fa fa-dribbble'></i></a> 
+                                            <a href = '#' >< i class='fa fa-twitter'></i></a>  
+                                            <a href = '#' >< i class='fa fa-linkedin'></i></a>  
+                                            <a href = '#' >< i class='fa fa-facebook'></i></a> 
+                                         </div>
+                                         <p><button>'{4}'</button></p>
+                                        </div>
+                                       ", employees[i].AvatarUrl,
+                                          employees[i].EmpName,
+                                          employees[i].PhoneNumber,
+                                          employees[i].EmpAddress,
+                                           employees[i].EmpEmail);
+            }
+
+            return sbToreturn.ToString();
+        }
+
         // GET: Employees
         public ActionResult Index()
         {
