@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     <meta name="description" content="">'
-    <meta name="robots" content="all,follow">
+    @*<meta name="robots" content="all,follow">*@
 
 
     <!-- Bootstrap CSS-->
@@ -111,7 +111,7 @@
                                             </div>
                                         </a>
                                     </li>
-                                    <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong>view all notifications                                            </strong></a></li>
+                                    <li><a rel="nofollow" href="#" class="dropdown-item all-notifications text-center"> <strong>view all notifications</strong></a></li>
                                 </ul>
                             </li>
                             <!-- Messages                        -->
@@ -176,8 +176,26 @@
                 </div>
                 <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
                 <ul class="list-unstyled">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (User.IsInRole("Admin"))
+                        {
+                            <li>
+                                <a href="@Url.Action("Index", "Departments")">
+                                    <i class="fa fa-users"></i>
+                                    Departments
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index", "Employees")">
+                                    <i class="fa fa-user"></i>
+                                    Employees
+                                </a>
+                            </li>
+                        }
+                    }
                     <li>
-                        <a href="#exampledropdownDropdown1" aria-expanded="false" data-toggle="collapse"> <i class="icon-rss-feed"></i>Products</a>
+                        <a href="#exampledropdownDropdown1" aria-expanded="false" data-toggle="collapse"> <i class="fa fa-shopping-cart"></i>Products</a>
                         <ul id="exampledropdownDropdown1" class="collapse list-unstyled ">
                             <li>
                                 @Html.ActionLink("Categories", "Index", "Categories", null, new { @class = "" })
@@ -825,7 +843,6 @@
     @Scripts.Render("~/bundles/bootstrap")*@
     
     @RenderSection("scripts", required: false)
-    @*<script src="~/Scripts/ProductAddition.js"></script>*@
     
 </body>
 </html>
