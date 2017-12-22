@@ -1,0 +1,2 @@
+C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\PagingInfo\obj\Debug\Pagination.csprojResolveAssemblyReference.cache
+C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\PagingInfo\obj\Debug\Pagination.csproj.CoreCompileInputs.cache

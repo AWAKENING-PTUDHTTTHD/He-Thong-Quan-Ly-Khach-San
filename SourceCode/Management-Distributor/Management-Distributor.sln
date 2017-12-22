@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26730.16
+VisualStudioVersion = 15.0.27004.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Management-Distributor", "Management-Distributor\Management-Distributor.csproj", "{6F879A51-ECF6-4223-B00B-945A66F1176B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Management-Distributor.Tests", "Management-Distributor.Tests\Management-Distributor.Tests.csproj", "{2F635036-EFC3-49D0-B4D1-7999627EF574}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pagination", "PagingInfo\Pagination.csproj", "{D72436F5-7DAF-4C7E-BA65-4060857D8058}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{2F635036-EFC3-49D0-B4D1-7999627EF574}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2F635036-EFC3-49D0-B4D1-7999627EF574}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2F635036-EFC3-49D0-B4D1-7999627EF574}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D72436F5-7DAF-4C7E-BA65-4060857D8058}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D72436F5-7DAF-4C7E-BA65-4060857D8058}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D72436F5-7DAF-4C7E-BA65-4060857D8058}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D72436F5-7DAF-4C7E-BA65-4060857D8058}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
