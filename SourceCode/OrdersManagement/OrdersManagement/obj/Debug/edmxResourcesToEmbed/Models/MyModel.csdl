@@ -1,0 +1,121 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="MyDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Category">
+    <Key>
+      <PropertyRef Name="CategoryID" />
+    </Key>
+    <Property Name="CategoryID" Type="Int32" Nullable="false" />
+    <Property Name="CategoryName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="OrdersDetails" Relationship="Self.FK_OrdersDetail_Category" FromRole="Category" ToRole="OrdersDetail" />
+    <NavigationProperty Name="Products" Relationship="Self.FK_Product_Category" FromRole="Category" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Order">
+    <Key>
+      <PropertyRef Name="OrderID" />
+    </Key>
+    <Property Name="OrderID" Type="Int32" Nullable="false" />
+    <Property Name="OrderDate" Type="DateTime" Precision="3" />
+    <Property Name="DeliveryDate" Type="DateTime" Precision="3" />
+    <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="OrdersDetails" Relationship="Self.FK_OrdersDetail_Orders" FromRole="Orders" ToRole="OrdersDetail" />
+  </EntityType>
+  <EntityType Name="OrdersDetail">
+    <Key>
+      <PropertyRef Name="OrdersDetailID" />
+    </Key>
+    <Property Name="OrdersDetailID" Type="Int32" Nullable="false" />
+    <Property Name="OrdersID" Type="Int32" Nullable="false" />
+    <Property Name="CategoryID" Type="Int32" Nullable="false" />
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <Property Name="DemandQuantily" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="ActualQuantily" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Unit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Category" Relationship="Self.FK_OrdersDetail_Category" FromRole="OrdersDetail" ToRole="Category" />
+    <NavigationProperty Name="Order" Relationship="Self.FK_OrdersDetail_Orders" FromRole="OrdersDetail" ToRole="Orders" />
+    <NavigationProperty Name="Product" Relationship="Self.FK_OrdersDetail_Product" FromRole="OrdersDetail" ToRole="Product" />
+  </EntityType>
+  <EntityType Name="Product">
+    <Key>
+      <PropertyRef Name="ProductID" />
+    </Key>
+    <Property Name="ProductID" Type="Int32" Nullable="false" />
+    <Property Name="ProductName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="CategoryID" Type="Int32" Nullable="false" />
+    <Property Name="Price" Type="Decimal" Precision="18" Scale="0" />
+    <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="Category" Relationship="Self.FK_Product_Category" FromRole="Product" ToRole="Category" />
+    <NavigationProperty Name="OrdersDetails" Relationship="Self.FK_OrdersDetail_Product" FromRole="Product" ToRole="OrdersDetail" />
+  </EntityType>
+  <Association Name="FK_OrdersDetail_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="1" />
+    <End Role="OrdersDetail" Type="Self.OrdersDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="OrdersDetail">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Product_Category">
+    <End Role="Category" Type="Self.Category" Multiplicity="1" />
+    <End Role="Product" Type="Self.Product" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Category">
+        <PropertyRef Name="CategoryID" />
+      </Principal>
+      <Dependent Role="Product">
+        <PropertyRef Name="CategoryID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrdersDetail_Orders">
+    <End Role="Orders" Type="Self.Order" Multiplicity="1" />
+    <End Role="OrdersDetail" Type="Self.OrdersDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orders">
+        <PropertyRef Name="OrderID" />
+      </Principal>
+      <Dependent Role="OrdersDetail">
+        <PropertyRef Name="OrdersID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_OrdersDetail_Product">
+    <End Role="Product" Type="Self.Product" Multiplicity="1" />
+    <End Role="OrdersDetail" Type="Self.OrdersDetail" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Product">
+        <PropertyRef Name="ProductID" />
+      </Principal>
+      <Dependent Role="OrdersDetail">
+        <PropertyRef Name="ProductID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="MyDatabaseEntities3" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Categories" EntityType="Self.Category" />
+    <EntitySet Name="Orders" EntityType="Self.Order" />
+    <EntitySet Name="OrdersDetails" EntityType="Self.OrdersDetail" />
+    <EntitySet Name="Products" EntityType="Self.Product" />
+    <AssociationSet Name="FK_OrdersDetail_Category" Association="Self.FK_OrdersDetail_Category">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="OrdersDetail" EntitySet="OrdersDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Product_Category" Association="Self.FK_Product_Category">
+      <End Role="Category" EntitySet="Categories" />
+      <End Role="Product" EntitySet="Products" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrdersDetail_Orders" Association="Self.FK_OrdersDetail_Orders">
+      <End Role="Orders" EntitySet="Orders" />
+      <End Role="OrdersDetail" EntitySet="OrdersDetails" />
+    </AssociationSet>
+    <AssociationSet Name="FK_OrdersDetail_Product" Association="Self.FK_OrdersDetail_Product">
+      <End Role="Product" EntitySet="Products" />
+      <End Role="OrdersDetail" EntitySet="OrdersDetails" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

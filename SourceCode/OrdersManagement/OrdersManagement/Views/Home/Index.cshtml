@@ -1,0 +1,132 @@
+﻿@{
+    ViewBag.Title = "Index";
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta/>
+    <title>Orders Management</title>
+
+</head>
+<body>
+
+    <div class="container">
+        <h2>Orders Management</h2>
+        <div class="master">
+            <h2>Orders</h2>
+            <table class="table table-responsive">
+                <tr>
+
+                    <td>Order Date</td>
+                    <td>
+                        <input type="text" id="orderDate" class="form-control" />
+                        <span class="error">Valid order date required (ex: MM-dd-yyyy)</span>
+                    </td>
+                    <td>Delivery Date</td>
+                    <td>
+                        <input type="text" id="deliveryDate" class="form-control" />
+                        <span class="error">Valid delivery date required (ex: MM-dd-yyyy)</span>
+                    </td>
+                    <td>Status</td>
+                    <td colspan="3">
+                        <input type="text" id="status" class="form-control" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div class="details">
+            <h2>Orders Detail</h2>
+            <table class="table table-responsive" id="addOrder">
+                <tr>
+                    <td>Category</td>
+                    <td>Product</td>
+                    <td>Demand Quantity</td>
+                    <td>Actual Quantity</td>
+                    <td>Price</td>
+                    <td>Unit</td>
+                    <td>&nbsp;</td>
+                </tr>
+                <tr class="mycontainer" id="mainrow">
+                    <td>
+                        <select id="category" class="pc form-control" onchange="LoadCategory(this)">
+                            <option>Select</option>
+                        </select>
+                        <span class="error">Select Category</span>
+                    </td>
+                    <td>
+                        <select id="product" class="product form-control" onchange="LoadProduct(this)">
+                            <option>Select</option>
+                        </select>
+                        <span class="error">Select Product</span>
+                    </td>
+                    <td>
+                        <input type="text" id="demandquantity" class="quantity form-control" />
+                        <span class="error">Valid demand quantity required</span>
+                    </td>
+                    <td>
+                        <input type="text" id="actualquantity" class="quantity form-control" />
+                        <span class="error">Valid actual quantity required</span>
+                    </td>
+                    <td>
+                        <input type="text" id="price" class="rate form-control" />
+                        <span class="error">Valid price required</span>
+                    </td>
+                    <td>
+                        <select id="unit" class="product form-control">
+                            <option>Select</option>
+                            <option>Bottle</option>
+                            <option>Can</option>
+
+                        </select>
+                        <span class="error">Select Unit</span>
+                    </td>
+                    <td>
+                        <input type="button" id="addOrder" value="Add" style="width:80px" class="btn btn-success" />
+                    </td>
+                </tr>
+            </table>
+            <div id="orderItems">
+                <table class="table table-responsive" id="orderdetailsItems"></table>
+                <span id="orderItemError" style="color:red"></span>
+            </div>
+            <div style="padding:10px 0; text-align:right">
+                <input id="saveOrder" type="button" value="Save Order" class="btn btn-warning" style="padding:10px 20px" />
+            </div>
+        </div>
+    </div>
+
+
+
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css" />
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+    <script src="~/Scripts/myScripts.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            $('#orderDate').datepicker({
+                dateFormat: 'mm-dd-yyyy'
+            }),
+
+            $('#deliveryDate').datepicker({
+                dateFormat: 'mm-dd-yyyy'
+            })
+        })
+    </script>
+
+
+    <style>
+        span.error {
+            display: block;
+            visibility: hidden;
+            color: red;
+            font-size: 90%;
+        }
+
+        tr.error {
+            background-color: rgba(255,0,0,0.35);
+        }
+    </style>
+</body>
+</html>
