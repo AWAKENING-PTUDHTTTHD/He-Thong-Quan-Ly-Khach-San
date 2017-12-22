@@ -7,6 +7,7 @@ using Distributor.POCO;
 using Distributor.Dao.Implementations;
 using Distributor.Dao.Interfaces;
 using NLog;
+using Pagination;
 
 namespace Distributor.Service.Implementations
 {
@@ -68,6 +69,18 @@ namespace Distributor.Service.Implementations
         public Product GetOne(int id)
         {
            return _ProductRepo.GetAll(x => x.ProductId == id).First();
+        }
+
+        public List<Product> GetPage(int page = 1)
+        {
+
+            List<Product> L;
+            L = _ProductRepo.GetAll()
+                            .OrderByDescending(p => p.ProductId)
+                            .Skip((page - 1) * PageConfig.PageSize)
+                            .Take(PageConfig.PageSize)
+                            .ToList();
+            return L;
         }
 
         //public List<Product> GetPage(int page)

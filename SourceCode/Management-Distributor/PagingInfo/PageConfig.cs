@@ -8,6 +8,6 @@ namespace Pagination
 {
     public static class PageConfig
     {
-        const int PageSize = 5;
+        public const int PageSize = 3;
     }
 }
