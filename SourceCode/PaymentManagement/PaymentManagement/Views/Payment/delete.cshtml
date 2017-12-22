@@ -1,0 +1,40 @@
+﻿@model PaymentManagement.Models.Payment
+
+<h2>Delete Payment</h2>
+@using (Html.BeginForm("delete", "payment", FormMethod.Post, new { id = "popupForm" }))
+{
+    @Html.HiddenFor(a => a.PaymentID)
+    <div class="form-group">
+        <label>Invoice</label>
+        <p>@Model.InvoiceID</p>
+    </div>
+
+    <div class="form-group">
+        <label>Amount</label>
+        <p>@Model.Amount</p>
+    </div>
+
+    <div class="form-group">
+        <label>Paid Date</label>
+        <p>@Model.PaidDate</p>
+    </div>
+    
+     <div class="form-group">
+        <label>Exceed Date</label>
+        <p>@Model.ExceedDate</p>
+    </div>
+
+    <div class="form-group">
+        <label>Status</label>
+        <p>@Model.Status</p>
+    </div>
+    
+    <div class="form-group">
+        <label>Note</label>
+        <p>@Model.Note</p>
+    </div>
+
+    <div>
+        <input type="submit" value="Delete" />
+    </div>
+}

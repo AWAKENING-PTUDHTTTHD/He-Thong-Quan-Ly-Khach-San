@@ -1,0 +1,59 @@
+﻿@model PaymentManagement.Models.Payment
+<h2>Payment Management</h2>
+@using (Html.BeginForm("save", "payment", FormMethod.Post, new { id = "popupForm" }))
+{
+    if (Model != null && Model.PaymentID > 0)
+    {
+        @Html.HiddenFor(a => a.PaymentID)
+    }
+
+    <div class="form-group">
+        <label>Invoice</label>
+        @*@Html.DropDownListFor(
+        
+                a => a.InvoiceID, 
+
+                new SelectList(
+                    
+                    Model.Invoice,
+                    "Id",
+                    "Name",
+                    13
+                    ),
+                    
+                "- Please select your invoice -"
+            )*@
+        @Html.TextBoxFor(a => a.InvoiceID, new { @class = "form-control" })
+        @Html.ValidationMessageFor(a => a.InvoiceID)
+    </div>
+    <div class="form-group">
+        <label>Amount</label>
+        @Html.TextBoxFor(a => a.Amount, new { @class = "form-control" })
+        @Html.ValidationMessageFor(a => a.Amount)
+    </div>
+    <div class="form-group">
+        <label>Paid Date</label>
+        @Html.TextBoxFor(a => a.PaidDate, new { @class = "form-control", @Value = Model.PaidDate.ToString("dd-MM-yyyy") })
+        @Html.ValidationMessageFor(a => a.PaidDate)
+    </div>
+    <div class="form-group">
+        <label>Paid Date</label>
+        @Html.TextBoxFor(a => a.ExceedDate, new { @class = "form-control", @Value = Model.ExceedDate.ToString("dd-MM-yyyy") })
+        @Html.ValidationMessageFor(a => a.ExceedDate)
+    </div>
+    <div class="form-group">
+        <label>Status</label>
+        @Html.TextBoxFor(a => a.Status, new { @class = "form-control" })
+        @Html.ValidationMessageFor(a => a.Status)
+    </div>
+    <div class="form-group">
+        <label>Note</label>
+        @Html.TextBoxFor(a => a.Note, new { @class = "form-control" })
+        @Html.ValidationMessageFor(a => a.Note)
+    </div>
+
+    <div>
+        <input type="submit" value="Save" />
+    </div>
+}
+
