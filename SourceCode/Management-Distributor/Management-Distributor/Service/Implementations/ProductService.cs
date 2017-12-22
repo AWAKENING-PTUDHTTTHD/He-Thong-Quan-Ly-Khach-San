@@ -69,5 +69,16 @@ namespace Distributor.Service.Implementations
         {
            return _ProductRepo.GetAll(x => x.ProductId == id).First();
         }
+
+        //public List<Product> GetPage(int page)
+        //{
+        //    List<Product> L;
+        //    L = _ProductRepo.GetAll()
+        //                    .OrderByDescending(p => p.ProductId)
+        //                    .Skip((page - 1) * PageConfig.PageSize)
+        //                    .Take(PageConfig.PageSize)
+        //                    .ToList();
+        //    return L;
+        //}
     }
 }

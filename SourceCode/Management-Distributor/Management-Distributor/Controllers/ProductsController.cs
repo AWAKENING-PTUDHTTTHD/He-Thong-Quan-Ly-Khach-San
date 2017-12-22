@@ -11,6 +11,7 @@ using Distributor.Dao._DbContext;
 using Distributor.POCO;
 using Distributor.Service.Interfaces;
 using System.IO;
+using Management_Distributor.ViewModels;
 
 namespace Distributor.Controllers
 {
@@ -26,7 +27,24 @@ namespace Distributor.Controllers
         }
         // GET: Products
 
+        // Page
 
+        public ActionResult Page(int page = 1)
+        {
+            List<Product> productz = productService.GetPage(page);
+            ProductsListViewModel model = new ProductsListViewModel()
+            {
+                products = productz,
+                pagingInfo = new Pagination.PagingInfo()
+                {
+                    CurrentPage = page,
+                    ItemsPerPage = PageConfig.PageSize,
+                    TotalItems = productService.GetAll().Count()
+                }
+
+        };
+            return View(model);
+        }
         public JsonResult LoadData(int categoryId)
         {
             //var data = db.Categories.ToList();

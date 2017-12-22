@@ -19,6 +19,8 @@ namespace Distributor.Service.Interfaces
         bool Delete(Product product);
 
         List<Product>GetByCategory(int categoryId);
+
+        List<Product> GetPage(int page = 1);
     }
     
 }
