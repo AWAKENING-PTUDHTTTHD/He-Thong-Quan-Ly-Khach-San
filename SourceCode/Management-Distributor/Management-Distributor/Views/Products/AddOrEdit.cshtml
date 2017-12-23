@@ -7,64 +7,53 @@
     @using (Html.BeginForm("AddOrEdit", "Products", FormMethod.Post, new { enctype="multipart/form-data", onsubmit = "return SubmitForm(this)" }))
     {
         @Html.AntiForgeryToken()
-                <div class="form-horizontal">
+      
                     @Html.ValidationSummary(true)
                     @Html.HiddenFor(model => model.ProductId)
                     @Html.HiddenFor(model => model.ImageUrl)
-
-                        <div class="form-group row">
-                            @Html.LabelFor(model => model.ProductName, new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control" } })
-
-                                @Html.ValidationMessageFor(model => model.ProductName)
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            @Html.LabelFor(model => model.Price, new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                <div class="input-group">
-                                    <span class="input-group-addon">$</span>
-                                    @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
-                                </div>
-                                @Html.ValidationMessageFor(model => model.Price)
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            @Html.LabelFor(model => model.Description, new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                <div class="input-group">
-                                    @Html.TextAreaFor(model => model.Description, 4, 40, new { htmlAttributes = new { @class = "form-control" } })
-                                </div>
-                                @Html.ValidationMessageFor(model => model.Description)
-                            </div>
-                        </div>
-
-                        <div class="form-group row">
-                            @Html.LabelFor(model => model.CategoryId, "CategoryId", htmlAttributes: new { @class = "control-label col-md-2" })
-                            <div class="col-md-10">
-                                @Html.DropDownList("CategoryId", null, htmlAttributes: new { @class = "form-control" })
-                                @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
-                            </div>
-                        </div>
-   
-                        <div class="form-group row">
-                            @*@Html.LabelFor(model => model.ImageUrl, new { @class = "control-label col-md-2" })*@
-                            @*<div class="col-md-10">*@
-                            <div class="col-md-9 col-md-offset-3 col-lg-9 col-lg-offset-3">
-                                @*</div>*@
-                                <img src="@Url.Content(Model.ImageUrl)" id="imagePreview" style="margin:10px;height:200px;width:200px;" alt="Image Not Found" />
-                            </div>
-                        </div>
-                    <div class="form-group row">
-                        <input class="btn btn-dark" type="file" name="ImageUpload" accept="image/jpeg, image/png" onchange="ShowImagePreview(this, document.getElementById('imagePreview'))" />
+    
+                    <input class="btn btn-file" type="file" name="ImageUpload" accept="image/jpeg, image/png" onchange="ShowImagePreview(this, document.getElementById('imagePreview'))" />
+                    <div class="text-center" style="margin:10px;height:300px;width:600px;">
+                        <img style="max-width:100%;max-height:100%; "class="img-fluid rounded" src="@Url.Content(Model.ImageUrl)" id="imagePreview"  alt="Image Not Found" />
                     </div>
                     <div class="form-group">
-                        <input type="submit" value="Submit" class="btn btn-primary" />
-                        <input type="reset" value="Reset" class="btn btn-warning" />
+                        @Html.LabelFor(model => model.CategoryId, "CategoryId", htmlAttributes: new { @class = "control-label" })
+    
+                       @Html.DropDownList("CategoryId", null, htmlAttributes: new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.CategoryId, "", new { @class = "text-danger" })
                     </div>
-                 </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.ProductName, new { @class = "control-label" })
+      
+                        @Html.EditorFor(model => model.ProductName, new { htmlAttributes = new { @class = "form-control" } })
+
+                        @Html.ValidationMessageFor(model => model.ProductName)
+                    </div>
+                     
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Price, new { @class = "control-label" })
+                    
+                            <div class="input-group">
+                                <span class="input-group-addon">$</span>
+                                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.Price)
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Description, new { @class = "control-label" })
+                        <div>
+                            <div class="input-group">
+                                @Html.TextAreaFor(model => model.Description, 2, 80, new { htmlAttributes = new { @class = "form-control" } })
+                            </div>
+                            @Html.ValidationMessageFor(model => model.Description)
+ 
+                    </div>
+
+                      
+                    <input type="submit" value="Submit" class="btn btn-primary" />
+                    <input type="reset" value="Reset" class="btn btn-warning" />
+                       </div>
     }
   

@@ -11,7 +11,7 @@ using Distributor.Dao._DbContext;
 using Distributor.POCO;
 using Distributor.Service.Interfaces;
 using System.IO;
-using Management_Distributor.ViewModels;
+using Distributor.ViewModels;
 using Pagination;
 
 namespace Distributor.Controllers
@@ -49,7 +49,7 @@ namespace Distributor.Controllers
         public JsonResult LoadData(int categoryId)
         {
             //var data = db.Categories.ToList();
-            var data = productService.GetByCategory(categoryId);
+            var data = productService.GetByCategory(Convert.ToInt32(categoryId));
             return Json(new { data = data }, JsonRequestBehavior.AllowGet);
         }
 
@@ -80,8 +80,8 @@ namespace Distributor.Controllers
                 string extension = Path.GetExtension(product.ImageUpload.FileName);
 
                 fileName = fileName + DateTime.Now.ToString("yymmssfff") + extension;
-                product.ImageUrl = "~/Uploads/ProductImages/" + fileName;
-                product.ImageUpload.SaveAs(Path.Combine(Server.MapPath("~/Uploads/ProductImages/"), fileName));
+                product.ImageUrl = "/Uploads/ProductImages/" + fileName;
+                product.ImageUpload.SaveAs(Path.Combine(Server.MapPath("/Uploads/ProductImages/"), fileName));
             }
             if (product.ProductId == 0)
             {

@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace Management_Distributor.ViewModels
+namespace Distributor.ViewModels
 {
     public class ProductsListViewModel
     {

@@ -29,47 +29,50 @@ namespace Management_Distributor.Controllers
 
 
         // fetch 
-        public string FetchEmployee(int PageNumber)
+        public JsonResult FetchEmployee(int PageNumber = 1)
         {
             
             var sbToreturn = new StringBuilder();
             List<Employee> employees = EmpService.Load_Page(PageNumber);
-            System.Threading.Thread.Sleep(1200);
-            for(int i=0;i< employees.Count();i++ )
-            {
-                sbToreturn.AppendFormat(@"
-                                        <div class='card'>
-                                          < img src = '{0}' id='indicator' alt = 'Image no found' style = 'width:100%' >
-                                          < h1 > '{1}' </ h1 >
-                                          < p class='title'>'{2}'</p>
-                                          <p>'{3}'</p>
-                                          <div style = 'margin: 24px 0;' >
-                                            < a href= '#' >< i class='fa fa-dribbble'></i></a> 
-                                            <a href = '#' >< i class='fa fa-twitter'></i></a>  
-                                            <a href = '#' >< i class='fa fa-linkedin'></i></a>  
-                                            <a href = '#' >< i class='fa fa-facebook'></i></a> 
-                                         </div>
-                                         <p><button>'{4}'</button></p>
-                                        </div>
-                                       ", employees[i].AvatarUrl,
-                                          employees[i].EmpName,
-                                          employees[i].PhoneNumber,
-                                          employees[i].EmpAddress,
-                                           employees[i].EmpEmail);
-            }
-
-            return sbToreturn.ToString();
+            return Json(new { data = employees }, JsonRequestBehavior.AllowGet);
         }
 
-        // GET: Employees
-        public ActionResult Index()
-        {
-            var employees = EmpService.GetAll();
-            return View(employees.ToList());
-        }
+            //System.Threading.Thread.Sleep(3000);
+            //for(int i=0;i< employees.Count();i++ )
+            //{
+            //    sbToreturn.AppendFormat(@"
+            //                            <div class='card'>
+            //                              < img src = '{0}' id='indicator' alt = 'Image no found' style = 'width:100%' >
+            //                              < h1 > '{1}' </ h1 >
+            //                              < p class='title'>'{2}'</p>
+            //                              <p>'{3}'</p>
+            //                              <div style = 'margin: 24px 0;' >
+            //                                < a href= '#' >< i class='fa fa-dribbble'></i></a> 
+            //                                <a href = '#' >< i class='fa fa-twitter'></i></a>  
+            //                                <a href = '#' >< i class='fa fa-linkedin'></i></a>  
+            //                                <a href = '#' >< i class='fa fa-facebook'></i></a> 
+            //                             </div>
+            //                             <p><button>'{4}'</button></p>
+            //                            </div>
+            //                           ", employees[i].AvatarUrl,
+            //                              employees[i].EmpName,
+            //                              employees[i].PhoneNumber,
+            //                              employees[i].EmpAddress,
+            //                               employees[i].EmpEmail);
+            //}
 
-        // GET: Employees/Details/5
-        public ActionResult Details(int id)
+            //return sbToreturn.ToString();
+        //}
+
+    // GET: Employees
+    public ActionResult Index()
+    {
+        //var employees = EmpService.GetAll();
+        return View();
+    }
+
+    // GET: Employees/Details/5
+    public ActionResult Details(int id)
         {
             if (id == 0)
             {

@@ -83,7 +83,7 @@ namespace Distributor.Service.Implementations
         {
             List<Employee> L = new List<Employee>();
 
-            L = repoEmployee.GetAll().OrderByDescending(x => x.EmployeeId).Skip((PageNumb - 1) * 5).Take(5).ToList();
+            L = repoEmployee.GetAll().OrderByDescending(x => x.EmployeeId).Skip((PageNumb - 1) * 3).Take(3).ToList();
             return L;
         }
     }

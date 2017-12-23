@@ -12,7 +12,7 @@ namespace Distributor.POCO
 
         public Product()
         {
-            ImageUrl = "~/Uploads/ProductImages/No_Image_Available.jpg";
+            ImageUrl = "/Uploads/ProductImages/No_Image_Available.jpg";
         }
         [Key]
         public int ProductId { get; set; }
