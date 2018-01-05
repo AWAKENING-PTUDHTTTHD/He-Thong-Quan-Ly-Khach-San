@@ -9,6 +9,11 @@ namespace Distributor.POCO
 {
     public class OrderDetail
     {
+
+        public OrderDetail()
+        {
+            Unit = "Bottle";
+        }
         [Key]
         public int OrderDetailId { get; set; }
         //[ForeignKey("Orders")]

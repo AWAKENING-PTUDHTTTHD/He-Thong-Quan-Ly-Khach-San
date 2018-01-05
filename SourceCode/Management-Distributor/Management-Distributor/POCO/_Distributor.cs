@@ -10,7 +10,7 @@ namespace Distributor.POCO
     public class _Distributor
     {
         [Key]
-        public string DistributorId { get; set; }
+        public int DistributorId { get; set; }
 
         [Required(ErrorMessage = "Name is required")]
         public string DistributorName { get; set; }
@@ -23,7 +23,7 @@ namespace Distributor.POCO
         public string DistributorEmail { get; set; }
 
         [Required(ErrorMessage = "Phone Number is required")]
-        [DataType(DataType.PhoneNumber, ErrorMessage = "The email provided is invalid!")]
+        [DataType(DataType.PhoneNumber, ErrorMessage = "The phone provided is invalid!")]
         public string DistributorPhoneNumber { get; set; }
 
         public string Description { get; set; }
@@ -35,6 +35,6 @@ namespace Distributor.POCO
 
         public virtual Region Region { get; set; }
 
-        public virtual ICollection<Contract> Contracts { get; set; }
+       // public virtual ICollection<Contract> Contracts { get; set; }
     }
 }

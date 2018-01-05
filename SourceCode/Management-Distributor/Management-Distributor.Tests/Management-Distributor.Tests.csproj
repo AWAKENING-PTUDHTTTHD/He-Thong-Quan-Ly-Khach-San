@@ -102,8 +102,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Employee\DepartmentTest.cs" />
-    <Compile Include="Employee\EmployeeTest.cs" />
+    <Compile Include="Distributor\RegionTest.cs" />
+    <Compile Include="Distributor\DistributorTest.cs" />
+    <Compile Include="Employees\DepartmentTest.cs" />
+    <Compile Include="Employees\UnitTest1.cs" />
     <Compile Include="Product\ProductTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

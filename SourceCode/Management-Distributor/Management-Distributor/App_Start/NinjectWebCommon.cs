@@ -16,6 +16,8 @@ namespace Distributor.App_Start
     using Distributor.Dao.Implementations;
     using NLog;
     using System.Data.Entity;
+    using Management_Distributor.Service.Interfaces;
+    using Management_Distributor.Service.Implementations;
 
     public static class NinjectWebCommon 
     {
@@ -72,6 +74,10 @@ namespace Distributor.App_Start
             kernel.Bind<IEmployeeService>().To<EmployeeService>();
             kernel.Bind<IDeparmentService>().To<DepartmentService>();
             kernel.Bind<IProductService>().To<ProductService>();
+            kernel.Bind<IOrderDetailService>().To<OrderDetailService>();
+            kernel.Bind<IOrderService>().To<OrderService>();
+            kernel.Bind<IRegionService>().To<RegionService>();
+            kernel.Bind<IDistributorService>().To<DistributorService>();
         }        
     }
 }

@@ -1,0 +1,164 @@
+﻿body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Roboto', sans-serif;
+    background-image: url('../Assets/Images/pexels-photo-355423.jpeg');
+    /* background-position: center; */
+    background-size: cover;
+}
+
+.container {
+    position: absolute;
+    box-sizing: border-box;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 400px;
+    /* padding: 40px;*/
+    /*padding-top: 90px;*/
+    overflow: hidden;
+}
+
+.LoginIn {
+    position: relative;
+    width: 100%;
+    height: 50px;
+    background: #264348;
+    color: #fff;
+    line-height: 50px;
+    text-align: center;
+    font-size: 20px;
+    cursor: pointer;
+    box-shadow: 0 5px 10px rgba(0,0,0,.5);
+}
+
+
+.fold {
+    background-color: rgba(0,0,0,0.8);
+    box-shadow: 0 15px 25px rgba(0,0,0,.5);
+    position: relative;
+    box-sizing: border-box;
+    box-sizing: border-box;
+    width: 100%;
+    background: rgba(17,24,34,.8);
+    transform-origin: top;
+    padding: 30px 20px;
+    -webkit-transition: .5s;
+    -moz-transition: .5s;
+    /* -ms-transition: .5s; */
+    -o-transition: .5s;
+    transition: .5s;
+    -webkit-transform: perspective(2000px) rotateX(-90deg);
+    -moz-transform: perspective(2000px) rotateX(-90deg);
+    -ms-transform: perspective(2000px) rotateX(-90deg);
+    -o-transform: perspective(2000px) rotateX(-90deg);
+    transform: perspective(2000px) rotateX(-90deg);
+}
+
+.active {
+    -webkit-transform: perspective(2000px) rotateX(0deg);
+    -moz-transform: perspective(2000px) rotateX(0deg);
+    -ms-transform: perspective(2000px) rotateX(0deg);
+    -o-transform: perspective(2000px) rotateX(0deg);
+    transform: perspective(2000px) rotateX(0deg);
+}
+/*.avatar {
+    position: absolute;
+    top: -56;
+    left: calc(50% - 56px);
+    border-radius: 50%;
+    width:100px;
+    height: 100%;
+}*/
+
+/*h2 {
+    margin: 0 0 30px;
+    padding: 0;
+    color: #fff;
+    text-align: center;
+}*/
+
+.inputBox {
+    position: relative;
+}
+
+    .inputBox input {
+        width: 100%;
+        padding: 10px 0;
+        font-size: 16px;
+        letter-spacing: 1px;
+        color: #fff;
+        border: none;
+        border-bottom: 1px solid #fff;
+        background: transparent;
+        outline: none;
+        margin-bottom: 30px;
+        padding-left: 40px;
+    }
+
+    .inputBox label {
+        position: absolute;
+        top: 0;
+        left: 40px;
+        padding: 10px 0;
+        color: #fff;
+        font-size: 16px;
+        pointer-events: none;
+        -webkit-transition: .5s;
+        -moz-transition: .5s;
+        /* -ms-transition: .5s; */
+        -o-transition: .5s;
+        transition: .5s;
+    }
+
+    .inputBox input:focus ~ label,
+    .inputBox input:valid ~ label {
+        top: -18px;
+        left: 0;
+        color: #FFA400;
+        font-size: 12px;
+    }
+
+input[type="submit"] {
+    width: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #fff;
+    background: #F22613;
+    transition: .5s;
+    padding: 10px 20px;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-bottom: 15px;
+    transform: scale(1);
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-size: 24px;
+}
+
+    input[type="submit"]:hover {
+        transform: scale(.8);
+    }
+
+
+.Forget-Password {
+    display: block;
+    text-decoration: none;
+    font-size: 14px;
+    color: #fff;
+    text-align: right;
+}
+
+    .Forget-Password:hover {
+        color: #19B5FE;
+    }
+
+.inputBox i {
+    color: #03A678;
+    position: absolute;
+    top: 15px;
+    left: 0;
+    font-size: 100%;
+    line-height: normal;
+}

@@ -36,6 +36,7 @@ namespace Distributor.Controllers
             else
             {
                 FormsAuthentication.SetAuthCookie(employee.UserName, false);
+                Session["EmployeeId"] = employee.EmployeeId;  
                 return RedirectToAction("Dashboard", "Home");
             }
         }

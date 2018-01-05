@@ -21,7 +21,7 @@ namespace Distributor.Dao._DbContext
 
         public DbSet<Region> Regions { get; set; }
         public DbSet<_Distributor> Distributors { get; set; }
-        public DbSet<Contract> Contracts { get; set; }
+       // public DbSet<Contract> Contracts { get; set; }
 
         public DbSet<Category> Categories { get; set; }
         public DbSet<Product> Products { get; set; }

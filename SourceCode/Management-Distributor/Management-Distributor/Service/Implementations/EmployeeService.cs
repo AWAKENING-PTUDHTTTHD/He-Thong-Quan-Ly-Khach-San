@@ -24,6 +24,11 @@ namespace Distributor.Service.Implementations
             repoEmployee = _uow.Repository<Employee>();
         }
 
+
+        public Employee FindById(int Id)
+        {
+            return repoEmployee.GetById(Id);
+        }
         public bool Add(Employee employee)
         {
             bool success;
