@@ -15,6 +15,7 @@ namespace Distributor.POCO
             Status = "PROCESSING";
         }
         [Key]
+
         public int OrderId { get; set; }
 
         public decimal ToTalAmount { get; set; }

@@ -8,6 +8,7 @@ using Distributor.Dao.Implementations;
 using Distributor.Dao.Interfaces;
 using NLog;
 using Pagination;
+using Management_Distributor.ExceptionHandler;
 
 namespace Distributor.Service.Implementations
 {
@@ -34,6 +35,40 @@ namespace Distributor.Service.Implementations
             return success;
         }
 
+        public int DecreaseAvailableQty(int ProductId, int DescreaseAmt)
+        {
+            // product not existed 
+            int success = -1;
+            Product p = FindById(ProductId);
+            if (p != null)
+            {
+                // Turn flag to existed
+                success = 0;
+                //if (p.AvailableQty >= DescreaseAmt)
+                //{
+                //    try
+                //    {
+
+                //        p.AvailableQty -= DescreaseAmt;
+                //        _uow.SaveChange();
+                //        // sucessfully updated
+                //        success = 1;
+                //    }
+                //    catch (Exception ex)
+                //    {
+                //        string Path = @"C:/DescreaseAvailableQty.Exception.txt";
+                //        ExceptionProofer.LogToFile(Path, ex);
+                //    }
+
+                //}
+
+            }  
+              
+            return success;
+                
+
+        }
+
         public bool Delete(Product product)
         {
             _ProductRepo.Delete(product);
@@ -52,6 +87,11 @@ namespace Distributor.Service.Implementations
                 return false;
             }
            
+        }
+
+        public Product FindById(int ProductId)
+        {
+            return _ProductRepo.GetById(ProductId);
         }
 
         public List<Product> GetAll()
@@ -82,16 +122,5 @@ namespace Distributor.Service.Implementations
                             .ToList();
             return L;
         }
-
-        //public List<Product> GetPage(int page)
-        //{
-        //    List<Product> L;
-        //    L = _ProductRepo.GetAll()
-        //                    .OrderByDescending(p => p.ProductId)
-        //                    .Skip((page - 1) * PageConfig.PageSize)
-        //                    .Take(PageConfig.PageSize)
-        //                    .ToList();
-        //    return L;
-        //}
     }
 }

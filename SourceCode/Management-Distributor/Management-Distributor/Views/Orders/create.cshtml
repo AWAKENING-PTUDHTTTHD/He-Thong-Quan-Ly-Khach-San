@@ -1,115 +1,178 @@
 ﻿@model IEnumerable<Distributor.POCO.Product>
 
 @{
-	ViewBag.Title = "create";
+    ViewBag.Title = "create";
 }
+<link href="~/Content/jquery.datetimepicker.css" rel="stylesheet" />
+<style>
+    .table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
+        background-color: #847BAA;
+        color: #ecf0f1;
+        cursor: pointer;
+    }
 
+
+    .ui-datepicker {
+        width: 216px;
+        height: auto;
+        margin: 5px auto 0;
+        font: 9pt Arial, sans-serif;
+        -webkit-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .5);
+        -moz-box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .5);
+        box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, .5);
+        background-color: #FFF;
+    }
+
+
+    .ui-datepicker {
+        background: #fff; /* Old browsers */
+        background: #fff -moz-linear-gradient(top, #fcfcfc 0%, #fff 100%); /* FF3.6+ */
+        background: #fff -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fcfcfc)), color-stop(100%,#fff)); /* Chrome,Safari4+ */
+        background: #fff -webkit-linear-gradient(top, #fcfcfc 0%, #fff 100%); /* Chrome10+,Safari5.1+ */
+        background: #fff -o-linear-gradient(top, #fcfcfc 0%, #fff 100%); /* Opera11.10+ */
+        background: #fff -ms-linear-gradient(top, #fcfcfc 0%, #fff 100%); /* IE10+ */
+        background: #fff linear-gradient(top, #fcfcfc 0%, #fff 100%); /* W3C */
+        font-size: 11px;
+        padding: 10px;
+        border: 1px solid #ccc;
+    }
+
+        /*.ui-datepicker table {
+            width: 278px;
+        }*/
+
+            .ui-datepicker table td {
+                text-align: center;
+            }
+
+        .ui-datepicker a {
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+    .ui-datepicker-prev {
+    }
+
+    .ui-datepicker-next {
+        float: right;
+    }
+
+    .ui-datepicker-title {
+        text-align: center;
+        font-weight: bold;
+    }
+
+</style>
 
 
 @****  loading Spinner ******@
 @*<div id="fade"></div>
-<div id="modalSpinner">
-	<img id="loader" src="~/Assets/Images/lg.sandglass-time-loading-gif.gif" />
-</div>*@
+    <div id="modalSpinner">
+        <img id="loader" src="~/Assets/Images/lg.sandglass-time-loading-gif.gif" />
+    </div>*@
 @**************************@
 <section class="content" style=" margin-top:-20px;">
-	<div class="row">
-		<div id="MainDiv" class="col-md-12 col-lg-7">
-			<div class="box box-danger box-body">
-				<div class="row">
-					<div class="col-md-12">
-						<table class="table table-striped">
-							<tr>
-								<td>
-									<input type="hidden" name="ProductID" id="getProductID" readonly />
-									<strong>Item</strong><br />
-									<input type="text" id="getProduct" readonly class="form-control input-sm" />
-								</td>
-								<td>
-									<input type="hidden" id="getAvailability" readonly class="form-control input-sm" />
-									<strong>Qty</strong><br />
-									<input type="text" tabindex="1" name="Qty" id="getQty" class="form-control input-sm NumbersOnly" />
-								</td>
-								<td>
-									<strong>Price</strong><br />
-									<input type="text" name="Price" id="getPrice" readonly class="form-control input-sm " />
-								</td>
-								<td>
-									<strong>Amount</strong><br />
-									<input type="text" id="getAmount" readonly class="form-control input-sm" />
-								</td>
-								<td>
-									<br />
-									<input type="button" tabindex="2" value="Add to list" id="btnAdd" style="float:right; margin-right:10px" class="btn btn-primary btn-sm" />
-								</td>
-							</tr>
-						</table>
-					</div>
-				</div>
+    <div class="row">
+        <div id="MainDiv" class="col-md-12 col-lg-7">
+            <div class="box box-danger box-body">
+                <div class="row">
+                    <div class="col-md-12">
+                        <table class="table table-striped">
+                            <tr>
+                      
+                                <td>
+                                    <strong>RequireDate</strong>
+                                <input class="form-control input" id="RequireDate" type="text" name="RequireDate" value="" />
+                                </td>
+                                <td>
+                                    <input type="hidden" name="ProductID" id="getProductID" readonly />
+                                    <strong>Product</strong><br />
+                                    <input type="text" id="getProduct" readonly class="form-control input-sm" />
+                                </td>
+                                <td>
+                                    <input type="hidden" id="getAvailability" readonly class="form-control input-sm" />
+                                    <strong>DemandQty</strong><br />
+                                    <input type="text" tabindex="1" name="DemandQty" id="getDemandQty" class="form-control input-sm NumbersOnly" />
+                                    <!-- <input type="text" tabindex="1" name="Qty" id="getQty" class="form-control input-sm NumbersOnly" /> -->
+                                </td>
+                                <td>
+                                    <strong>ActualQty</strong><br />
+                                    <input type="text" tabindex="2" name="ActualQty" id="getActualQty" readonly class="form-control input-sm NumbersOnly" />
+                                </td>
+                                <td>
+                                    <strong>Price</strong><br />
+                                    <input type="text" name="Price" id="getPrice" readonly class="form-control input-sm " />
+                                </td>
+                                <td>
+                                    <strong>Amount</strong><br />
+                                    <input type="text" id="getAmount" readonly class="form-control input-sm" />
+                                </td>
+                                <td>
+                                    <br />
+                                    <input type="button" tabindex="3" value="Add to list" id="btnAdd" style="float:right; margin-right:10px" class="btn btn-primary btn-sm" />
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
 
 
-				<div class="row">
-					<div class="col-md-12 col-sm-12">
-						@using (Html.BeginForm())
-						{
-							<table class="table table-striped table-hover" id="maintable">
-								<thead>
-									<tr style="background-color:#3d566e; color:#ecf0f1">
-										<th>
-											ProductId
-										</th>
-										<th>
-											ProductName
-										</th>
-										<th>
-											Price
-										</th>
-										<th>
-											Price
-										</th>
-										<th>
-											Price
-										</th>
-									</tr>
-								</thead>
-								@foreach (var item in Model)
-								{
-									<tr class="rows">
-										<td>
-											@Html.DisplayFor(modelItem => item.ProductId)
-										</td>
-										<td>
-											@Html.DisplayFor(modelItem => item.ProductName)
-										</td>
-										<td>
-											@Html.DisplayFor(modelItem => item.Price)
-										</td>
-										<td>
-											1000
-										</td>
-                                        <td>
-                                             @Html.DisplayFor(modelItem => item.Price)
-                                        </td>
-									</tr>
-								}
-							</table>
-						}
-					</div>
-				</div>
-			</div>
+                <div class="row">
+                    <div class="col-md-12 col-sm-12">
+                        @using (Html.BeginForm())
+                    {
+                        <table class="table table-striped table-hover" id="maintable">
+                            <thead>
+                                <tr style="background-color:#3d566e; color:#ecf0f1">
+                                    <th>
+                                        ProductId
+                                    </th>
+                                    <th>
+                                        ProductName
+                                    </th>
+                                    <th>
+                                        AvailableQty
+                                    </th>
+                                    <th>
+                                        Price
+                                    </th>
+                                </tr>
+                            </thead>
+                            @foreach (var item in Model)
+                        {
+                            <tr class="rows">
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ProductId)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.ProductName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.AvailableQty)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Price)
+                                </td>
+                            </tr>
+                    }
+                        </table>
+                }
+                    </div>
+                </div>
+            </div>
 
 
-		</div>
+        </div>
 
-		<div class="col-sm-12 col-lg-5 col-md-12">
-			<div class="box box-danger box-body" style="min-height:450px">
-				<!-- Begin of Form to be serialized  -->
-				<form id="formSerialized">
-					<div class="row">
+        <div class="col-sm-12 col-lg-5 col-md-12">
+            <div class="box box-danger box-body" style="min-height:450px">
+                <!-- Begin of Form to be serialized  -->
+                <form id="formSerialized">
+                    <div class="row">
                         <div class="col-md-12">
                             <div class="row">
                                 <div class="col-md-12" style="">
-                                    <h4 style=" align-content:center">&nbsp;<i class="fa fa-list-ul"></i> &nbsp; &nbsp; Sales Items</h4>
+                                    <h4 style=" align-content:center">&nbsp;<i class="fa fa-list-ul"></i> &nbsp; &nbsp; Order Details</h4>
                                 </div>
                             </div>
                             <div class="row">
@@ -119,7 +182,8 @@
                                             <tr>
                                                 <th>#</th>
                                                 <th>Name</th>
-                                                <th>Qty</th>
+                                                <th>DemandQty</th>
+                                                <th>ActualQty</th>
                                                 <th>Price</th>
                                                 <th>Amt</th>
                                                 <th><i class="fa fa-trash"></i></th>
@@ -136,15 +200,15 @@
                             </div>
 
                             @*   <div class="row">
-                                <div class="col-md-12">
-                                    <!-- Button trigger modal -->
-                                      <button type="button" id="btnModalTrigger" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" style="padding:6px 50px 6px 50px">
-                    <b>Next</b> &nbsp; &nbsp;<span class="glyphicon glyphicon-menu-right"></span>
-                </button>
+                                                    <div class="col-md-12">
+                                                        <!-- Button trigger modal -->
+                                                          <button type="button" id="btnModalTrigger" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#myModal" style="padding:6px 50px 6px 50px">
+                                        <b>Next</b> &nbsp; &nbsp;<span class="glyphicon glyphicon-menu-right"></span>
+                                    </button>
 
 
-            </div>
-        </div>*@
+                                </div>
+                            </div>*@
                             @*  test *@
                             <div class="row footer" id="btnModalTrigger" style="margin-top:15px;">
                                 <div class="col-md-12">
@@ -155,7 +219,7 @@
                             </div>
                             <button type="button" id="btnSubmit">Submit</button>
                         </div>
-					</div>
+                    </div>
 
 
 
@@ -164,71 +228,73 @@
 
 
 
-					<!-- Modal -->
-					<div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-						<div class="modal-dialog modal-sm" role="document">
-							<div class="modal-content">
-								<div class="modal-header" style="background-color:#c0392b; color:white;">
-									<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-									<h4 class="modal-title" id="myModalLabel">Check out</h4>
-								</div>
-								<div class="modal-body" style="margin:auto">
+                    <!-- Modal -->
+                    <div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                        <div class="modal-dialog modal-sm" role="document">
+                            <div class="modal-content">
+                                <div class="modal-header" style="background-color:#c0392b; color:white;">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                                    <h4 class="modal-title" id="myModalLabel">Check out</h4>
+                                </div>
+                                <div class="modal-body" style="margin:auto">
 
-									<table class="table table-striped">
-										<tr>
-											<td>Total</td>
-											<td><input type="text" name="Total" class="form-control setTotal" style=" border:hidden" readonly /></td>
-										</tr>
-										<tr>
-											<td>Discount %</td>
-											<td><input type="text" tabindex="3" maxlength="1" class="form-control NumbersAndDecimal" name="discountPercent" id="discountPercent" required /></td>
-										</tr>
-										<tr>
-											<td>Discount amt</td>
-											<td><input type="text" name="Discount" class="form-control " id="discountAmount" readonly /></td>
-										</tr>
-										<tr>
-											<td>Total Payable</td>
-											<td><input type="text" name="GrandTotal" class="form-control " id="grandTotal" readonly /></td>
-										</tr>
-										<tr>
-											<td>Paid</td>
-											<td><input type="text" tabindex="4" class="form-control NumbersAndDecimal" id="receivedAmt" /></td>
-										</tr>
-										<tr>
-											<td>Change</td>
-											<td><input type="text" readonly class="form-control " id="returnAmt" /></td>
-										</tr>
-
-
-									</table>
+                                    <table class="table table-striped">
+                                        <tr>
+                                            <td>Total</td>
+                                            <td><input type="text" name="Total" class="form-control setTotal" style=" border:hidden" readonly /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Discount %</td>
+                                            <td><input type="text" tabindex="3" maxlength="1" class="form-control NumbersAndDecimal" name="discountPercent" id="discountPercent" required /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Discount amt</td>
+                                            <td><input type="text" name="Discount" class="form-control " id="discountAmount" readonly /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Total Payable</td>
+                                            <td><input type="text" name="GrandTotal" class="form-control " id="grandTotal" readonly /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Paid</td>
+                                            <td><input type="text" tabindex="4" class="form-control NumbersAndDecimal" id="receivedAmt" /></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Change</td>
+                                            <td><input type="text" readonly class="form-control " id="returnAmt" /></td>
+                                        </tr>
 
 
-
-								</div>
-
-								<div class="modal-footer" style="padding:3px;background-color:#16a085; cursor:pointer" tabindex="5" id="btnCheckOut">
-
-									<h4 style="color:#ffffff; text-align:center"> Done &nbsp;<span class="glyphicon glyphicon-check glyphicon-align-right"></span> &nbsp; &nbsp; </h4>
-
-								</div>
-							</div>
-						</div>
-					</div>
-					<!--End of form to be serialized-->
-				</form>
-			</div>
-
-		</div>
+                                    </table>
 
 
-	</div>
+
+                                </div>
+
+                                <div class="modal-footer" style="padding:3px;background-color:#16a085; cursor:pointer" tabindex="5" id="btnCheckOut">
+
+                                    <h4 style="color:#ffffff; text-align:center"> Done &nbsp;<span class="glyphicon glyphicon-check glyphicon-align-right"></span> &nbsp; &nbsp; </h4>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--End of form to be serialized-->
+                </form>
+            </div>
+
+        </div>
+        
+
+    </div>
 </section>
 
-<!-- ***********  Scripts  ************-->
-<script type="text/javascript">
+@section scripts {
+<script></script>
+    <script type="text/javascript">
 	//loading jquery datatable
-	$(document).ready(function () {
+    $(document).ready(function () {
+
 		$('#maintable').DataTable({
 			lengthMenu: [[3, 5, 10, -1], ['3', '5', '10', 'All']],
 			pageLength: 5,
@@ -236,6 +302,12 @@
 			"ordering": true,
 			"info": true
 		});
+
+		$('#RequireDate').datepicker(
+            {
+                minDate: new Date()
+            }
+        );
 
 	});
 
@@ -257,24 +329,45 @@
 		$(function () {
 			$('#getProductID').val($.trim(cells[0].innerHTML));
 			$('#getProduct').val($.trim(cells[1].innerHTML));
-			$('#getAvailability').val($.trim(cells[3].innerHTML));
-			$('#getPrice').val($.trim(cells[4].innerHTML));
+			$('#getAvailability').val($.trim(cells[2].innerHTML));
+			$('#getPrice').val($.trim(cells[3].innerHTML));
 		});
 		//clears qty and amt field
-		$('#getQty').val('');
+		$('#getDemandQty').val('');
 		$('#getAmount').val('');
 		//focuses cursor on Qty field
-		document.getElementById('getQty').focus();
+		document.getElementById('getDemandQty').focus();
 	}
 
+     // Validate date
+	//$('#RequireDate').keyup(function () {
+	//    alert("Key Up!");
+	//    var today = new Date();
+	//    console.log(`today: ${today}`);
+	//    console.log(`choosen day: ${$(this).val()}`);
+	//    console.log(`choosen day: ${Date.parse($(this).val())}`);
+	//    if(Date.parse($(this).val()) <= new today)
+	//    {
+	//        $(this).val('');
+            
+	//        alert("Invalid date choosen!");
+	        
+	//    }
+	//});
+
 	//Calculate amount based on input qty
-	$('#getQty').keyup(function () {
+	$('#getDemandQty').keyup(function () {
 		var available = Number($('#getAvailability').val());
-		var quantity = Number($('#getQty').val());
+		var quantity = Number($('#getDemandQty').val());
 		var Price = Number($('#getPrice').val());
 		if (quantity > available) {
-			$('#getQty').val(available);
-			quantity = available;
+			//$('#getQty').val(available);
+		    //quantity = available;
+		    $("#getActualQty").val(available);
+		    quantity = available;
+		}
+		else {
+		    $("#getActualQty").val(quantity);
 		}
 		var amount = (quantity * Price).toFixed(2);
 		$('#getAmount').val(amount);
@@ -282,25 +375,30 @@
 
 	//populates RHS list
 	$('#btnAdd').on('click', function () {
-		//Validation : Check if salesID and Qty is null
-		if ($('#getQty').val() == '' || $('#getProductID').val() == '' || $('#getQty').val() == 0 || !$.isNumeric($('#getQty').val())) {
+	    //Validation : Check if salesID and Qty is null
+	    if($("#getActualQty").val()<=0)
+	    {
+	        sweetAlert("No more available Quantity for this product");
+	    }
+	    else if ($('#getDemandQty').val() == '' || $('#getProductID').val() == '' || $('#getDemandQty').val() == 0 || !$.isNumeric($('#getDemandQty').val())) {
 			sweetAlert("Oops...", 'Looks like you forgot to enter quantity.', "error");
 			//alert();
 		}
 		else {
 			//check for duplication
-			if (CheckStockDuplication($('#getProductID').val())) {
-				sweetAlert("Redundant Record", 'This Stock has already been added. If you want to re-enter, please remove it form the list first!', "error");
+			if (CheckProductDuplication($('#getProductID').val())) {
+				sweetAlert("Redundant Record", 'This Product has already been added. If you want to re-enter, please remove it form the list first!', "error");
 
 			}
 			else {
 				var $table = $('#tblAppendHere');
 				$table.append(
 					'<tr class="dynamicRows">' +
-					//gets sales ID for name , value (for form collection) but shows stock id in the list (for UX purpose)
+					//gets Product ID for name , value (for form collection) but shows Product id in the list (for UX purpose)
 					'<td>'+ $('#getProductID').val() + '</td>' +
 					'<td><input type="hidden" class="txtProductID" name="ProductID"  value= "' + $('#getProductID').val() + '"/>' + $('#getProduct').val() + '</td>' +
-					'<td><input type="hidden" name="Qty"     value="' + $('#getQty').val() + '"  style="width:60px;"/>' + $('#getQty').val() + '</td>' +
+					'<td><input type="hidden" name="DemandQty"     value="' + $('#getDemandQty').val() + '"  style="width:60px;"/>' + $('#getDemandQty').val() + '</td>' +
+                    '<td><input type="hidden" name="ActualQty"     value="' + $('#getActualQty').val() + '"  style="width:60px;"/>' + $('#getActualQty').val() + '</td>' +
 					'<td><input type="hidden" name="Price"    value= "' + $('#getPrice').val() + '"/>' + $('#getPrice').val() + '</td>' +
 					'<td><input type="hidden" name="Amount" value="' + $('#getAmount').val() + '"  class="subAmt"/>' + $('#getAmount').val() + '</td>' +
 					//remove icon
@@ -313,7 +411,8 @@
 					$clear = '';
 					$('#getProductID').val('');
 					$('#getProduct').val('');
-					$('#getQty').val('');
+					$('#getDemandQty').val('');
+					$('#getActualQty').val('');
 					$('#getPrice').val('');
 					$('#getAvailability').val('');
 					$('#getAmount').val('');
@@ -327,7 +426,7 @@
 	});
 
 	//check if stock ID already exists in the list
-	function CheckStockDuplication(ProductID) {
+	function CheckProductDuplication(ProductID) {
 		var flag = false;
 		$('.dynamicRows').each(function () {
 			if ($(this).find('.txtProductID').val() == ProductID) {
@@ -343,7 +442,7 @@
 		var total = Number();
 
 		$.each(rows, function (index, item) {
-			total += Number($(this).children('td').eq(4).text());
+			total += Number($(this).children('td').eq(5).text());
 		});
 		$('.setTotal').val(total.toFixed(2));
 		$('.setTotalText').text(total.toFixed(2));
@@ -383,9 +482,15 @@
 
 	//removes record on clicking remove icon
 	function removeItem(obj) {
-		$(obj).parent().parent().remove();
-		//updatae total amount
-		update_total();
+	    if (confirm("Are you sure to remove this product?"))
+	    {
+
+	        $(obj).parent().parent().remove();
+	        //updatae total amount
+	        update_total();
+
+	    }
+
 	};
 
 	$('#btnSubmit').click(function () {
@@ -502,7 +607,7 @@
 	//		            });
 	//		        }
 	//		    }
-                
+
 	//		})
 			//post form
 			//$.post('../../../SalesEntry/SerializeFormData', $('#formSerialized').serialize(), function (data) {
@@ -520,13 +625,9 @@
 
 	//});
 
-</script>
+    </script>
+}
 
-<style>
-	.table-hover tbody tr:hover td, .table-hover tbody tr:hover th {
-		background-color: #847BAA;
-		color: #ecf0f1;
-		cursor: pointer;
-	}
-</style>
+<!-- ***********  Scripts  ************-->
+
 

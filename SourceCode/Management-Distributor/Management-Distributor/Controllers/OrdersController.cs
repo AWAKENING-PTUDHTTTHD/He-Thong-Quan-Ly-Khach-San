@@ -26,11 +26,14 @@ namespace Management_Distributor.Controllers
         private IProductService productService = null;
         private IOrderService orderService = null;
         private IOrderDetailService detailService  = null;
-        public OrdersController(IProductService _productService, IOrderService _orderService, IOrderDetailService _detailService)
+        private IPaymentService paymentService = null;
+        
+        public OrdersController(IProductService _productService, IOrderService _orderService, IOrderDetailService _detailService, IPaymentService _paymentService)
         {
             this.productService = _productService;
             this.orderService = _orderService;
             this.detailService = _detailService;
+            this.paymentService = _paymentService;
         }
 
         protected override void HandleUnknownAction(string actionName)
@@ -58,13 +61,15 @@ namespace Management_Distributor.Controllers
         {
             if (_collection != null)
             {
-                string[] _productID, _qty, _price, _amt;
+                string[] _productID, _DemandQty, _ActualQty, _price, _amt;
                 //for orderDetails
                 _productID = _collection["ProductID"].Split(',');
-                _qty = _collection["Qty"].Split(',');
+                _DemandQty = _collection["DemandQty"].Split(',');
+                _ActualQty = _collection["ActualQty"].Split(',');
                 _price = _collection["Price"].Split(',');
                 _amt = _collection["Amount"].Split(',');
                 //for order
+                DateTime requireDate = Convert.ToDateTime(_collection["RequireDate"]);
                 decimal _total = Convert.ToDecimal(_collection["Total"]);
                 //decimal _discount = Convert.ToDecimal(_collection["Discount"]);
                 //decimal _grandTotal = Convert.ToDecimal(_collection["GrandTotal"]);
@@ -79,7 +84,8 @@ namespace Management_Distributor.Controllers
                     //GrandTotal = _grandTotal,
                     //Tax = 0,
                     //UserID = User.Identity.GetUserId(),
-                    EmployeeId = Convert.ToInt32(Session["EmployeeId"])
+                    EmployeeId = Convert.ToInt32(Session["EmployeeId"]),
+                    RequireDeliveryDate = requireDate
                     //Remarks = "-"
                 };
 
@@ -90,7 +96,7 @@ namespace Management_Distributor.Controllers
                 if (orderID > 0)
                 {
                     //service.UpdateStock(_stockID, _qty);
-                    if ((detailService.AddListDetail(orderID, _productID, _amt, _qty)) == _productID.Count())
+                    if ((detailService.AddListDetail(orderID, _productID, _price, _DemandQty, _ActualQty)) == _productID.Count())
                         return Json(new { success = true, message = "Order added" }, JsonRequestBehavior.AllowGet);
                     return Json(new { success = false, message = "wrong with insert detail" }, JsonRequestBehavior.AllowGet);
                 }

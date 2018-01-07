@@ -5,9 +5,11 @@
 }
 
 <h2>Index</h2>
-<a class="btn" style="background-color:#36d2a5;color:#fff;" onclick="PopupForm('@Url.Action("AddOrEdit","Products")')"><i class="fa fa-plus-circle">  Add New</i></a>
-<h2>List Products</h2>
-<div style="width:90%; margin:0 auto;">
+<a class="btn" style="background-color:#36d2a5;color:#fff;" onclick="PopupForm('@Url.Action("AddOrEdit","Products")')"><i class="fa fa-plus-circle">  Add New Product</i></a>
+<a class="btn" style="background-color:#36d2a5;color:#fff;" onclick="PopupForm('@Url.Action("AddOrEdit","Units")')"><i class="fa fa-plus-circle">  Add New Unit</i></a>
+<a class="btn" style="background-color:#36d2a5;color:#fff;" onclick="PopupForm('@Url.Action("AddOrEdit","ProductUnits")')"><i class="fa fa-plus-circle">  Add New Product Unit</i></a>
+@*<h2>List Products</h2>*@
+<div style="width:90%; margin:0 auto;display:none;">
     <table id="productsTable">
         <thead>
             <tr>
@@ -15,7 +17,7 @@
                 <td>@Html.DisplayNameFor(model => model.ProductId)</td>
                 <td>@Html.DisplayNameFor(model => model.ProductName)</td>
                 <td>@Html.DisplayNameFor(model => model.CategoryId)</td>
-                <td>@Html.DisplayNameFor(model => model.Price)</td>
+                @*<td>@Html.DisplayNameFor(model => model.Price)</td>*@
                 <td>@Html.DisplayNameFor(model => model.Description)</td>
                 <td>Edit</td>
                 <td>Remove</td>

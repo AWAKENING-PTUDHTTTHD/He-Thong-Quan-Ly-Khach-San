@@ -21,6 +21,10 @@ namespace Distributor.Service.Interfaces
         List<Product>GetByCategory(int categoryId);
 
         List<Product> GetPage(int page = 1);
+
+        Product FindById(int ProductId);
+
+        int DecreaseAvailableQty(int ProductId, int DescreaseAmt);
     }
     
 }

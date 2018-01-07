@@ -184,11 +184,12 @@
     <Compile Include="Controllers\DepartmentsController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\IOrderDetail.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
+    <Compile Include="Controllers\ProductUnitsController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\SweetController.cs" />
+    <Compile Include="Controllers\UnitsController.cs" />
     <Compile Include="Dao\Implementations\GenericUnitOfWork.cs" />
     <Compile Include="Dao\_DbContext\ManagementDistributorDbContext.cs" />
     <Compile Include="Dao\Implementations\GenericRepository.cs" />
@@ -198,10 +199,20 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801051636073_AddAvailableQtyToProduct.cs" />
+    <Compile Include="Migrations\201801051636073_AddAvailableQtyToProduct.Designer.cs">
+      <DependentUpon>201801051636073_AddAvailableQtyToProduct.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801060745448_AddInvoiceCreatedDate.cs" />
+    <Compile Include="Migrations\201801060745448_AddInvoiceCreatedDate.Designer.cs">
+      <DependentUpon>201801060745448_AddInvoiceCreatedDate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MyRoleProvider.cs" />
     <Compile Include="POCO\Category.cs" />
     <Compile Include="POCO\Contract.cs" />
+    <Compile Include="POCO\ProductUnit.cs" />
+    <Compile Include="POCO\Unit.cs" />
     <Compile Include="POCO\_Distributor.cs" />
     <Compile Include="POCO\Department.cs" />
     <Compile Include="POCO\Employee.cs" />
@@ -215,16 +226,15 @@
     <Compile Include="POCO\Product.cs" />
     <Compile Include="POCO\Region.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Reports\DataSetSaleReport.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetSaleReport.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Reports\InvoiceCrystal.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>InvoiceCrystal.rpt</DependentUpon>
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\InvoiceV2Crystal.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>InvoiceV2Crystal.rpt</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\OrderDetail.Designer.cs">
@@ -236,18 +246,25 @@
     <Compile Include="Service\Implementations\DepartmentService.cs" />
     <Compile Include="Service\Implementations\DistributorService.cs" />
     <Compile Include="Service\Implementations\EmployeeService.cs" />
+    <Compile Include="Service\Implementations\InvoiceService.cs" />
     <Compile Include="Service\Implementations\OrderDetailService.cs" />
     <Compile Include="Service\Implementations\OrderService.cs" />
     <Compile Include="Service\Implementations\ProductService.cs" />
+    <Compile Include="Service\Implementations\ProductUnitService.cs" />
     <Compile Include="Service\Implementations\RegionService.cs" />
+    <Compile Include="Service\Implementations\UnitService.cs" />
     <Compile Include="Service\Interfaces\IDepartmentService.cs" />
     <Compile Include="Service\Interfaces\IDistributorService.cs" />
     <Compile Include="Service\Interfaces\IEmployeeService.cs" />
     <Compile Include="Service\Interfaces\ICategoryService.cs" />
+    <Compile Include="Service\Interfaces\IInvoiceService.cs" />
     <Compile Include="Service\Interfaces\IOrderDetailService.cs" />
     <Compile Include="Service\Interfaces\IOrderService.cs" />
+    <Compile Include="Service\Interfaces\IPaymentService.cs" />
     <Compile Include="Service\Interfaces\IProductService.cs" />
+    <Compile Include="Service\Interfaces\IProductUnitService.cs" />
     <Compile Include="Service\Interfaces\IRegionService.cs" />
+    <Compile Include="Service\Interfaces\IUnitService.cs" />
     <Compile Include="Utils\Hashing.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\ProductsListViewModel.cs" />
@@ -534,6 +551,7 @@
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\images\logo.png" />
     <Content Include="Content\jquery.dataTables-1.10.16.css" />
+    <Content Include="Content\jquery.datetimepicker.css" />
     <Content Include="Content\login-page.css" />
     <Content Include="Content\sweetalert.css" />
     <Content Include="Content\sweetalert\bootstrap-sweetalert.png" />
@@ -1232,6 +1250,17 @@
     <Content Include="Reports\OrderDetail.xsc">
       <DependentUpon>OrderDetail.xsd</DependentUpon>
     </Content>
+    <Content Include="Reports\DataSetSaleReport.xsc">
+      <DependentUpon>DataSetSaleReport.xsd</DependentUpon>
+    </Content>
+    <None Include="Reports\DataSetSaleReport.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetSaleReport.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="Reports\DataSetSaleReport.xss">
+      <DependentUpon>DataSetSaleReport.xsd</DependentUpon>
+    </Content>
     <None Include="Reports\OrderDetail.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
@@ -1251,6 +1280,7 @@
     <Content Include="Scripts\jquery-ui-1.12.1.min.js" />
     <Content Include="Scripts\jquery.dataTables-1.10.16.js" />
     <Content Include="Scripts\jquery.dataTables-1.10.5.js" />
+    <Content Include="Scripts\jquery.datetimepicker.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -1324,6 +1354,8 @@
     <Content Include="Views\Shared\_AdminLteBreadcrumb.cshtml" />
     <Content Include="Views\AdminLte\Index.cshtml" />
     <Content Include="Views\AdminLte\Colors.cshtml" />
+    <Content Include="Views\Units\AddOrEdit.cshtml" />
+    <Content Include="Views\ProductUnits\AddOrEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1404,13 +1436,15 @@
     </COMReference>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Migrations\201801051636073_AddAvailableQtyToProduct.resx">
+      <DependentUpon>201801051636073_AddAvailableQtyToProduct.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801060745448_AddInvoiceCreatedDate.resx">
+      <DependentUpon>201801060745448_AddInvoiceCreatedDate.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\InvoiceCrystal.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
       <LastGenOutput>InvoiceCrystal.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\InvoiceV2Crystal.rpt">
-      <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
-      <LastGenOutput>InvoiceV2Crystal.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

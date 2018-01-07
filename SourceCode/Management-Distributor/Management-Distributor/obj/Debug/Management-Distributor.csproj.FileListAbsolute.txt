@@ -1,4 +1,14 @@
-C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\bin\WebGrease.dll
+C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\obj\Debug\Management-Distributor.csprojResolveAssemblyReference.cache
+C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\obj\Debug\Interop.CRQUERYENGINE.dll
+C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\obj\Debug\Interop.CrystalPrintControlLib.dll
+C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\obj\Debug\Interop.CrystalReportsDTSAgentLib.dll
+C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\obj\Debug\Interop.CrystalReportsLocalConnectionMgrLib.dll
+C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\obj\Debug\Interop.PAGEOBJECTMODELLib.dll
+C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\obj\Debug\Management-Distributor.csproj.ResolveComReference.cache
+C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\obj\Debug\Management_Distributor.Migrations.AddAvailableQtyToProduct.resources
+C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\obj\Debug\Management_Distributor.Migrations.AddInvoiceCreatedDate.resources
+C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\obj\Debug\Management-Distributor.csproj.GenerateResource.Cache
+C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\obj\Debug\Management-Distributor.csproj.CoreCompileInputs.cache
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\bin\ApplicationInsights.config
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\bin\NLog.config
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\bin\Management-Distributor.dll.config
@@ -36,6 +46,7 @@ C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Di
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\bin\System.Web.WebPages.dll
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\bin\System.Web.WebPages.Razor.dll
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\bin\WebActivatorEx.dll
+C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\bin\WebGrease.dll
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\bin\CrystalDecisions.ReportAppServer.DataDefModel.dll
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\bin\CrystalDecisions.ReportAppServer.ClientDoc.dll
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\bin\CrystalDecisions.ReportAppServer.ReportDefModel.dll
@@ -76,13 +87,5 @@ C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Di
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\bin\System.Web.WebPages.xml
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\bin\System.Web.WebPages.Deployment.xml
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\bin\System.Web.WebPages.Razor.xml
-C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\obj\Debug\Management-Distributor.csprojResolveAssemblyReference.cache
-C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\obj\Debug\Interop.CRQUERYENGINE.dll
-C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\obj\Debug\Interop.CrystalPrintControlLib.dll
-C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\obj\Debug\Interop.CrystalReportsDTSAgentLib.dll
-C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\obj\Debug\Interop.CrystalReportsLocalConnectionMgrLib.dll
-C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\obj\Debug\Interop.PAGEOBJECTMODELLib.dll
-C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\obj\Debug\Management-Distributor.csproj.ResolveComReference.cache
-C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\obj\Debug\Management-Distributor.csproj.CoreCompileInputs.cache
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\obj\Debug\Management-Distributor.dll
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\obj\Debug\Management-Distributor.pdb

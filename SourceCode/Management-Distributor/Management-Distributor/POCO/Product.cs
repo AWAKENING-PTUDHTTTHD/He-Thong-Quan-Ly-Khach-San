@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace Distributor.POCO
         public string ProductName { get; set; }
 
         [Required(ErrorMessage = "Price is required")]
-        public decimal Price { get; set; }
+        //public decimal Price { get; set; }
 
         public string Description { get; set; } 
 
@@ -36,6 +37,9 @@ namespace Distributor.POCO
 
         [Display(Name = "Image Url")]
         public string ImageUrl { get; set; }
+
+        [DefaultValue(0)]
+        //public int AvailableQty { get; set; }
 
         [NotMapped]
         public HttpPostedFileBase ImageUpload { get; set; }

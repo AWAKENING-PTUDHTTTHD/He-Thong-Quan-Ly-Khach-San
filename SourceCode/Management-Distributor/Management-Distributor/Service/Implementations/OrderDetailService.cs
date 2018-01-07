@@ -7,6 +7,7 @@ using Distributor.POCO;
 using NLog;
 using Distributor.Dao.Interfaces;
 using Management_Distributor.ExceptionHandler;
+using Distributor.Service.Interfaces;
 
 namespace Management_Distributor.Service.Implementations
 {
@@ -17,12 +18,15 @@ namespace Management_Distributor.Service.Implementations
         private readonly ILogger _logger = LogManager.GetCurrentClassLogger();
         private IUnitOfWork _uow = null;
         private IRepository<OrderDetail> repoOrderDetail = null;
+        private IProductService productService= null;
         #endregion
 
-        public OrderDetailService(IUnitOfWork uow)
+        public OrderDetailService(IUnitOfWork uow, IProductService _productService)
         {
             this._uow = uow;
             repoOrderDetail = _uow.Repository<OrderDetail>();
+            productService = _productService;
+
         }
 
         public List<OrderDetail> FindByOrderId(int Id)
@@ -43,7 +47,7 @@ namespace Management_Distributor.Service.Implementations
             return success;
         }
 
-        public int AddListDetail(int OrderId, string[] productId, string[] price, string[] qty)
+        public int AddListDetail(int OrderId, string[] productId, string[] price, string[] DemandQty, string[] ActualQty)
         {
             {
                 int SuccessNumb = 0;
@@ -56,13 +60,16 @@ namespace Management_Distributor.Service.Implementations
                         OrderId = OrderId,
                         ProductId = Convert.ToInt32(productId[i]),
                         Price = Convert.ToDecimal(price[i]),
-                        ActualQuantity = Convert.ToInt32(qty[i])
+                        DemandQuantity = Convert.ToInt32(DemandQty[i]),
+                        ActualQuantity = Convert.ToInt32(ActualQty[i])
 
                     };
                     try
                     {
                         Add(detail);
+                        productService.DecreaseAvailableQty(Convert.ToInt32(productId[i]), Convert.ToInt32(ActualQty[i]));
                         SuccessNumb++;
+
                     }
                     catch(Exception ex )
                     {

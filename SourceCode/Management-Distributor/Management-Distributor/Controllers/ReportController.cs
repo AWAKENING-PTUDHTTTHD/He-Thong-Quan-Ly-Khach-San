@@ -26,45 +26,10 @@ namespace Management_Distributor.Controllers
             this.employeeService = _employeeService;
             this.distributorService = _distributorService;
         }
-
-        public ActionResult PrintInvoiceV2(int orderID)
+        public ActionResult PrintInvoice(int? orderId)
         {
-            using (ManagementDistributorDbContext dbContext = new ManagementDistributorDbContext())
-            {
-                ReportDocument rd = new ReportDocument();
-                rd.Load(Path.Combine(Server.MapPath("~/Reports/InvoiceV2Crystal.rpt")));
-                var Result = from d in dbContext.OrderDetails
-                             where d.OrderId == orderID
-                             join p in dbContext.Products on d.ProductId equals p.ProductId
-                             select new
-                             {
-                                 d.OrderId,
-                                 d.OrderDetailId,
-                                 d.ActualQuantity,
-                                 d.Price,
-                                 p.ProductName,
-                             };
-                rd.SetDataSource(Result.ToList());
-                try
-                {
-                    Stream stream = rd.ExportToStream(CrystalDecisions.Shared.ExportFormatType.PortableDocFormat);
-                    stream.Seek(0, SeekOrigin.Begin);
-
-
-                    return File(stream, "application/pdf", "InvoiceV2.pdf");
-                }
-                catch (Exception ex)
-                {
-                    string path = @"C:/PrintInvoice.Exception.txt";
-                    ExceptionProofer.LogToFile(path, ex);
-                    return null;
-                }
-            }
-        }
-        public ActionResult PrintInvoice(int orderId)
-        {
-            //if(orderId == null)
-            //    return null;
+            if (orderId == null)
+                return null;
             int _orderId = Convert.ToInt32(orderId);
             Order order = orderService.FindById(_orderId);
             if (order == null)
@@ -96,13 +61,13 @@ namespace Management_Distributor.Controllers
                
                 rd.SetDataSource(dbContext.OrderDetails.Select(od => new
                 {
-                    OrderId = od.OrderId,
-                    OrderDetailId = od.OrderDetailId,
-                    ActualQuantity = od.ActualQuantity,
-                    Price = od.Price,
-                    Unit = od.Unit,
-                    ProductId = od.ProductId,
-                    ProductName = od.Product.ProductName,
+                    od.OrderId,
+                    od.OrderDetailId,
+                    od.ActualQuantity,
+                    od.Price,
+                    od.Unit,
+                    od.ProductId,
+                    od.Product.ProductName,
 
                 }
                 ).ToList());

@@ -38,7 +38,7 @@
             Click here to login
         </div>
         <div class="fold">
-            @using (Html.BeginForm("Login", "Account", FormMethod.Post))
+            @using (@Html.BeginForm("Login", "Account", FormMethod.Post))
             {
                 @Html.AntiForgeryToken()
                 <div class="inputBox">

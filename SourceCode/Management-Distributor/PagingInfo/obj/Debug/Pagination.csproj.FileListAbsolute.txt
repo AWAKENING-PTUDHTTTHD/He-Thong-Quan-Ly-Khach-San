@@ -16,3 +16,4 @@ C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Di
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\PagingInfo\obj\Debug\Pagination.csproj.CoreCompileInputs.cache
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\PagingInfo\obj\Debug\PagingInfo.dll
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\PagingInfo\obj\Debug\PagingInfo.pdb
+C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\PagingInfo\obj\Debug\Pagination.csprojResolveAssemblyReference.cache

@@ -15,7 +15,9 @@ namespace Distributor.POCO
         [Required(ErrorMessage = "Name is required")]
         public string InvoiceName { get; set; }
 
-        public DateTime? CreatedDate { get; set; }
+        public DateTime CreatedDate { get; set; }
+
+        public DateTime Created_At { get; set; }
 
         [Required(ErrorMessage = "Amount is required")]
         public decimal Amount { get; set; }

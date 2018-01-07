@@ -12,7 +12,7 @@ namespace Management_Distributor.Service.Interfaces
         bool Add(OrderDetail detail);
 
         // using Form Collection to Resolve Array OrderDetail
-        int AddListDetail(int OrderId, string[] productId, string[] price, string[] qty);
+        int AddListDetail(int OrderId, string[] productId, string[] price, string[] DemandQty, string[]ActualQty);
         
 
     }

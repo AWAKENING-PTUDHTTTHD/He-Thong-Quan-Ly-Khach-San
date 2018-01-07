@@ -36,6 +36,20 @@ namespace Distributor.POCO
 
         public int ActualQuantity { get; set; }
 
+        [NotMapped]
+        public Decimal ToTalAmount
+        {
+            set
+            {
+                value =  Price * ActualQuantity;
+            }
+
+            get
+            {
+                return ToTalAmount;
+            }
+        }
+
 
 
 
