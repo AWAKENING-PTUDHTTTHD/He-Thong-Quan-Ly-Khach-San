@@ -36,7 +36,7 @@ namespace Management_Distributor.Controllers
                 return null;
 
             // get distributor info
-            _Distributor distributor = distributorService.FindById(order.DistributorId);
+            _Distributor distributor = distributorService.GetOne(order.DistributorId);
 
             // get cashier info
             Employee employee = employeeService.FindById(order.EmployeeId);

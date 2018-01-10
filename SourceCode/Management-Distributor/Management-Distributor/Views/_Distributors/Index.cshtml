@@ -1,0 +1,196 @@
+﻿
+@model Distributor.POCO._Distributor
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+<a class="btn btn-default" onclick="PopupForm('@Url.Action("AddOrEdit", "_Distributors")')"><i class="fa fa-plus-circle">  Add New</i></a>
+<h2>List _Distributors</h2>
+<div style="width:90%; margin:0 auto;">
+    <table id="distributorsTable">
+        <thead>
+            <tr>
+                <td>@Html.DisplayNameFor(model => model.DistributorId)</td>
+                <td>@Html.DisplayNameFor(model => model.DistributorName)</td>
+                <td>@Html.DisplayNameFor(model => model.DistributorAddress)</td>
+                <td>@Html.DisplayNameFor(model => model.DistributorEmail)</td>
+                <td>@Html.DisplayNameFor(model => model.DistributorPhoneNumber)</td>
+                <td>@Html.DisplayNameFor(model => model.RegionId)</td>
+                <td>Edit</td>
+                <td>Remove</td>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+</div>
+
+@section Scripts {
+@*<script src="~/Scripts/jquery.dataTables-1.10.5.js"></script>*@
+@*<script src="~/Scripts/DataTables/dataTables.bootstrap4.js"></script>*@
+    <script>
+        var Popup, datatable;
+        /* Process datatable */
+        $(document).ready(function () {
+            let $table = $('#distributorsTable');
+            if ($table.length) {
+                console.log('Inside the table');
+            }
+            datatable = $table.DataTable({
+                lengthMenu: [[3, 5, 10, -1], ['3', '5', '10', 'All']],
+                pageLength: 5,
+                "ajax": {
+                    "url": "/_Distributors/LoadData",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                    "columns": [
+                        {
+                            "data": "DistributorId"
+                            
+                        },
+                        {
+                            "data": "DistributorName"
+                           
+                        },
+                        {
+                            "data": "DistributorAddress"
+                           
+                        }
+                        ,
+                        {
+                            "data": "DistributorEmail"
+
+                        }
+                        ,
+                        {
+                            "data": "DistributorPhoneNumber"
+
+                        }
+                        ,
+                        {
+                            "data": "RegionId"
+
+                        }
+                        ,
+                        {
+                            "data": "DistributorId",
+                            bSortable: false,
+                            searchable: false,
+                            mRender: (data, type, row) => {
+                                let opt = '';
+                                //opt += '<a href="_Distributors/Edit/'+data+'" class="btn btn-success"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>';
+                                opt += "<a class='btn btn-success btn-sm' onclick=PopupForm('@Url.Action("AddOrEdit","_Distributors")/"+data+"')><i class='fa fa-pencil-square-o' aria-hidden='true'></i></a>";
+                                return opt;
+
+                            }
+                        },
+                        {
+                            "data": "DistributorId",
+                            bSortable: false,
+                            searchable: false,
+                            mRender: (data, type, row) => {
+                                let opt = '';
+                                //opt += '<a href="_Distributors/Delete/' + data + '"" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>';
+                                opt += "<a class='btn btn-danger btn-sm' onclick=Delete('" + data + "')><i class='fa fa-trash' aria-hidden='true'></i></a>";
+                                return opt;
+
+                            }
+                        },
+
+                    ],
+                    "language": {
+                        "emptyTable" : "Currently no data found. Please click on <b>Add New</b> button"
+                    }
+            });
+        });
+        /* End Process datatable */
+
+        /* Show add/edit Form */
+        function PopupForm(url)
+        {
+            var formDiv = $('<div/>');
+            $.get(url)
+            .done(function (response) {
+                formDiv.html(response)
+                Popup = formDiv.dialog({
+                    autoOpen: true,
+                    resizable: false,
+                    
+                    title: 'Add/Update Distributor',
+                    height: 500,
+                    width: 700,
+                    close: function()
+                    {
+                        Popup.dialog('destroy')
+                            .remove();
+                    }
+                });
+            });
+        }
+        /* End Show add/edit Form */
+
+        /* Submit add/Edit Form*/
+        function SubmitForm(form) {
+            $.validator.unobtrusive.parse(form);
+            if ($(form).valid()) {
+                $.ajax({
+                    type: "POST",
+                    url: form.action,
+                    data: $(form).serialize(),
+                    success: function (data) {
+                        if (data.success == true) {
+                            Popup.dialog('close');
+                            datatable.ajax.reload();
+
+                            $.notify(data.message, {
+                                globalPosition: "top center",
+                                className : "success"
+                            });
+                        }
+                        else {
+                            $.notify(data.message, {
+                                globalPosition: "top center",
+                                className: "Error"
+                            });
+                        }
+                    }
+                });
+            }
+            return false;
+        }
+        /* End Submit add/Edit Form*/
+
+        /* Remove record opt */
+
+        function Delete(id) {
+            if(confirm('Are you Sure to remove this distributor record ?'))
+            {
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("Remove", "_Distributors")/' + id,
+                    success: function (data) {
+                        if (data.success) {
+                            datatable.ajax.reload();
+
+                            $.notify(data.message, {
+                                globalPosition: "top center",
+                                className: "success"
+                            });
+                        
+                        }
+                        else {
+                            $.notify(data.message, {
+                                globalPosition: "top center",
+                                className: "Error"
+                            });
+                        }
+                    }
+                });
+            }
+        }
+
+        /* End Remove record opt */
+    </script>
+    }

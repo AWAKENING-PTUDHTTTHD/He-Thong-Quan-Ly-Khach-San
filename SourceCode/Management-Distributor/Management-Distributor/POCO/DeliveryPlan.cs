@@ -9,6 +9,10 @@ namespace Distributor.POCO
 {
     public class DeliveryPlan
     {
+        public DeliveryPlan()
+        {
+            DeliveryDate = DateTime.Now;
+        }
         [Key]
         public int DeliveryPlanId { get; set; }
 

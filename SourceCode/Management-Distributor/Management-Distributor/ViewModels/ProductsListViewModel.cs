@@ -9,7 +9,7 @@ namespace Distributor.ViewModels
 {
     public class ProductsListViewModel
     {
-        public IEnumerable<Product> products { get; set; }
-        public PagingInfo pagingInfo { get; set; }
+        public IEnumerable<Product> Products { get; set; }
+        public PagingInfo PagingInfo { get; set; }
     }
 }

@@ -11,68 +11,70 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Login</title>
     <meta name="description" content="">'
     <meta name="robots" content="all,follow">
 
 
     <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
-    <link rel="stylesheet" href="~/Content/login-page.css">
-    <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script>
-            $(function(){
-                $('.LoginIn').on('click', () => {
-                    $('.fold').toggleClass('active');
-                });
-            });
-    </script>
-    <link rel="shortcut icon" href="img/favicon.ico">
+    <link href="~/Content/signin.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+
+    <script src="~/Scripts/jquery-3.2.1.min.js"></script>
+    <script src="~/Scripts/umd/popper.min.js"> </script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+
 </head>
 <body>
 
-    <div class="container">
-        <!-- <img class="avatar" src="user_login_man-128.png">
-        <h2>Login</h2> -->
-        <div class="LoginIn">
-            Click here to login
-        </div>
-        <div class="fold">
-            @using (@Html.BeginForm("Login", "Account", FormMethod.Post))
-            {
-                @Html.AntiForgeryToken()
-                <div class="inputBox">
-                    @Html.EditorFor(model => model.UsernameOrEmail, new { htmlAttributes = new { @class = "", id = "" } })
-                    <i class="fa fa-user-circle" aria-hidden="true"></i>
-                    @Html.LabelFor(mode => Model.UsernameOrEmail, htmlAttributes: new { @class = "" })
-                    @Html.ValidationMessageFor(model => model.UsernameOrEmail, "", new { @class = "text-danger" })
-                    <!-- <input tabindex="1" type="text" name="" required=""> -->
-                    <!--  <label>username</label> -->
-                </div>
-                <div class="inputBox">
-                    @Html.PasswordFor(model => model.PasswordRaw, new { @class = "", id = "" })
-                    @Html.LabelFor(model => model.PasswordRaw, htmlAttributes: new { @class = "" })
-                    <i class="fa fa-lock" aria-hidden="true"></i>
-                    @Html.ValidationMessageFor(model => model.PasswordRaw, "", new { @class = "text-danger" })
-                    <!-- <input tabindex="2" type="password" name="" required="">
-                    <i class="fa fa-lock" aria-hidden="true"></i>
-                    <label>password</label> -->
-                </div>
-                <input tabindex="3" type="submit" name="" value="Login">
-                if (!string.IsNullOrEmpty(ViewBag.Msg))
-                {
-                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                        @ViewBag.Msg
-                    </div>
-                }
-                <a class="Forget-Password" href="forget_password" title="">Forget password ?</a>
-            }
 
-        </div>
+    <div class="container">
+        @using (@Html.BeginForm("Login", "Account", FormMethod.Post, new { @class = "form-signin" }))
+    {
+        @Html.AntiForgeryToken()
+        <h4 class="form-signin-heading">Sign in</h4>
+
+        @*@Html.LabelFor(model => model.UsernameOrEmail, new { htmlAttributes = new { @class = "sr-only" } })*@
+        @Html.EditorFor(model => model.UsernameOrEmail, new { htmlAttributes = new { @class = "form-control mb-2", id = "inputEmail", placeholder = "Email address or Username", autofocus = "autofocus" } })
+        @Html.ValidationMessageFor(model => model.UsernameOrEmail, "", new { @class = "text-danger" })
+
+        @*@Html.LabelFor(model => model.PasswordRaw, new { htmlAttributes = new { @class = "sr-only" } })*@
+        @Html.PasswordFor(model => model.PasswordRaw, new { @class = "form-control", id = "inputPassword", placeholder = "Password" })
+        @Html.ValidationMessageFor(model => model.PasswordRaw, "", new { @class = "text-danger" })
+
+        @*<div class="checkbox">
+            <label>
+                <input type="checkbox" value="remember-me"> Remember me
+            </label>
+        </div>*@
+        if (!string.IsNullOrEmpty(ViewBag.Msg))
+        {
+            <div class="alert alert-danger">@ViewBag.Msg</div>
+        }
+
+        <button id="btnSubmit" class="btn btn-lg btn-custom btn-block" type="submit">Sign in</button>
+}
+
     </div>
+    <script>
+        $(function () {
+
+            // 1. auto dissappear alert Msg
+            $(".alert").fadeTo(2000, 500).slideUp(500, function () {
+                $(".alert").slideUp(500);
+            });
+
+            // 2. animation while login pending
+            $('#btnSubmit').on('click', function () {
+                $(this).css({ 'background': '#10893E', 'font-style': 'italic' });
+                $(this).text('Signing...');
+                setTimeout(function () {
+                    $(this).text('Sign in');
+                    $(this).css({ 'background': '#00CC6A' });
+                }, 4000)
+            })
+        });
+    </script>
 </body>
 </html>
 

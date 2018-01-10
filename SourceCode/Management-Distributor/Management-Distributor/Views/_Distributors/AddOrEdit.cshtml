@@ -1,0 +1,57 @@
+﻿@model Distributor.POCO._Distributor
+
+@{
+    /**/
+
+    Layout = null;
+}
+
+@using (Html.BeginForm("AddOrEdit", "_Distributors", FormMethod.Post, new { onsubmit = "return SubmitForm(this)" }))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(model => model.DistributorId)
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.RegionId, "RegionId", htmlAttributes: new { @class = "control-label" })
+
+        @Html.DropDownList("RegionId", null, htmlAttributes: new { @class = "form-control" })
+        @Html.ValidationMessageFor(model => model.RegionId, "", new { @class = "text-danger" })
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DistributorName, new { @class = "control-label" })
+        @Html.EditorFor(model => model.DistributorName, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.DistributorName)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DistributorAddress, new { @class = "control-label" })
+        @Html.EditorFor(model => model.DistributorAddress, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.DistributorAddress)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DistributorEmail, new { @class = "control-label" })
+        @Html.EditorFor(model => model.DistributorEmail, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.DistributorEmail)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.DistributorPhoneNumber, new { @class = "control-label" })
+        @Html.EditorFor(model => model.DistributorPhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(model => model.DistributorPhoneNumber)
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.Description, new { @class = "control-label" })
+        <div class="input-group">
+            @Html.TextAreaFor(model => model.Description, 10, 40, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.Description)
+        </div>
+    </div>
+
+    <div class="form-group">
+        <input type="submit" value="Submit" class="btn btn-primary" />
+        <input type="reset" value="Reset" class="btn btn-warning" />
+    </div>
+}

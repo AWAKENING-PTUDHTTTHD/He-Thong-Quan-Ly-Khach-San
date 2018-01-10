@@ -71,9 +71,14 @@
         <img id="loader" src="~/Assets/Images/lg.sandglass-time-loading-gif.gif" />
     </div>*@
 @**************************@
+<header style="margin-top: 0;" class="page-header">
+    <div class="container-fluid">
+        <h2 class="no-margin-bottom">Products</h2>
+    </div>
+</header>
 <section class="content" style=" margin-top:-20px;">
     <div class="row">
-        <div id="MainDiv" class="col-md-12 col-lg-7">
+        <div id="MainDiv" class="col-md-12 col-lg-12">
             <div class="box box-danger box-body">
                 <div class="row">
                     <div class="col-md-12">
@@ -164,7 +169,7 @@
 
         </div>
 
-        <div class="col-sm-12 col-lg-5 col-md-12">
+        <div class="col-sm-12 col-lg-12 col-md-12">
             <div class="box box-danger box-body" style="min-height:450px">
                 <!-- Begin of Form to be serialized  -->
                 <form id="formSerialized">
@@ -186,7 +191,7 @@
                                                 <th>ActualQty</th>
                                                 <th>Price</th>
                                                 <th>Amt</th>
-                                                <th><i class="fa fa-trash"></i></th>
+                                                <th><i style="color:red !important" class="fa fa-trash"></i></th>
                                             </tr>
                                         </thead>
                                         <tbody id="tblAppendHere"></tbody>
@@ -196,7 +201,7 @@
                             <hr />
                             <div class="row">
                                 <div class="col-md-6"> <h3 class="pull-right">Total :</h3> </div>
-                                <div class="col-md-6"> <input type="hidden" class="setTotal" style="width:90px; border:hidden;" readonly /> <h3><span class="setTotalText pull-right">XXX</span></h3></div>
+                                <div class="col-md-6"> <input type="hidden" class="setTotal" style="width:90px; border:hidden;" readonly /> <h3><span class="setTotalText pull-right">VND</span></h3></div>
                             </div>
 
                             @*   <div class="row">
@@ -210,14 +215,22 @@
                                 </div>
                             </div>*@
                             @*  test *@
-                            <div class="row footer" id="btnModalTrigger" style="margin-top:15px;">
+                            @*<div class="row footer" id="btnModalTrigger" style="margin-top:15px;">
                                 <div class="col-md-12">
                                     <button data-toggle="modal" class="btn-block" data-target="#myModal" style="background-color:#16a085; cursor:pointer">
                                         <h4 style="color:#ffffff; text-align:center;"> NEXT &nbsp;<i class="fa fa-step-forward" aria-hidden="true"></i> &nbsp; &nbsp; </h4>
                                     </button>
                                 </div>
+                            </div>*@
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-sx-12">
+                                    <div class="form-group"> <button class="btn btn-primary" type="button" id="btnSubmit">Submit</button></div>
+                                </div>
                             </div>
-                            <button type="button" id="btnSubmit">Submit</button>
+                            
+       
+                           
+                            
                         </div>
                     </div>
 
@@ -229,7 +242,7 @@
 
 
                     <!-- Modal -->
-                    <div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+                    @*<div class="modal fade bs-example-modal-sm" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
                         <div class="modal-dialog modal-sm" role="document">
                             <div class="modal-content">
                                 <div class="modal-header" style="background-color:#c0392b; color:white;">
@@ -278,7 +291,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>*@
                     <!--End of form to be serialized-->
                 </form>
             </div>
@@ -402,7 +415,7 @@
 					'<td><input type="hidden" name="Price"    value= "' + $('#getPrice').val() + '"/>' + $('#getPrice').val() + '</td>' +
 					'<td><input type="hidden" name="Amount" value="' + $('#getAmount').val() + '"  class="subAmt"/>' + $('#getAmount').val() + '</td>' +
 					//remove icon
-					'<td><a href="#" class="fa fa-times" onclick="removeItem(this)"></a></td>'
+					'<td><a href="#" style="color:red !important" class="fa fa-times" onclick="removeItem(this)"></a></td>'
 					+ '</tr>'
 					);
 
@@ -458,27 +471,27 @@
 	});
 
 	//focuses cursor on discount txtbox on modal load
-	$('#myModal').on('shown.bs.modal', function () {
-		$('#discountPercent').focus();
-	})
+	//$('#myModal').on('shown.bs.modal', function () {
+	//	$('#discountPercent').focus();
+	//})
 
 	//Calculate Discount
-	$('#discountPercent').keyup(function () {
-		var total = Number($('.setTotal').val());
-		var percent = Number($('#discountPercent').val());
-		var discountAmount = ((percent / 100) * total).toFixed(2);
-		var grandTotal = total - discountAmount;
-		$('#discountAmount').val(discountAmount);
-		$('#grandTotal').val(grandTotal.toFixed(2));
-	});
+	//$('#discountPercent').keyup(function () {
+	//	var total = Number($('.setTotal').val());
+	//	var percent = Number($('#discountPercent').val());
+	//	var discountAmount = ((percent / 100) * total).toFixed(2);
+	//	var grandTotal = total - discountAmount;
+	//	$('#discountAmount').val(discountAmount);
+	//	$('#grandTotal').val(grandTotal.toFixed(2));
+	//});
 
 	//calculate return amount
-	$('#receivedAmt').keyup(function () {
-		var grandTotal = Number($('#grandTotal').val());
-		var received = Number($('#receivedAmt').val());
-		var returnAmt = (received - grandTotal).toFixed(2);
-		$('#returnAmt').val(returnAmt);
-	});
+	//$('#receivedAmt').keyup(function () {
+	//	var grandTotal = Number($('#grandTotal').val());
+	//	var received = Number($('#receivedAmt').val());
+	//	var returnAmt = (received - grandTotal).toFixed(2);
+	//	$('#returnAmt').val(returnAmt);
+	//});
 
 	//removes record on clicking remove icon
 	function removeItem(obj) {

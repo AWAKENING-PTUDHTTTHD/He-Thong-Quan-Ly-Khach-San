@@ -78,8 +78,10 @@ namespace Distributor.App_Start
             kernel.Bind<IOrderService>().To<OrderService>();
             kernel.Bind<IRegionService>().To<RegionService>();
             kernel.Bind<IDistributorService>().To<DistributorService>();
-            kernel.Bind<IUnitService>().To<UnitService>();
-            kernel.Bind<IProductUnitService>().To<ProductUnitService>();
+            kernel.Bind<IDeliveryPlanService>().To<DeliveryPlanService>();
+            kernel.Bind<IInvoiceService>().To<InvoiceService>();
+
+
         }        
     }
 }

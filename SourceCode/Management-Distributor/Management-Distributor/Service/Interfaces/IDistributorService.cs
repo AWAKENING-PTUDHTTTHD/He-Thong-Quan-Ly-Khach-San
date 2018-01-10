@@ -8,9 +8,17 @@ namespace Management_Distributor.Service.Interfaces
 {
     public interface IDistributorService
     {
-        bool AddRange(List<Distributor.POCO._Distributor> distributors);
+        //bool AddRange(List<distributor.POCO._Distributor> distributors);
 
-        _Distributor FindById(int Id);
+        //_Distributor FindById(int Id);
+
+        List<_Distributor> GetAll();
+        bool Add(_Distributor distributor);
+        bool Edit(_Distributor distributor);
+        bool Delete(_Distributor distributor);
+        _Distributor GetOne(int id);
+        bool AddRange(List<_Distributor> distributors);
+
 
     }
 }

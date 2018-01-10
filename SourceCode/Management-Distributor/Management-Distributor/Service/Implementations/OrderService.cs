@@ -75,7 +75,10 @@ namespace Management_Distributor.Service.Implementations
 
         public List<Order> GetAll()
         {
-            throw new NotImplementedException();
+            _logger.Info("Start fetch ALl Order");
+            List<Order> category = repoOrder.GetAll().ToList();
+            _logger.Info("End fetch ALl Order");
+            return category;
         }
 
 

@@ -26,14 +26,17 @@ namespace Management_Distributor.Controllers
         private IProductService productService = null;
         private IOrderService orderService = null;
         private IOrderDetailService detailService  = null;
-        private IPaymentService paymentService = null;
+        //private IPaymentService paymentService = null;
+        private IInvoiceService invoiceService = null;
         
-        public OrdersController(IProductService _productService, IOrderService _orderService, IOrderDetailService _detailService, IPaymentService _paymentService)
+        public OrdersController(IProductService _productService, IOrderService _orderService, IOrderDetailService _detailService, IInvoiceService _invoiceService)
         {
             this.productService = _productService;
             this.orderService = _orderService;
             this.detailService = _detailService;
-            this.paymentService = _paymentService;
+            this.invoiceService = _invoiceService;
+
+            //this.paymentService = _paymentService;
         }
 
         protected override void HandleUnknownAction(string actionName)
@@ -97,7 +100,16 @@ namespace Management_Distributor.Controllers
                 {
                     //service.UpdateStock(_stockID, _qty);
                     if ((detailService.AddListDetail(orderID, _productID, _price, _DemandQty, _ActualQty)) == _productID.Count())
+                    {
+                        Invoice invoice = new Invoice()
+                        {
+                            OrderId = orderID,
+                            Amount = _total,
+                            EmployeeId = Convert.ToInt32(Session["EmployeeId"])
+                        };
                         return Json(new { success = true, message = "Order added" }, JsonRequestBehavior.AllowGet);
+                    }
+                        
                     return Json(new { success = false, message = "wrong with insert detail" }, JsonRequestBehavior.AllowGet);
                 }
 

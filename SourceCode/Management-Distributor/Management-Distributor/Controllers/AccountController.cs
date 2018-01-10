@@ -4,6 +4,7 @@ using Distributor.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -27,18 +28,27 @@ namespace Distributor.Controllers
         [HttpPost]
         public ActionResult Login(LoginViewModel user)
         {
-            Employee employee = EmpService.GetByUserNameOrEmail((user.UsernameOrEmail));
-            if (employee == null || Utils.Hashing.ValidatePassword(user.PasswordRaw, employee.EncryptedPassword) == false)
+            if (ModelState.IsValid)
             {
-                ViewBag.Msg = "Username or Password is incorrect. Please try again";
-                return View();
+                Employee employee = EmpService.GetByUserNameOrEmail((user.UsernameOrEmail));
+                if (employee == null || Utils.Hashing.ValidatePassword(user.PasswordRaw, employee.EncryptedPassword) == false)
+                {
+
+                    ViewBag.Msg = "Username or Password is incorrect.";
+                    Thread.Sleep(5000);
+                    return View();
+                }
+                else
+                {
+                    FormsAuthentication.SetAuthCookie(employee.UserName, false);
+                    Session["EmployeeId"] = employee.EmployeeId;
+                    Session["EmployeeName"] = employee.EmpName;
+                    Thread.Sleep(5000);
+                    return RedirectToAction("Dashboard", "Home");
+                }
             }
-            else
-            {
-                FormsAuthentication.SetAuthCookie(employee.UserName, false);
-                Session["EmployeeId"] = employee.EmployeeId;  
-                return RedirectToAction("Dashboard", "Home");
-            }
+            else return View();
+            
         }
 
         public ActionResult Logout()

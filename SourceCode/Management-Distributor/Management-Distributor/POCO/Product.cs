@@ -39,7 +39,12 @@ namespace Distributor.POCO
         public string ImageUrl { get; set; }
 
         [DefaultValue(0)]
-        //public int AvailableQty { get; set; }
+        [Required(ErrorMessage = "Availabel Quantity is required!")]
+        [Range(0, 100000)]
+        public int AvailableQty { get; set; }
+
+        [Range(0, Double.PositiveInfinity)]
+        public decimal Price { get; set; }
 
         [NotMapped]
         public HttpPostedFileBase ImageUpload { get; set; }

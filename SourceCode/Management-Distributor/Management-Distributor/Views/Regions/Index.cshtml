@@ -1,0 +1,190 @@
+﻿@model Distributor.POCO.Region
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="container-fluid">
+        <p><a class="btn" style="background-color:#36d2a5;color:#fff;" onclick="PopupForm('@Url.Action("AddOrEdit","Regions")')"><i class="fa fa-plus-circle">  Add New Region</i></a></p>
+        @*<h2>List Products</h2>*@
+        <table id="regionsTable">
+            <thead>
+                <tr>
+                    <td>@Html.DisplayNameFor(model => model.RegionId)</td>
+                    <td>@Html.DisplayNameFor(model => model.RegionName)</td>
+                    <td>Edit</td>
+                    <td>Remove</td>
+                </tr>
+            </thead>
+            <tbody></tbody>
+        </table>
+    </div> 
+</div>
+
+
+
+@section Scripts {
+    <script src="~/Scripts/ProductAddition.js"></script>
+    <script src="~/Scripts/DataTables/dataTables.bootstrap4.js"></script>
+    <script>
+        var Popup, datatable;
+        /* Process datatable */
+        $(document).ready(function () {
+            let $table = $('#regionsTable');
+            if ($table.length) {
+                console.log('Inside the table');
+            }
+            datatable = $table.DataTable({
+                lengthMenu: [[3, 5, 10, -1], ['3', '5', '10', 'All']],
+                pageLength: 5,
+                "ajax": {
+                    "url": "/Regions/LoadData",
+                    "type": "GET",
+                    "datatype": "json"
+                },
+                "columns": [
+
+                        {
+                            "data": "RegionId"
+
+                        },
+                        {
+                            "data": "RegionName"
+
+                        }
+                        ,
+                        {
+                            "data": "RegionId",
+                            bSortable: false,
+                            searchable: false,
+                            mRender: (data, type, row) => {
+                                let opt = '';
+                                opt += "<a class='btn btn-success btn-sm' onclick=PopupForm('@Url.Action("AddOrEdit","Regions")/"+data+"')><i class='fa fa-pencil-square-o' aria-hidden='true'></i></a>";
+                                return opt;
+
+                            }
+                        },
+                        {
+                            "data": "RegionId",
+                            bSortable: false,
+                            searchable: false,
+                            mRender: (data, type, row) => {
+                                let opt = '';
+                                opt += "<a class='btn btn-danger btn-sm' onclick=Delete('" + data + "')><i class='fa fa-trash' aria-hidden='true'></i></a>";
+                                return opt;
+
+                            }
+                        },
+
+                    ],
+                    "language": {
+                        "emptyTable" : "Currently no data found. Please click on <b>Add New</b> button"
+                    }
+            });
+        });
+        /* End Process datatable */
+
+        /* Show add/edit Form */
+        function PopupForm(url)
+        {
+            var formDiv = $('<div/>');
+            $.get(url)
+            .done(function (response) {
+                formDiv.html(response)
+                Popup = formDiv.dialog({
+                    autoOpen: true,
+                    resizable: false,
+
+                    title: 'Add/Update Region',
+                    height: 300,
+                    width: 400,
+                    close: function()
+                    {
+                        Popup.dialog('destroy')
+                            .remove();
+                    }
+                });
+            });
+        }
+        /* End Show add/edit Form */
+
+        /* Submit add/Edit Form*/
+        function SubmitForm(form) {
+            $.validator.unobtrusive.parse(form);
+            if ($(form).valid()) {
+
+                var ajaxConfig = {
+                    type: "POST",
+                    url: form.action,
+                    data: new FormData(form),
+                    success: function (data) {
+                        if (data.success == true) {
+                            Popup.dialog('close');
+                            datatable.ajax.reload();
+
+                            $.notify(data.message, {
+                                globalPosition: "top center",
+                                className: "success"
+                            });
+                        }
+                        else {
+                            $.notify(data.message, {
+                                globalPosition: "top center",
+                                className: "Error"
+                            });
+                        }
+                    }
+                }
+
+
+                if ($(form).attr('enctype') == "mutilpart/form-data") {
+                    ajaxConfig["contenType"] = false;
+                    ajaxConfig["processData"] = false;
+                }
+
+                $.ajax(ajaxConfig);
+            }
+            return false;
+        }
+        /* End Submit add/Edit Form*/
+
+        /* Remove record opt */
+
+        function Delete(id) {
+            if(confirm('Are you Sure to remove this region record ?'))
+            {
+                $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("Remove", "Regions")/' + id,
+                    success: function (data) {
+                        if (data.success) {
+                            datatable.ajax.reload();
+
+                            $.notify(data.message, {
+                                globalPosition: "top center",
+                                className: "success"
+                            });
+
+                        }
+                        else {
+                            $.notify(data.message, {
+                                globalPosition: "top center",
+                                className: "Error"
+                            });
+                        }
+                    }
+                });
+            }
+        }
+
+        /* End Remove record opt */
+
+
+        //
+
+    </script>
+}
+
+

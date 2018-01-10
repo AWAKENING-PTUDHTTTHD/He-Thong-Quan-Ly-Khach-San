@@ -1,0 +1,31 @@
+﻿
+@model Distributor.POCO.DeliveryPlan
+
+<style>
+    .product-Image {
+        height: 100px;
+        width: 100px;
+    }
+</style>
+
+<tr>
+    <td>@Html.DisplayFor(ModelItem => Model.DeliveryDate)</td>
+    <td>@Html.DisplayFor(ModelItem => Model.Description)</td>
+    <td>@Html.DisplayFor(ModelItem => Model.Status)</td>
+    <td>@Html.DisplayFor(ModelItem => Model.OrderId)</td>
+    @*<td width="15%">@Html.DisplayFor(ModelItem => Model.Price)</td>*@
+    <td>
+        @*<a href="@Url.Action("Edit", "Departments")">
+                <i class="fa fa-edit"></i>
+                Edit |
+            </a>*@
+
+        <a class='btn btn-success btn-sm' onclick=PopupForm('@Url.Action("AddOrEdit","DeliveryPlans")/@Model.DeliveryPlanId')><i class='fa fa-pencil-square-o' aria-hidden='true'></i></a>
+
+        <a class='btn btn-danger btn-sm' onclick=Delete('@Model.DeliveryPlanId')><i class='fa fa-trash' aria-hidden='true'></i></a>
+    </td>
+    @*@Html.ActionLink("Edit", "Edit", new { id = p.ProductId }) |
+        @Html.ActionLink("Details", "Details", new { id = p.ProductId }) |
+        @Html.ActionLink("Delete", "Delete", new { id = p.ProductId })*@
+
+</tr>

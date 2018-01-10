@@ -13,9 +13,9 @@ namespace Distributor.POCO
         public int InvoiceId { get; set; }
 
         [Required(ErrorMessage = "Name is required")]
-        public string InvoiceName { get; set; }
+        //public string InvoiceName { get; set; }
 
-        public DateTime CreatedDate { get; set; }
+       // public DateTime CreatedDate { get; set; }
 
         public DateTime Created_At { get; set; }
 
@@ -28,7 +28,7 @@ namespace Distributor.POCO
 
         // One to One with Order, Payment and Employee
         public virtual Order Order { get; set; }
-        public virtual Payment Payment { get; set; }
+        //public virtual Payment Payment { get; set; }
         public virtual Employee Employee { get; set; }
 
     }

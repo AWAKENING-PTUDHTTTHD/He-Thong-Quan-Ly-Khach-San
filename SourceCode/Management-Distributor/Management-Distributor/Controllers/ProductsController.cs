@@ -16,7 +16,8 @@ using Pagination;
 
 namespace Distributor.Controllers
 {
-    [AllowAnonymous]
+    
+    [Authorize]
     public class ProductsController : Controller
     {
         private IProductService productService = null;
@@ -35,8 +36,8 @@ namespace Distributor.Controllers
             List<Product> productz = productService.GetPage(page);
             ProductsListViewModel model = new ProductsListViewModel()
             {
-                products = productz,
-                pagingInfo = new Pagination.PagingInfo()
+                Products = productz,
+                PagingInfo = new Pagination.PagingInfo()
                 {
                     CurrentPage = page,
                     ItemsPerPage = PageConfig.PageSize,

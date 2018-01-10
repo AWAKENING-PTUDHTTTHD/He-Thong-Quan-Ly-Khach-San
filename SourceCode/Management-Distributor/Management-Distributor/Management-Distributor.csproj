@@ -181,15 +181,16 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AdminLteController.cs" />
     <Compile Include="Controllers\CategoriesController.cs" />
+    <Compile Include="Controllers\DeliveryPlansController.cs" />
     <Compile Include="Controllers\DepartmentsController.cs" />
+    <Compile Include="Controllers\_DistributorsController.cs" />
     <Compile Include="Controllers\EmployeesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
     <Compile Include="Controllers\ProductsController.cs" />
-    <Compile Include="Controllers\ProductUnitsController.cs" />
+    <Compile Include="Controllers\RegionsController.cs" />
     <Compile Include="Controllers\ReportController.cs" />
     <Compile Include="Controllers\SweetController.cs" />
-    <Compile Include="Controllers\UnitsController.cs" />
     <Compile Include="Dao\Implementations\GenericUnitOfWork.cs" />
     <Compile Include="Dao\_DbContext\ManagementDistributorDbContext.cs" />
     <Compile Include="Dao\Implementations\GenericRepository.cs" />
@@ -207,12 +208,14 @@
     <Compile Include="Migrations\201801060745448_AddInvoiceCreatedDate.Designer.cs">
       <DependentUpon>201801060745448_AddInvoiceCreatedDate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801081338121_DropSomeTable.cs" />
+    <Compile Include="Migrations\201801081338121_DropSomeTable.Designer.cs">
+      <DependentUpon>201801081338121_DropSomeTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MyRoleProvider.cs" />
     <Compile Include="POCO\Category.cs" />
     <Compile Include="POCO\Contract.cs" />
-    <Compile Include="POCO\ProductUnit.cs" />
-    <Compile Include="POCO\Unit.cs" />
     <Compile Include="POCO\_Distributor.cs" />
     <Compile Include="POCO\Department.cs" />
     <Compile Include="POCO\Employee.cs" />
@@ -243,6 +246,7 @@
       <DependentUpon>OrderDetail.xsd</DependentUpon>
     </Compile>
     <Compile Include="Service\Implementations\CategoryService.cs" />
+    <Compile Include="Service\Implementations\DeliveryPlanService.cs" />
     <Compile Include="Service\Implementations\DepartmentService.cs" />
     <Compile Include="Service\Implementations\DistributorService.cs" />
     <Compile Include="Service\Implementations\EmployeeService.cs" />
@@ -250,9 +254,8 @@
     <Compile Include="Service\Implementations\OrderDetailService.cs" />
     <Compile Include="Service\Implementations\OrderService.cs" />
     <Compile Include="Service\Implementations\ProductService.cs" />
-    <Compile Include="Service\Implementations\ProductUnitService.cs" />
     <Compile Include="Service\Implementations\RegionService.cs" />
-    <Compile Include="Service\Implementations\UnitService.cs" />
+    <Compile Include="Service\Interfaces\IDeliveryPlanService.cs" />
     <Compile Include="Service\Interfaces\IDepartmentService.cs" />
     <Compile Include="Service\Interfaces\IDistributorService.cs" />
     <Compile Include="Service\Interfaces\IEmployeeService.cs" />
@@ -262,11 +265,10 @@
     <Compile Include="Service\Interfaces\IOrderService.cs" />
     <Compile Include="Service\Interfaces\IPaymentService.cs" />
     <Compile Include="Service\Interfaces\IProductService.cs" />
-    <Compile Include="Service\Interfaces\IProductUnitService.cs" />
     <Compile Include="Service\Interfaces\IRegionService.cs" />
-    <Compile Include="Service\Interfaces\IUnitService.cs" />
     <Compile Include="Utils\Hashing.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\DeliveryPlansListViewModel.cs" />
     <Compile Include="ViewModels\ProductsListViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -339,6 +341,7 @@
     <Content Include="admin-lte\js\demo.js" />
     <Content Include="admin-lte\js\pages\dashboard.js" />
     <Content Include="admin-lte\js\pages\dashboard2.js" />
+    <Content Include="Assets\Images\aps.net.ico" />
     <Content Include="Assets\Images\desktop-plum-coloured-wallpaper-1366x768.jpg" />
     <Content Include="Assets\Images\lg.sandglass-time-loading-gif.gif" />
     <Content Include="Assets\Images\pexels-photo-355423.jpeg" />
@@ -553,6 +556,8 @@
     <Content Include="Content\jquery.dataTables-1.10.16.css" />
     <Content Include="Content\jquery.datetimepicker.css" />
     <Content Include="Content\login-page.css" />
+    <Content Include="Content\table-custom.css" />
+    <Content Include="Content\signin.css" />
     <Content Include="Content\sweetalert.css" />
     <Content Include="Content\sweetalert\bootstrap-sweetalert.png" />
     <Content Include="Content\sweetalert\docs.css" />
@@ -1337,7 +1342,6 @@
     <Content Include="Views\Departments\Edit.cshtml" />
     <Content Include="Views\Departments\Index.cshtml" />
     <Content Include="Views\Products\Details.cshtml" />
-    <Content Include="Views\Products\Index.cshtml" />
     <Content Include="Views\Employees\Create.cshtml" />
     <Content Include="Views\Employees\Delete.cshtml" />
     <Content Include="Views\Employees\Details.cshtml" />
@@ -1354,14 +1358,21 @@
     <Content Include="Views\Shared\_AdminLteBreadcrumb.cshtml" />
     <Content Include="Views\AdminLte\Index.cshtml" />
     <Content Include="Views\AdminLte\Colors.cshtml" />
-    <Content Include="Views\Units\AddOrEdit.cshtml" />
-    <Content Include="Views\ProductUnits\AddOrEdit.cshtml" />
+    <Content Include="Views\Regions\Index.cshtml" />
+    <Content Include="Views\Regions\AddOrEdit.cshtml" />
+    <Content Include="Views\_Distributors\Index.cshtml" />
+    <Content Include="Views\_Distributors\AddOrEdit.cshtml" />
+    <Content Include="Views\DeliveryPlans\Page.cshtml" />
+    <Content Include="Views\DeliveryPlans\_DeliveryPlan.cshtml" />
+    <Content Include="Views\DeliveryPlans\AddOrEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Logging\Implementions\" />
     <Folder Include="Logging\Interfaces\" />
     <Folder Include="Models\" />
+    <Folder Include="Views\Distributors\" />
+    <Folder Include="Views\GlobalException\" />
     <Folder Include="Views\Report\" />
   </ItemGroup>
   <ItemGroup>
@@ -1441,6 +1452,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801060745448_AddInvoiceCreatedDate.resx">
       <DependentUpon>201801060745448_AddInvoiceCreatedDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801081338121_DropSomeTable.resx">
+      <DependentUpon>201801081338121_DropSomeTable.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\InvoiceCrystal.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>
