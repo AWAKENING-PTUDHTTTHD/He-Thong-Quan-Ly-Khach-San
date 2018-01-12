@@ -1,8 +1,0 @@
-﻿Cách 1
-Chạy các file Trong Project Test Theo tứ tự (Do ràng buộc khóa ngoại)
-1. Department
-2. Employee
-3. Category
-4 .Product
-Cách 2 mở console nuget package chạy lênh: Update-Database -Force -Verbose
-
