@@ -90,3 +90,7 @@ C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Di
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\obj\Debug\Management-Distributor.csproj.CoreCompileInputs.cache
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\obj\Debug\Management-Distributor.dll
 C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\obj\Debug\Management-Distributor.pdb
+C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\obj\Debug\Management_Distributor.Migrations.ChangeDatimeToDatime2.resources
+C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\obj\Debug\Management_Distributor.Migrations.temporaryRemoveRequireDate.resources
+C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\obj\Debug\Management_Distributor.Migrations.amendedRequireDate.resources
+C:\Users\hoangit\Desktop\He-Thong-Quan-Ly-Nha-Phan-Phoi\SourceCode\Management-Distributor\Management-Distributor\obj\Debug\Management_Distributor.Migrations.RemoveUnitProperTyFromOrderDetail.resources

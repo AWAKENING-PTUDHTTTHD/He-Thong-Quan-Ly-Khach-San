@@ -20,9 +20,9 @@ namespace Distributor.POCO
 
         public decimal ToTalAmount { get; set; }
 
-        public DateTime? OrderDate { get; set; }
+        public DateTime OrderDate { get; set; }
 
-        public Nullable<DateTime> RequireDeliveryDate { get; set; }
+        public DateTime RequireDeliveryDate { get; set; }
 
         public string Status { get; set; }
 

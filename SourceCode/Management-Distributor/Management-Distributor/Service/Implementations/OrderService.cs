@@ -57,6 +57,7 @@ namespace Management_Distributor.Service.Implementations
                 //    writer.WriteLine(Environment.NewLine + "-----------------------------------------------------------------------------" + Environment.NewLine);
                 //}
 
+                _logger.Error(ex, "Catch Exception in Order controller"); ;
                 string strPath = @"C:\Order.Error.Logger.txt";
                 ExceptionProofer.LogToFile(strPath, ex);
 

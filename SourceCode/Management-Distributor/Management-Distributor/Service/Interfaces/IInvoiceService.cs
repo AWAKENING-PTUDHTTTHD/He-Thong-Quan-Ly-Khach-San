@@ -10,6 +10,7 @@ namespace Management_Distributor.Service.Interfaces
     {
 
         bool Add(Invoice invoice);
+        Invoice FindByOrderId(int OrderId);
 
     }
 }

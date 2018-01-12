@@ -212,6 +212,22 @@
     <Compile Include="Migrations\201801081338121_DropSomeTable.Designer.cs">
       <DependentUpon>201801081338121_DropSomeTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201801110826448_ChangeDatimeToDatime2.cs" />
+    <Compile Include="Migrations\201801110826448_ChangeDatimeToDatime2.Designer.cs">
+      <DependentUpon>201801110826448_ChangeDatimeToDatime2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801111924382_temporaryRemoveRequireDate.cs" />
+    <Compile Include="Migrations\201801111924382_temporaryRemoveRequireDate.Designer.cs">
+      <DependentUpon>201801111924382_temporaryRemoveRequireDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801111927127_amendedRequireDate.cs" />
+    <Compile Include="Migrations\201801111927127_amendedRequireDate.Designer.cs">
+      <DependentUpon>201801111927127_amendedRequireDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201801112009308_RemoveUnitProperTyFromOrderDetail.cs" />
+    <Compile Include="Migrations\201801112009308_RemoveUnitProperTyFromOrderDetail.Designer.cs">
+      <DependentUpon>201801112009308_RemoveUnitProperTyFromOrderDetail.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="MyRoleProvider.cs" />
     <Compile Include="POCO\Category.cs" />
@@ -1365,6 +1381,9 @@
     <Content Include="Views\DeliveryPlans\Page.cshtml" />
     <Content Include="Views\DeliveryPlans\_DeliveryPlan.cshtml" />
     <Content Include="Views\DeliveryPlans\AddOrEdit.cshtml" />
+    <Content Include="Views\Orders\edit.cshtml" />
+    <Content Include="Views\Orders\Detail.cshtml" />
+    <Content Include="Views\Orders\_OrderDetail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -1455,6 +1474,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201801081338121_DropSomeTable.resx">
       <DependentUpon>201801081338121_DropSomeTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801110826448_ChangeDatimeToDatime2.resx">
+      <DependentUpon>201801110826448_ChangeDatimeToDatime2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801111924382_temporaryRemoveRequireDate.resx">
+      <DependentUpon>201801111924382_temporaryRemoveRequireDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801111927127_amendedRequireDate.resx">
+      <DependentUpon>201801111927127_amendedRequireDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201801112009308_RemoveUnitProperTyFromOrderDetail.resx">
+      <DependentUpon>201801112009308_RemoveUnitProperTyFromOrderDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\InvoiceCrystal.rpt">
       <Generator>CrystalDecisions.VSDesigner.CodeGen.ReportCodeGenerator</Generator>

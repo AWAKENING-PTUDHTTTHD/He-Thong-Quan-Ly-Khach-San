@@ -15,20 +15,20 @@ namespace Management_Distributor.Service.Implementations
         #region member
         private readonly ILogger _logger = LogManager.GetCurrentClassLogger();
         private IUnitOfWork _uow = null;
-        private IRepository<Invoice> repoCategory = null;
+        private IRepository<Invoice> repoInvoice = null;
         #endregion
 
         #region method
         public InvoiceService(IUnitOfWork uow)
         {
             _uow = uow;
-            repoCategory = _uow.Repository<Invoice>();
+            repoInvoice = _uow.Repository<Invoice>();
         }
         public bool Add(Invoice invoice)
         {
             bool success;
             _logger.Info("Start add new Invoice");
-            repoCategory.Add(invoice);
+            repoInvoice.Add(invoice);
             _logger.Info("End add new Invoice");
             success = (_uow.SaveChange() > 0) ? true : false;
             if (success == true)
@@ -37,6 +37,18 @@ namespace Management_Distributor.Service.Implementations
                 _logger.Info("failed to add");
             _logger.Info("End add a new Invoice");
             return success;
+        }
+
+        public Invoice FindByOrderId(int OrderId)
+        {
+            _logger.Info("Start fetch single Invoice");
+            Invoice invoice = null;
+            invoice = repoInvoice.GetById(OrderId);
+            if (invoice == null)
+                _logger.Info("this category not existed");
+            else _logger.Info("Got this category");
+            _logger.Info("End fetch single category");
+            return invoice;
         }
         #endregion
     }

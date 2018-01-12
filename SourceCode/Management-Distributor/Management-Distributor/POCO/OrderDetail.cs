@@ -9,11 +9,6 @@ namespace Distributor.POCO
 {
     public class OrderDetail
     {
-
-        public OrderDetail()
-        {
-            Unit = "Bottle";
-        }
         [Key]
         public int OrderDetailId { get; set; }
         //[ForeignKey("Orders")]
@@ -23,10 +18,6 @@ namespace Distributor.POCO
 
         public int ProductId { get; set; }
         public virtual Product Product { get; set; }
-
-
-        [Required(ErrorMessage = "Unit is required")]
-        public string Unit { get; set; }
 
         [Required(ErrorMessage = "Price is required")]
         public decimal Price { get; set; }

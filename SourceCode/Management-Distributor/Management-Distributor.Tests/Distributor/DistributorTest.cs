@@ -19,8 +19,8 @@ namespace Management_Distributor.Tests.Distributor
             {
                 new _Distributor (){
                                     DistributorName = "Cty ABC",
-                                    RegionId = 1,
-                                    DistributorAddress = "552 Quang Trung, Thanh Xuân, TP Hà Nội",
+                                    RegionId = 34,
+                                    DistributorAddress = "552 Quang Trung, Go Vap, TP Ho Chi Minh",
                                     DistributorEmail = "Test1@Test.gmail.com",
                                     DistributorPhoneNumber = "0120000001",
                                     Status = "Cooperating",
@@ -28,7 +28,7 @@ namespace Management_Distributor.Tests.Distributor
                                    },
                 new _Distributor (){
                                     DistributorName = "Cty XYZ",
-                                    RegionId = 1,
+                                    RegionId = 48,
                                     DistributorAddress = "789 Nguyễn Huệ, Đống Đa, TP Hà Nội",
                                     DistributorEmail = "Test2@Test.gmail.com",
                                     DistributorPhoneNumber = "0120000002",

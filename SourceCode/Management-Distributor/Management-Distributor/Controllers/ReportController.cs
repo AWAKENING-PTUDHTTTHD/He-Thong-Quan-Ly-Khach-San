@@ -13,6 +13,7 @@ using System.Web.Mvc;
 
 namespace Management_Distributor.Controllers
 {
+    [Authorize(Roles = "staff")]
     public class ReportController : Controller
     {
         IOrderService orderService = null;
@@ -65,7 +66,6 @@ namespace Management_Distributor.Controllers
                     od.OrderDetailId,
                     od.ActualQuantity,
                     od.Price,
-                    od.Unit,
                     od.ProductId,
                     od.Product.ProductName,
 

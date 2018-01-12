@@ -78,7 +78,7 @@ namespace Distributor.Controllers
         {
             //var data = db.Categories.ToList();
             var data = categoryService.GetAll();
-            return Json(new { data = data}, JsonRequestBehavior.AllowGet);
+            return Json(new {  data }, JsonRequestBehavior.AllowGet);
         }
 
         // GET: Categories/Details/5

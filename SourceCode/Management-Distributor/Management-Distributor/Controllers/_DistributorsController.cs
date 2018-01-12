@@ -25,6 +25,8 @@ namespace Management_Distributor.Controllers
             this.distributorService = distributorService;
             regionService = _regionService;
         }
+
+
         [HttpGet]
         public ActionResult AddOrEdit(int id = 0)
         {
@@ -82,7 +84,7 @@ namespace Management_Distributor.Controllers
         {
             //var data = db.Categories.ToList();
             var data = distributorService.GetAll();
-            return Json(new { data = data }, JsonRequestBehavior.AllowGet);
+            return Json(new { data }, JsonRequestBehavior.AllowGet);
         }
 
         // GET: Categories/Details/5

@@ -17,9 +17,12 @@ using Distributor.Service.Interfaces;
 using Management_Distributor.ExceptionHandler;
 using Management_Distributor.Service.Interfaces;
 using System.Windows;
+using Microsoft.Ajax.Utilities;
+using System.Web.Helpers;
 
 namespace Management_Distributor.Controllers
 {
+    [Authorize(Roles ="staff")]
     public class OrdersController : Controller
     {
 
@@ -28,13 +31,17 @@ namespace Management_Distributor.Controllers
         private IOrderDetailService detailService  = null;
         //private IPaymentService paymentService = null;
         private IInvoiceService invoiceService = null;
-        
-        public OrdersController(IProductService _productService, IOrderService _orderService, IOrderDetailService _detailService, IInvoiceService _invoiceService)
+        private IDistributorService distributorService = null;
+        private IEmployeeService employeeService = null;
+
+        public OrdersController(IProductService _productService, IOrderService _orderService, IOrderDetailService _detailService, IInvoiceService _invoiceService, IDistributorService _distributorService, IEmployeeService _employeeService)
         {
             this.productService = _productService;
             this.orderService = _orderService;
             this.detailService = _detailService;
             this.invoiceService = _invoiceService;
+            this.distributorService = _distributorService;
+            this.employeeService = _employeeService;
 
             //this.paymentService = _paymentService;
         }
@@ -53,11 +60,123 @@ namespace Management_Distributor.Controllers
         }
         
 
-        public ActionResult Create()
+        public ActionResult Detail(int OrderId)
         {
-            return View(productService.GetAll().ToList());
+            // 1 distributor info
+            // 2 employee info
+            // 3 generic info
+            // 4 detail info
+            // 5 invoice info
+            Order order = orderService.FindById(OrderId);
+            if(order == null)
+            {
+                //Response.Redirect("PageNotFound");
+                throw new HttpException(404, "Some description");
+            }
+            else
+            {
+                _Distributor distributor = distributorService.GetOne(order.DistributorId);
+                Employee employee = employeeService.GetOne(order.EmployeeId);
+                ViewBag.EmpInfoName = employee.EmpName;
+                ViewBag.EmpInfoId = employee.EmployeeId;
+               List <OrderDetail> detail = detailService.FindByOrderId(order.OrderId);
+                Invoice invoice = invoiceService.FindByOrderId(OrderId);
+
+                return View(Tuple.Create(distributor, order, detail));
+
+            }
         }
 
+        [HttpGet]
+        public ActionResult Edit(int id)
+        {
+            Order order = orderService.FindById(id);
+            if (order != null)
+            {
+                // only allowed to change order-detail if its invoice haven't been created yet
+                if (invoiceService.FindByOrderId(order.OrderId) != null)
+                {
+                    ViewBag.sign = 1;
+                    return View();
+                }
+                else
+                {
+                    ViewBag.OrderID = order.OrderId;
+                    ViewBag.OrderDetail = detailService.FindByOrderId(id);
+                    return View(productService.GetAll().ToList());
+                }
+               
+            }
+            else {
+                ViewBag.sign = -1;
+                return View();
+            }
+            
+        }
+
+        [HttpPost]
+        public JsonResult SerializeFormDataForEdit(int OrderID, FormCollection _collection)
+        {
+            Order order = orderService.FindById(OrderID);
+            if (order == null)
+                return Json(new { Success = false, Message = "This OrderID not found" }, JsonRequestBehavior.AllowGet);
+            if (_collection != null)
+            {
+                string[] _productID, _DemandQty, _ActualQty, _price, _amt, _flag, _detailId;
+                //for orderDetails
+                _productID = _collection["ProductID"].Split(',');
+                _DemandQty = _collection["DemandQty"].Split(',');
+                _ActualQty = _collection["ActualQty"].Split(',');
+                _price = _collection["Price"].Split(',');
+                _amt = _collection["Amount"].Split(',');
+                _flag = _collection["Flag"].Split(',');
+                _detailId = _collection["DetailId"].Split(',');
+                //for order
+                DateTime requireDate = Convert.ToDateTime(_collection["RequireDate"]);
+               
+                decimal _total = Convert.ToDecimal(_collection["Total"]);
+                int DistributorID = Convert.ToInt32(_collection["DistributorID"]);
+                //decimal _discount = Convert.ToDecimal(_collection["Discount"]);
+                //decimal _grandTotal = Convert.ToDecimal(_collection["GrandTotal"]);
+                DateTime _date = DateTime.Now;
+
+                order.RequireDeliveryDate = requireDate;
+                order.ToTalAmount = _total;
+                order.EmployeeId = Convert.ToInt32(Session["EmployeeId"]);
+                //order.Update_At = DateTime.Now;
+                int success = 0;
+                //success = orderService.Edit(order);
+
+                if (success > 0)
+                {
+                    //service.UpdateStock(_stockID, _qty);
+                    if ((detailService.AddOrEditListDetail(order.OrderId, _detailId, _productID, _price, _DemandQty, _ActualQty,_flag)) == _productID.Count())
+                    {
+                        //Invoice invoice = new Invoice()
+                        //{
+                        //    OrderId = orderID,
+                        //    Amount = _total,
+                        //    EmployeeId = Convert.ToInt32(Session["EmployeeId"])
+                        //};
+                        return Json(new { success = true, message = "Order added" }, JsonRequestBehavior.AllowGet);
+                    }
+
+                    return Json(new { success = false, message = "wrong with insert detail" }, JsonRequestBehavior.AllowGet);
+                }
+
+                return Json(new { success = false, message = "wrong with generic Order" }, JsonRequestBehavior.AllowGet);
+            }
+            return Json(new { success = false, message = "wrong from form" }, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult Create()
+        {
+
+            //List<_Distributor> distributors = distributorService.GetAll();
+            //ViewBag.DistributorId = new SelectList(distributors, "DistributorId", "DistributorName");
+            return View(productService.GetAll().ToList());
+        }
+        
 
         [HttpPost]
         public JsonResult SerializeFormData(FormCollection _collection)
@@ -71,9 +190,11 @@ namespace Management_Distributor.Controllers
                 _ActualQty = _collection["ActualQty"].Split(',');
                 _price = _collection["Price"].Split(',');
                 _amt = _collection["Amount"].Split(',');
+ 
                 //for order
                 DateTime requireDate = Convert.ToDateTime(_collection["RequireDate"]);
                 decimal _total = Convert.ToDecimal(_collection["Total"]);
+                int DistributorID = Convert.ToInt32(_collection["DistributorID"]);
                 //decimal _discount = Convert.ToDecimal(_collection["Discount"]);
                 //decimal _grandTotal = Convert.ToDecimal(_collection["GrandTotal"]);
                 DateTime _date = DateTime.Now;
@@ -82,7 +203,7 @@ namespace Management_Distributor.Controllers
                 {
                     OrderDate = _date,
                     ToTalAmount = _total,
-                    DistributorId = 2,
+                    DistributorId = DistributorID,
                     //Discount = _discount,
                     //GrandTotal = _grandTotal,
                     //Tax = 0,

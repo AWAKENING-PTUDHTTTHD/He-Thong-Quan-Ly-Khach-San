@@ -16,8 +16,8 @@ using Pagination;
 
 namespace Distributor.Controllers
 {
-    
-    [Authorize]
+
+    [Authorize(Roles = "staff")]
     public class ProductsController : Controller
     {
         private IProductService productService = null;

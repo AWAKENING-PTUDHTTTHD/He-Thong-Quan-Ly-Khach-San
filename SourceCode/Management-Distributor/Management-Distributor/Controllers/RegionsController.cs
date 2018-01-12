@@ -9,6 +9,7 @@ using System.Web.Mvc;
 
 namespace Management_Distributor.Controllers
 {
+    [Authorize(Roles = "staff")]
     public class RegionsController : Controller
     {
         private IRegionService regionService = null;
