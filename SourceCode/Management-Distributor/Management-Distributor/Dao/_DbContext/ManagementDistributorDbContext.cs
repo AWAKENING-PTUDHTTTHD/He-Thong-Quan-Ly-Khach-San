@@ -29,7 +29,7 @@ namespace Distributor.Dao._DbContext
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
         public DbSet<Invoice> Invoices { get; set; }
-        public DbSet<Payment> Payments { get; set; }
+        //public DbSet<Payment> Payments { get; set; }
         public DbSet<DeliveryPlan> DeliveryPlans { get; set; }
 
         public DbSet<Report> Reports { get; set; }

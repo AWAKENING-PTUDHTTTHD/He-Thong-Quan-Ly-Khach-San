@@ -15,11 +15,11 @@ namespace Distributor.POCO
         //}
         [Key]
         public int RegionId { get; set; }
-                
         [MinLength(5, ErrorMessage ="Region name could not be less than 5 character")]
         [MaxLength(50, ErrorMessage = "Region name could not be longer than 50 character")]
         [Required(ErrorMessage = "Name is required!")]
         [Index(IsUnique = true)]
+        [Display(Name = "Region Name")]
         public string RegionName { get; set; }
 
         // Danh Sach nha PP

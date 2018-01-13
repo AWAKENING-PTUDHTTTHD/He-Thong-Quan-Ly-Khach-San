@@ -18,6 +18,8 @@ namespace Distributor.POCO
         public int StatisticId { get; set; }
 
         [Required(ErrorMessage = "Name is required")]
+        [MaxLength(100)]
+        [Index(IsUnique = true)]
         public string StatisticName { get; set; }
 
         [Required(ErrorMessage = "Statistic Content is required")]

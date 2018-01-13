@@ -13,6 +13,8 @@ namespace Distributor.POCO
         public int DepartmentId { get; set; }
 
         [Required(ErrorMessage = "Name is required")]
+        [MaxLength(100)]
+        [Index(IsUnique = true)]
         public string DepartmentName { get; set; }
 
         [ForeignKey("Employee")]

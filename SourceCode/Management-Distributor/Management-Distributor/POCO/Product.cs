@@ -19,6 +19,8 @@ namespace Distributor.POCO
         public int ProductId { get; set; }
 
         [Required(ErrorMessage = "Name is required")]
+        [MaxLength(100)]
+        [Index(IsUnique = true)]
         public string ProductName { get; set; }
 
         [Required(ErrorMessage = "Price is required")]

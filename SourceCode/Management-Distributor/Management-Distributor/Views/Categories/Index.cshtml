@@ -47,8 +47,6 @@
 </section>
 
 @section Scripts {
-    @*<script src="~/Scripts/jquery.dataTables-1.10.5.js"></script>*@
-    @*<script src="~/Scripts/DataTables/dataTables.bootstrap4.js"></script>*@
     <script>
         var Popup, datatable;
         /* Process datatable */
@@ -122,10 +120,10 @@
                 Popup = formDiv.dialog({
                     autoOpen: true,
                     resizable: false,
-
+                    modal: true,
                     title: 'Add/Update Category',
                     height: 400,
-                    width: 500,
+                    width: 350,
                     close: function()
                     {
                         Popup.dialog('destroy')
@@ -155,11 +153,19 @@
                             });
                         }
                         else {
+                            Popup.dialog('close');
                             $.notify(data.message, {
                                 globalPosition: "top center",
                                 className: "Error"
                             });
                         }
+                    },
+                    error: function (err) {
+                        Popup.dialog('close');
+                        $.notify("Somthing went wrong!", {
+                            globalPosition: "top center",
+                            className: "Error"
+                        });
                     }
                 });
             }
@@ -191,6 +197,14 @@
                                 className: "Error"
                             });
                         }
+                    },
+                    error: function (err) {
+                        console.log(err);
+                        $.notify(data.message, {
+                            globalPosition: "top center",
+                            className: "Error",
+                            style: 'bootstrap'
+                        });
                     }
                 });
             }

@@ -12,7 +12,7 @@ namespace Management_Distributor.Tests.Employeez
     public class UnitTest1
     {
         [TestMethod]
-        public void testmethod1()
+        public void Testmethod1()
         {
 
             GenericUnitOfWork uow = new GenericUnitOfWork();
@@ -26,7 +26,7 @@ namespace Management_Distributor.Tests.Employeez
                         EmpEmail = "Employee1@test.test",
                         EmpAddress = "address1",
                         PhoneNumber = "0120-0000-000",
-                        Salt = "nothingmuch",
+                        
                         EncryptedPassword = Hashing.HashPassword("kingkaka"),
                         DepartmentId = 1,
                         Rolez = "staff"
@@ -39,7 +39,7 @@ namespace Management_Distributor.Tests.Employeez
                         EmpEmail = "Employee2@test.test",
                         EmpAddress = "address2",
                         PhoneNumber = "0120-0000-000",
-                        Salt = "nothingmuch",
+                        
                         EncryptedPassword = Hashing.HashPassword("kingkaka"),
                         DepartmentId = 9,
                         Rolez = "staff"
@@ -52,7 +52,7 @@ namespace Management_Distributor.Tests.Employeez
                         EmpEmail = "Employee2@test.test",
                         EmpAddress = "address2",
                         PhoneNumber = "0120-0000-000",
-                        Salt = "nothingmuch",
+                        
                         EncryptedPassword = Hashing.HashPassword("kingkaka"),
                         DepartmentId = 9,
                         Rolez = "staff"
@@ -65,7 +65,7 @@ namespace Management_Distributor.Tests.Employeez
                         EmpEmail = "Employee2@test.test",
                         EmpAddress = "address2",
                         PhoneNumber = "0120-0000-000",
-                        Salt = "nothingmuch",
+                        
                         EncryptedPassword = Hashing.HashPassword("kingkaka"),
                         DepartmentId = 9,
                         Rolez = "staff"
@@ -78,7 +78,7 @@ namespace Management_Distributor.Tests.Employeez
                         EmpEmail = "Employee2@test.test",
                         EmpAddress = "address2",
                         PhoneNumber = "0120-0000-000",
-                        Salt = "nothingmuch",
+                        
                         EncryptedPassword = Hashing.HashPassword("kingkaka"),
                         DepartmentId = 9,
                         Rolez = "staff"
@@ -91,7 +91,7 @@ namespace Management_Distributor.Tests.Employeez
                         EmpEmail = "Employee2@test.test",
                         EmpAddress = "address2",
                         PhoneNumber = "0120-0000-000",
-                        Salt = "nothingmuch",
+                        
                         EncryptedPassword = Hashing.HashPassword("kingkaka"),
                         DepartmentId = 9,
                         Rolez = "staff"
@@ -104,7 +104,7 @@ namespace Management_Distributor.Tests.Employeez
                         EmpEmail = "Employee2@test.test",
                         EmpAddress = "address2",
                         PhoneNumber = "0120-0000-000",
-                        Salt = "nothingmuch",
+                        
                         EncryptedPassword = Hashing.HashPassword("kingkaka"),
                         DepartmentId = 9,
                         Rolez = "staff"
@@ -117,7 +117,7 @@ namespace Management_Distributor.Tests.Employeez
                         EmpEmail = "Employee2@test.test",
                         EmpAddress = "address2",
                         PhoneNumber = "0120-0000-000",
-                        Salt = "nothingmuch",
+                        
                         EncryptedPassword = Hashing.HashPassword("kingkaka"),
                         DepartmentId = 9,
                         Rolez = "staff"
@@ -130,7 +130,7 @@ namespace Management_Distributor.Tests.Employeez
                         EmpEmail = "Employee2@test.test",
                         EmpAddress = "address2",
                         PhoneNumber = "0120-0000-000",
-                        Salt = "nothingmuch",
+                        
                         EncryptedPassword = Hashing.HashPassword("kingkaka"),
                         DepartmentId = 9,
                         Rolez = "staff"
@@ -143,7 +143,7 @@ namespace Management_Distributor.Tests.Employeez
                         EmpEmail = "Employee2@test.test",
                         EmpAddress = "address2",
                         PhoneNumber = "0120-0000-000",
-                        Salt = "nothingmuch",
+                        
                         EncryptedPassword = Hashing.HashPassword("kingkaka"),
                         DepartmentId = 9,
                         Rolez = "staff"
@@ -157,7 +157,7 @@ namespace Management_Distributor.Tests.Employeez
                         EmpAddress = "address2",
                         PhoneNumber = "0120-0000-000",
                         AvatarUrl = "krystal-jung.jpg",
-                        Salt = "nothingmuch",
+                        
                         EncryptedPassword = Hashing.HashPassword("kingkaka"),
                         DepartmentId = 9,
                         Rolez = "admin"

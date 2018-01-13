@@ -1,4 +1,10 @@
-﻿<!DOCTYPE html>
+﻿@using Distributor.ViewModels
+@{
+    ViewBag.Title = "Home Page";
+    var user = @Session["user"] as SessionStorageModel;
+}
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -13,10 +19,11 @@
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
 
 
+    @*<link href="~/Content/DataTables/css/dataTables.bootstrap4.css" rel="stylesheet" />*@
     <link href="~/Content/themes/base/jquery-ui.min.css" rel="stylesheet" />
     <link href="~/Content/jquery.dataTables-1.10.16.css" rel="stylesheet" />
-    <link href="~/Content/DataTables/css/dataTables.bootstrap4.css" rel="stylesheet" />
     <!-- Font Awesome CSS-->
+    @*<link href="~/Content/DataTables/css/dataTables.bootstrap.css" rel="stylesheet" />*@
     <link rel="stylesheet" href="~/Content/font-awesome.min.css">
     <!-- Fontastic Custom icon font-->
     <link rel="stylesheet" href="~/Content/fontastic.css">
@@ -31,12 +38,12 @@
     <link href="~/Content/AdminLTE/AdminLTE.css" rel="stylesheet" />
     <!-- Favicon-->
     <link rel="shortcut icon" href="img/favicon.ico">
-    <link href="~/Content/sweetalert/sweet-alert.css" rel="stylesheet" />
+
     <script src="~/Scripts/jquery-3.2.1.js"></script>
     <script src="~/Scripts/notify.js"></script>
     <script src="~/Scripts/umd/popper.min.js"> </script>
     <script src="~/Scripts/bootstrap.js"></script>
-    @*<script src="~/Scripts/bootstrap-v4.0.0-beta.2.min.js"></script>*@
+    <script src="~/Scripts/bootstrap-v4.0.0-beta.2.min.js"></script>
     <script src="~/Scripts/sweetalert.min.js"></script>
     <script src="~/Scripts/jquery-ui-1.12.1.min.js"></script>
     <script src="~/Scripts/jquery-v1.4.1.cookie.js"> </script>
@@ -44,22 +51,23 @@
     <script src="~/Scripts/jquery.validate-v1.17.0.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
     <script src="~/Scripts/DataTables/jquery.dataTables.min.js"></script>
+    <link href="~/Content/sweetalert/sweet-alert.css" rel="stylesheet" />
 
     <style>
         .main-footer {
             margin-left: 0;
         }
     </style>
-    @{ 
-        var EmployeeName = (string)Session["EmployeeName"];
-    }
+    @*@{
+            var EmployeeName = (string)Session["EmployeeName"];
+        }*@
 
 </head>
 <body>
     <div class="page">
         <!-- Main Navbar-->
         <header class="header">
-            <nav class="navbar fixed-top">
+            <nav class="navbar navbar-fixed-top">
                 <!-- Search Box-->
                 <div class="search-box">
                     <button class="dismiss"><i class="icon-close"></i></button>
@@ -72,7 +80,7 @@
                         <!-- Navbar Header-->
                         <div class="navbar-header">
                             <!-- Navbar Brand --><a href="index.html" class="navbar-brand">
-                                <div class="brand-text brand-big"><span>Bootstrap </span><strong>Dashboard</strong></div>
+                                <div class="brand-text brand-big"><span>Bootstrap</span><strong>Dashboard</strong></div>
                                 <div class="brand-text brand-small"><strong>BD</strong></div>
                             </a>
                             <!-- Toggle Button--><a id="toggle-btn" href="#" class="menu-btn active"><span></span><span></span><span></span></a>
@@ -104,79 +112,78 @@
             <nav class="side-navbar">
                 <!-- Sidebar Header-->
                 <div class="sidebar-header d-flex align-items-center">
-                    <div class="avatar"><img src="~/Uploads/ProfileImages/krystal-jungs.jpg" alt="..." class="img-fluid rounded-circle"></div>
+                    <div class="avatar"><img src="@user.Avatar" alt="..." class="img-fluid rounded-circle"></div>
                     <div class="title">
-                        @*<h1 class="h4">@EmployeeName</h1>
-                        <p>Singer</p>*@
+                        <h1 class="h4">@user.Name</h1>
                     </div>
                 </div>
-                <!-- Sidebar Navidation Menus--><span class="heading">Main</span>
-                                                <ul class="list-unstyled">
-                                                    @if (User.Identity.IsAuthenticated)
-    {
-        if (User.IsInRole("Admin"))
-        {
-                                                <li>
-                                                    <a href="@Url.Action("Index", "Departments")">
-                                                        <i class="fa fa-users"></i>
-                                                        Departments
-                                                    </a>
-                                                </li>
-                                                <li>
-                                                    <a href="@Url.Action("Index", "Employees")">
-                                                        <i class="fa fa-user"></i>
-                                                        Employees
-                                                    </a>
-                                                </li>
-}
-}
+                <!-- Sidebar Navidation Menus-->
+                <ul class="list-unstyled">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (User.IsInRole("Admin"))
+                        {
+                            <li>
+                                <a href="@Url.Action("Index", "Departments")">
+                                    <i class="fa fa-users"></i>
+                                    Departments
+                                </a>
+                            </li>
+                            <li>
+                                <a href="@Url.Action("Index", "Employees")">
+                                    <i class="fa fa-user"></i>
+                                    Employees
+                                </a>
+                            </li>
+                        }
+                    }
 
-                                                    <li>
-                                                        <a href="@Url.Action("Index", "Categories")">
-                                                            <i class="fa fa-bars" aria-hidden="true"></i>
-                                                            Categories
-                                                        </a>
-                                                    </li>
+                    <li>
+                        <a href="@Url.Action("Index", "Categories")">
+                            <i class="fa fa-bars" aria-hidden="true"></i>
+                            Categories
+                        </a>
+                    </li>
 
-                                                    <li>
-                                                        <a href="@Url.Action("Page", "Products")">
-                                                            <i class="fa fa-gift" aria-hidden="true"></i>
-                                                            Products
-                                                        </a>
-                                                    </li>
+                    <li>
+                        <a href="@Url.Action("Page", "Products")">
+                            <i class="fa fa-gift" aria-hidden="true"></i>
+                            Products
+                        </a>
+                    </li>
 
-                                                    <li>
-                                                        <a href="@Url.Action("Create", "Orders")">
-                                                            <i class="fa fa-bars" aria-hidden="true"></i>
-                                                            Create Order
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="@Url.Action("Index", "Regions")">
-                                                            <i class="fa fa-bars" aria-hidden="true"></i>
-                                                            Region
-                                                        </a>
-                                                    </li>
-                                                    <li>
-                                                        <a href="@Url.Action("Index", "_Distributors")">
-                                                            <i class="fa fa-bars" aria-hidden="true"></i>
-                                                            Distributor
-                                                        </a>
-                                                    </li>
+                    <li>
+                        <a href="@Url.Action("Create", "Orders")">
+                            <i class="fa fa-bars" aria-hidden="true"></i>
+                            Create Order
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index", "Regions")">
+                            <i class="fa fa-bars" aria-hidden="true"></i>
+                            Region
+                        </a>
+                    </li>
+                    <li>
+                        <a href="@Url.Action("Index", "_Distributors")">
+                            <i class="fa fa-bars" aria-hidden="true"></i>
+                            Distributor
+                        </a>
+                    </li>
 
-                                                    @*<li class="active"><a href="index.html"> <i class="icon-home"></i>Home </a></li>*@
-                                                    <li><a href="tables.html"> <i class="icon-grid"></i>Tables </a></li>
-                                                    <li><a href="charts.html"> <i class="fa fa-bar-chart"></i>Charts </a></li>
-                                                    <li><a href="forms.html"> <i class="icon-padnote"></i>Forms </a></li>
-                                                    <li>
-                                                        <a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Example dropdown </a>
-                                                        <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
-                                                            <li><a href="#">Page</a></li>
-                                                            <li><a href="#">Page</a></li>
-                                                            <li><a href="#">Page</a></li>
-                                                        </ul>
-                                                    </li>
-                                                </ul><span class="heading">Extras</span>
+                    @*<li class="active"><a href="index.html"> <i class="icon-home"></i>Home </a></li>*@
+                    <li><a href="tables.html"> <i class="icon-grid"></i>Tables </a></li>
+                    <li><a href="charts.html"> <i class="fa fa-bar-chart"></i>Charts </a></li>
+                    <li><a href="forms.html"> <i class="icon-padnote"></i>Forms </a></li>
+                    <li>
+                        <a href="#exampledropdownDropdown" aria-expanded="false" data-toggle="collapse"> <i class="icon-interface-windows"></i>Example dropdown </a>
+                        <ul id="exampledropdownDropdown" class="collapse list-unstyled ">
+                            <li><a href="#">Page</a></li>
+                            <li><a href="#">Page</a></li>
+                            <li><a href="#">Page</a></li>
+                        </ul>
+                    </li>
+                </ul><span class="heading">Extras</span>
                 <ul class="list-unstyled">
                     <li> <a href="#"> <i class="icon-flask"></i>Demo </a></li>
                     <li> <a href="#"> <i class="icon-screen"></i>Demo </a></li>
@@ -189,23 +196,23 @@
                 @RenderBody()
                 <!-- Page Footer-->
                 @*<footer style="width:100%" class="main-footer">
-                    <div class="container-fluid">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <p>Awakening &copy; 2017-2019</p>
-                            </div>
-                            <div class="col-sm-6 text-right">
-                                <p>Design by <a href="https://bootstrapious.com/admin-templates" class="external">Bootstrapious</a></p>
+                        <div class="container-fluid">
+                            <div class="row">
+                                <div class="col-sm-6">
+                                    <p>Awakening &copy; 2017-2019</p>
+                                </div>
+                                <div class="col-sm-6 text-right">
+                                    <p>Design by <a href="https://bootstrapious.com/admin-templates" class="external">Bootstrapious</a></p>
 
+                                </div>
                             </div>
                         </div>
-                    </div>
-                </footer>*@
+                    </footer>*@
             </div>
-           
+
         </div>
     </div>
-    
+
 
 
     <!-- Javascript files-->

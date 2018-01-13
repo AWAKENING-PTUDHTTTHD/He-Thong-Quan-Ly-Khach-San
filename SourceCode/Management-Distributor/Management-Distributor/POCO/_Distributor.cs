@@ -13,15 +13,21 @@ namespace Distributor.POCO
         public int DistributorId { get; set; }
 
         [Required(ErrorMessage = "Name is required")]
+        [MaxLength(100)]
+        [Index(IsUnique = true)]
+        [Display(Name = "Name")]
         public string DistributorName { get; set; }
 
+        [Display(Name = "Address")]
         [Required(ErrorMessage = "Address is required")]
         public string DistributorAddress { get; set; }
 
+        [Display(Name = "Email")]
         [Required(ErrorMessage = "Email is required")]
         [DataType(DataType.EmailAddress, ErrorMessage = "The email provided is invalid!")]
         public string DistributorEmail { get; set; }
 
+        [Display(Name = "Phone Number")]
         [Required(ErrorMessage = "Phone Number is required")]
         [DataType(DataType.PhoneNumber, ErrorMessage = "The phone provided is invalid!")]
         public string DistributorPhoneNumber { get; set; }

@@ -30,14 +30,22 @@ namespace Distributor.Service.Implementations
         {
             bool success;
             _logger.Info("Start add new Category");
-            repoCategory.Add(category);
-            _logger.Info("End add new Category");
-            success = (_uow.SaveChange() > 0) ? true : false;
+            try
+            {
+                repoCategory.Add(category);
+                _uow.SaveChange();
+                success = true;
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex, "Error");
+                success = false;
+            }
             if (success == true)
                 _logger.Info("successfull added Category");
             else
                 _logger.Info("failed to add");
-            _logger.Info("End add a list Category Category");
+            _logger.Info("End add new Category");
             return  success;
         }
 
@@ -45,8 +53,18 @@ namespace Distributor.Service.Implementations
         {
             bool success;
             _logger.Info("Start add a list Category");
-            repoCategory.AddRange(categories);
-            success = (_uow.SaveChange() == categories.Count()) ? true : false;
+            try
+            {
+                repoCategory.AddRange(categories);
+                _uow.SaveChange();
+                success = true;
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex, "Error");
+                success = false;
+            }
+           
             if (success == true)
                 _logger.Info("successfull added list Category");
             else
@@ -59,8 +77,17 @@ namespace Distributor.Service.Implementations
         {
             bool success;
             _logger.Info("Start deleting");
-            repoCategory.Delete(category);
-            success = _uow.SaveChange() > 0;
+            try
+            {
+                repoCategory.Delete(category);
+                 _uow.SaveChange();
+                success = true;
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex, "Error");
+                success = false;
+            }
             if (success == true)
                 _logger.Info("successfull deteled category");
             else _logger.Info("failed to delete");
@@ -72,8 +99,17 @@ namespace Distributor.Service.Implementations
         {
             bool success;
             _logger.Info("Start Editing");
-            repoCategory.Attach(category);
-            success = (_uow.SaveChange() > 0);
+            try
+            {
+                repoCategory.Attach(category);
+                _uow.SaveChange();
+                success = true;
+            }
+            catch (Exception ex)
+            {
+                _logger.Error(ex, "Error");
+                success = false;
+            }
             if (success == true)
                 _logger.Info("successfull Edited category");
             else _logger.Info("failed to Edit");

@@ -19,6 +19,8 @@ namespace Distributor.POCO
         public int ReportId { get; set; }
 
         [Required(ErrorMessage = "Name is required")]
+        [MaxLength(100)]
+        [Index(IsUnique = true)]
         public string ReportName { get; set; }
 
         [Required(ErrorMessage = "ReportType is required")]

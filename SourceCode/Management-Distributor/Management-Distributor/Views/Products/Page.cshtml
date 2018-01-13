@@ -18,11 +18,19 @@
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-header d-flex align-items-center">
-                        <h3 class="h4"><a class="btn" style="background-color:#36d2a5;color:#fff;" onclick="PopupForm('@Url.Action("AddOrEdit","Products")')"><i class="fa fa-plus-circle">  Add New</i></a></h3>
+                        <div class="col-md-4"><a class="btn" style="background-color:#36d2a5;color:#fff;" onclick="PopupForm('@Url.Action("AddOrEdit","Products")')"><i class="fa fa-plus-circle">  Add New</i></a></div>
+                        <div class="col-md-8"><input class="form-control" type="text" name="name" value="Search" /></div>
                     </div>
                     <div class="card-body">
+                        @if (Model.Products.Count() == 0)
+                         {
+                            <p>No Result Found!</p>
+                         }
+
+                        else{
                         <table class="table table-hover text-center">
                             <thead>
+
                                 <tr>
                                     <th width="20%">#</th>
                                     <th width="25%">Product Name</th>
@@ -33,16 +41,18 @@
                             </thead>
                             <tbody>
                                 @foreach (var p in Model.Products)
-                                {
+                        {
 
-                                    RenderPartialExtensions.RenderPartial(Html, "_Product", p);
+                             RenderPartialExtensions.RenderPartial(Html, "_Product", p);
 
-                                }
+                        }
                             </tbody>
                         </table>
                         <div class="btn-group pull-right">
                             @Html.PageLinks(Model.PagingInfo, x => Url.Action("Page", new { page = x }))
                         </div>
+                        }
+
                     </div>
                 </div>
             </div>
@@ -51,8 +61,6 @@
 </section>
 @section Scripts {
 <script src="~/Scripts/ProductAddition.js"></script>
-    @*<script src="~/Scripts/jquery.dataTables-1.10.5.js"></script>*@
-    @*<script src="~/Scripts/DataTables/dataTables.bootstrap4.js"></script>*@
     <script>
         var Popup;
         function PopupForm(url)
@@ -66,8 +74,9 @@
                     resizable: false,
 
                     title: 'Add/Update Category',
-                    height: 550,
-                    width: 450,
+                    height: 600,
+                    width: 500,
+                    modal: true,
                     close: function()
                     {
                         Popup.dialog('destroy')
@@ -89,17 +98,26 @@
                     success: function (data) {
                         if (data.success == true) {
                             Popup.dialog('close');
+                            window.location.reload();
                             $.notify(data.message, {
                                 globalPosition: "top center",
                                 className : "success"
                             });
                         }
                         else {
+                            Popup.dialog('close');
                             $.notify(data.message, {
                                 globalPosition: "top center",
                                 className: "Error"
                             });
                         }
+                    },
+                    error: function (err) {
+                        Popup.dialog('close');
+                        $.notify("Somthing went wrong!", {
+                            globalPosition: "top center",
+                            className: "Error"
+                        });
                     }
                 });
             }

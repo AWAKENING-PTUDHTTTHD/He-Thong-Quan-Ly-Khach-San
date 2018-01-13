@@ -5,25 +5,41 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<div class="container">
+<header style="margin-top: 0;" class="page-header">
     <div class="container-fluid">
-        <p><a class="btn" style="background-color:#36d2a5;color:#fff;" onclick="PopupForm('@Url.Action("AddOrEdit","Regions")')"><i class="fa fa-plus-circle">  Add New Region</i></a></p>
-        @*<h2>List Products</h2>*@
-        <table id="regionsTable">
-            <thead>
-                <tr>
-                    <td>@Html.DisplayNameFor(model => model.RegionId)</td>
-                    <td>@Html.DisplayNameFor(model => model.RegionName)</td>
-                    <td>Edit</td>
-                    <td>Remove</td>
-                </tr>
-            </thead>
-            <tbody></tbody>
-        </table>
-    </div> 
-</div>
+        <h2 class="no-margin-bottom">Regions Manager</h2>
+    </div>
+</header>
 
+<section style="padding: 10px 0;" class="tables">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center">
+                        <h3 class="h4"><a class="btn" style="background-color:#36d2a5;color:#fff;" onclick="PopupForm('@Url.Action("AddOrEdit","Regions")')"><i class="fa fa-plus-circle">  Add New</i></a></h3>
+                    </div>
+                    <div class="card-body">
+                        <table id="regionsTable" class="table table-hover text-center">
+                            <thead>
+                                <tr>
+                                    <td>@Html.DisplayNameFor(model => model.RegionId)</td>
+                                    <td>@Html.DisplayNameFor(model => model.RegionName)</td>
+                                    <td>Edit</td>
+                                    <td>Remove</td>
+                                </tr>
+                            </thead>
+                            <tbody>
 
+                            </tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 @section Scripts {
     <script src="~/Scripts/ProductAddition.js"></script>
@@ -96,10 +112,10 @@
                 Popup = formDiv.dialog({
                     autoOpen: true,
                     resizable: false,
-
+                    modal: true,
                     title: 'Add/Update Region',
                     height: 300,
-                    width: 400,
+                    width: 350,
                     close: function()
                     {
                         Popup.dialog('destroy')
@@ -130,11 +146,20 @@
                             });
                         }
                         else {
+                            Popup.dialog('destroy')
                             $.notify(data.message, {
                                 globalPosition: "top center",
                                 className: "Error"
                             });
                         }
+                    },
+                    error: function()
+                    {
+                        Popup.dialog('destroy')
+                        $.notify(data.message, {
+                            globalPosition: "top center",
+                            className: "Error"
+                        });
                     }
                 }
 

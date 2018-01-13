@@ -11,6 +11,7 @@ namespace Distributor.POCO
     public class Employee
     {
         [Key]
+        [Display(Name = "ID")]
         public int EmployeeId { get; set; }
 
         [Display(Name = "Avatar Url")]
@@ -18,18 +19,20 @@ namespace Distributor.POCO
 
         [NotMapped]
         public HttpPostedFileBase AvatarUpload { get; set; }
-
+        [Display(Name = "Name")]
         [Required(ErrorMessage = "Name is required")]
         public string EmpName { get; set; }
-        
+
+        [Display(Name = "Address")]
         [Required(ErrorMessage = "Address is required")]
         public string EmpAddress { get; set; }
 
-        // temporary skip avatar image 
+        [Display(Name = "Phone Number")]
         [Required(ErrorMessage = "Phone number is required!")]
         [DataType(DataType.PhoneNumber, ErrorMessage = "Phone Number is not valid")]
         public string PhoneNumber { get; set; }
 
+        [Display(Name = "Email")]
         [Required(ErrorMessage = "Email is required!")]
         //[RegularExpression("^[a-zA-Z0-9_\\.-]+@([a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,6}$", ErrorMessage = "E-mail is not valid")]
         [DataType(DataType.EmailAddress,ErrorMessage = "Email is not valid")]
@@ -42,18 +45,15 @@ namespace Distributor.POCO
         [Required(ErrorMessage = "Password is required")]
         public string EncryptedPassword { get; set; }
 
-        [Required(ErrorMessage = "Salf is required")]
-        public string Salt { get; set; }
 
-        [Column(TypeName = "datetime2")]
         public Nullable<DateTime> LastLogged { get; set; }
 
         [DefaultValue(0)]
         public int NumOfLoginAttemp { get; set; }
 
-        [Column(TypeName = "datetime2")]
         public DateTime? LastAttemp { get; set; }
 
+        [Required(ErrorMessage = "Role is required")]
         public string Rolez { get; set; }
 
         // Foreign Key
@@ -67,7 +67,7 @@ namespace Distributor.POCO
         // Zero->Many with Order, Invoice, Payment, Report and Statistic
         public virtual ICollection<Order> Orders { get; set; }
         public virtual ICollection<Invoice> Invoices { get; set; }
-        public virtual ICollection<Payment> Payments { get; set; }
+        //public virtual ICollection<Payment> Payments { get; set; }
         public virtual ICollection<Report> Reports { get; set; }
         public virtual ICollection<Statistic> Statistics { get; set; }
         //public virtual ICollection<Contract> Contracts { get; set; }

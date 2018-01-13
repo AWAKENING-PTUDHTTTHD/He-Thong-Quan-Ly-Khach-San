@@ -22,12 +22,17 @@ namespace Distributor.Controllers
         [HttpGet]
         public ActionResult Login()
         {
+            if (Session["user"] != null)
+            {
+                return RedirectToAction("Dashboard", "Home");
+            }
             return View();
         }
 
         [HttpPost]
         public ActionResult Login(LoginViewModel user)
         {
+            
             if (ModelState.IsValid)
             {
                 Employee employee = EmpService.GetByUserNameOrEmail((user.UsernameOrEmail));
@@ -41,8 +46,17 @@ namespace Distributor.Controllers
                 else
                 {
                     FormsAuthentication.SetAuthCookie(employee.UserName, false);
-                    Session["EmployeeId"] = employee.EmployeeId;
-                    Session["EmployeeName"] = employee.EmpName;
+                    SessionStorageModel ssr = new SessionStorageModel()
+                    {
+                        Id = employee.EmployeeId,
+                        Name = employee.EmpName,
+                        Avatar = employee.AvatarUrl
+                    };
+                    //Session["EmployeeId"] = employee.EmployeeId;
+                    //Session["EmployeeName"] = employee.EmpName;
+
+                    Session["user"] = ssr;
+
                     Thread.Sleep(5000);
                     return RedirectToAction("Dashboard", "Home");
                 }

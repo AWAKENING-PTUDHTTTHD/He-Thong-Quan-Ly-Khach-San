@@ -29,9 +29,20 @@ namespace Distributor.Service.Implementations
         {
             bool success;
             _logger.Info("Start add new Product");
-            _ProductRepo.Add(product);
+            try
+            {
+                _ProductRepo.Add(product);
+                _uow.SaveChange();
+                success = true;
+            }
+            catch (Exception ex)
+            {
+                success = false;
+                _logger.Error(ex, "catch errr");
+            }
+            
             _logger.Info("End add new Product");
-            success = (_uow.SaveChange() > 0) ? true : false;
+            
             return success;
         }
 
@@ -44,23 +55,24 @@ namespace Distributor.Service.Implementations
             {
                 // Turn flag to existed
                 success = 0;
-                //if (p.AvailableQty >= DescreaseAmt)
-                //{
-                //    try
-                //    {
+                if (p.AvailableQty >= DescreaseAmt)
+                {
+                    try
+                    {
 
-                //        p.AvailableQty -= DescreaseAmt;
-                //        _uow.SaveChange();
-                //        // sucessfully updated
-                //        success = 1;
-                //    }
-                //    catch (Exception ex)
-                //    {
-                //        string Path = @"C:/DescreaseAvailableQty.Exception.txt";
-                //        ExceptionProofer.LogToFile(Path, ex);
-                //    }
+                        p.AvailableQty -= DescreaseAmt;
+                        _uow.SaveChange();
+                        // sucessfully updated
+                        success = 1;
+                    }
+                    catch (Exception ex)
+                    {
+                        _logger.Error(ex, "Error");
+                        string Path = @"C:/DescreaseAvailableQty.Exception.txt";
+                        ExceptionProofer.LogToFile(Path, ex);
+                    }
 
-                //}
+                }
 
             }  
               
@@ -71,8 +83,18 @@ namespace Distributor.Service.Implementations
 
         public bool Delete(Product product)
         {
-            _ProductRepo.Delete(product);
-            return (_uow.SaveChange() > 0);
+            try
+            {
+                _ProductRepo.Delete(product);
+                _uow.SaveChange();
+                return true;
+            }
+           
+            catch(Exception ex)
+            {
+                _logger.Error(ex, "Error");
+                return false;
+            }
         }
 
         public bool Edit(Product product)
@@ -80,10 +102,12 @@ namespace Distributor.Service.Implementations
             try
             {
                 _ProductRepo.Attach(product);
-                return (_uow.SaveChange() > 0);
+                _uow.SaveChange();
+                return true;
             }
             catch (Exception ex)
             {
+                _logger.Error(ex, "Error");
                 return false;
             }
            

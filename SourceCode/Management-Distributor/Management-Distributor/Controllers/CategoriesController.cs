@@ -84,7 +84,7 @@ namespace Distributor.Controllers
         // GET: Categories/Details/5
         public ActionResult Details(int id)
         {
-            if (id == 0)
+            if (id  == 0)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }

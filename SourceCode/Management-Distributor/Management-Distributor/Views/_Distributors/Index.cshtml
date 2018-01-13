@@ -5,30 +5,48 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-<a class="btn btn-default" onclick="PopupForm('@Url.Action("AddOrEdit", "_Distributors")')"><i class="fa fa-plus-circle">  Add New</i></a>
-<h2>List _Distributors</h2>
-<div style="width:90%; margin:0 auto;">
-    <table id="distributorsTable">
-        <thead>
-            <tr>
-                <td>@Html.DisplayNameFor(model => model.DistributorId)</td>
-                <td>@Html.DisplayNameFor(model => model.DistributorName)</td>
-                <td>@Html.DisplayNameFor(model => model.DistributorAddress)</td>
-                <td>@Html.DisplayNameFor(model => model.DistributorEmail)</td>
-                <td>@Html.DisplayNameFor(model => model.DistributorPhoneNumber)</td>
-                <td>@Html.DisplayNameFor(model => model.RegionId)</td>
-                <td>Edit</td>
-                <td>Remove</td>
-            </tr>
-        </thead>
-        <tbody></tbody>
-    </table>
-</div>
+
+<header style="margin-top: 0;" class="page-header">
+    <div class="container-fluid">
+        <h2 class="no-margin-bottom">Distributor Manager</h2>
+    </div>
+</header>
+
+<section style="padding: 10px 0;" class="tables">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="card">
+                    <div class="card-header d-flex align-items-center">
+                        <a style="background-color:#36d2a5;color:#fff;" class="btn btn-default" onclick="PopupForm('@Url.Action("AddOrEdit", "_Distributors")')"><i class="fa fa-plus-circle">  Add New</i></a>
+                    </div>
+                    <div class="card-body">
+                        <table id="distributorsTable" class="table table-hover text-center">
+                            <thead>
+                                <tr>
+                                    <td>@Html.DisplayNameFor(model => model.DistributorId)</td>
+                                    <td>@Html.DisplayNameFor(model => model.DistributorName)</td>
+                                    <td>@Html.DisplayNameFor(model => model.DistributorAddress)</td>
+                                    <td>@Html.DisplayNameFor(model => model.DistributorEmail)</td>
+                                    <td>@Html.DisplayNameFor(model => model.DistributorPhoneNumber)</td>
+                                    <td>@Html.DisplayNameFor(model => model.RegionId)</td>
+                                    <td>Edit</td>
+                                    <td>Remove</td>
+                                </tr>
+                            </thead>
+                            <tbody></tbody>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
 
 @section Scripts {
-@*<script src="~/Scripts/jquery.dataTables-1.10.5.js"></script>*@
-@*<script src="~/Scripts/DataTables/dataTables.bootstrap4.js"></script>*@
+    @*<script src="~/Scripts/jquery.dataTables-1.10.5.js"></script>*@
+    @*<script src="~/Scripts/DataTables/dataTables.bootstrap4.js"></script>*@
     <script>
         var Popup, datatable;
         /* Process datatable */
@@ -48,15 +66,15 @@
                     "columns": [
                         {
                             "data": "DistributorId"
-                            
+
                         },
                         {
                             "data": "DistributorName"
-                           
+
                         },
                         {
                             "data": "DistributorAddress"
-                           
+
                         }
                         ,
                         {
@@ -117,9 +135,9 @@
                 Popup = formDiv.dialog({
                     autoOpen: true,
                     resizable: false,
-                    
+                    modal: true,
                     title: 'Add/Update Distributor',
-                    height: 500,
+                    height: 600,
                     width: 700,
                     close: function()
                     {
@@ -150,11 +168,20 @@
                             });
                         }
                         else {
+                            Popup.dialog('close');
                             $.notify(data.message, {
                                 globalPosition: "top center",
                                 className: "Error"
                             });
                         }
+                    },
+                    error: function(err){
+                        console.log(err);
+                        Popup.dialog('close');
+                        $.notify('SomeThing went wrong!', {
+                            globalPosition: "top center",
+                            className: "Error"
+                        });
                     }
                 });
             }
@@ -169,7 +196,7 @@
             {
                 $.ajax({
                     type: "POST",
-                    url: '@Url.Action("Remove", "_Distributors")/' + id,
+                    url: '@Url.Action("Remove", "_Distributors")/'+id,
                     success: function (data) {
                         if (data.success) {
                             datatable.ajax.reload();
@@ -178,7 +205,7 @@
                                 globalPosition: "top center",
                                 className: "success"
                             });
-                        
+
                         }
                         else {
                             $.notify(data.message, {
@@ -193,4 +220,4 @@
 
         /* End Remove record opt */
     </script>
-    }
+}

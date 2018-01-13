@@ -60,18 +60,19 @@ namespace Management_Distributor.Controllers
         }
         
 
-        public ActionResult Detail(int OrderId)
+        public ActionResult Details(int? id)
         {
-            // 1 distributor info
-            // 2 employee info
-            // 3 generic info
-            // 4 detail info
-            // 5 invoice info
-            Order order = orderService.FindById(OrderId);
-            if(order == null)
+
+
+            if (id == null)
             {
-                //Response.Redirect("PageNotFound");
-                throw new HttpException(404, "Some description");
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Order order = orderService.FindById(Convert.ToInt32(id));
+            if (order == null)
+            {
+                return HttpNotFound();
+                //throw new HttpException(404, "Some description");
             }
             else
             {
@@ -80,7 +81,7 @@ namespace Management_Distributor.Controllers
                 ViewBag.EmpInfoName = employee.EmpName;
                 ViewBag.EmpInfoId = employee.EmployeeId;
                List <OrderDetail> detail = detailService.FindByOrderId(order.OrderId);
-                Invoice invoice = invoiceService.FindByOrderId(OrderId);
+                Invoice invoice = invoiceService.FindByOrderId(order.OrderId);
 
                 return View(Tuple.Create(distributor, order, detail));
 

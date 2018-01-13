@@ -10,40 +10,12 @@
 <tr>
     <td width="20%"><img class="product-Image" src="@Url.Content(Model.ImageUrl)" alt="not found"></td>
     <td width="25%">@Html.DisplayFor(ModelItem => Model.ProductName)</td>
-    <td width="25%">@Html.DisplayFor(ModelItem => Model.Price)</td>
     <td width="15%">@Html.DisplayFor(ModelItem => Model.CategoryId)</td>
-    @*<td width="15%">@Html.DisplayFor(ModelItem => Model.Price)</td>*@
+    <td width="25%">@Html.DisplayFor(ModelItem => Model.Price)</td>
+
     <td>
-        @*<a href="@Url.Action("Edit", "Departments")">
-            <i class="fa fa-edit"></i>
-            Edit |
-        </a>*@
 
         <a class='btn btn-success btn-sm' onclick=PopupForm('@Url.Action("AddOrEdit","Products")/@Model.ProductId')><i class='fa fa-pencil-square-o' aria-hidden='true'></i></a>
         <a class='btn btn-danger btn-sm' onclick=Delete('@Model.ProductId')><i class='fa fa-trash' aria-hidden='true'></i></a>
-
-        @*<a href="@Url.Action("Detail", "Departments")">
-            <i class="fa fa-info-circle"></i>
-            Detail |
-        </a>
-        <a href="@Url.Action(" Detail", "Departments" )">
-            <i class="fa fa-info-circle"></i>
-        </a><a href="@Url.Action(" Detail", "Departments" )">
-            <i class="fa fa-info-circle"></i>
-        </a>
-        <a href="@Url.Action("Remove", "Departments")">
-            <i class="fa fa-trash"></i>
-            Remove
-        </a>
-        <a href="@Url.Action(" Remove", "Departments" )">
-            <i class="fa fa-trash"></i>
-        </a><a href="@Url.Action(" Remove", "Departments" )">
-            <i class="fa fa-trash"></i>
-        </a>
-
     </td>
-    @Html.ActionLink("Edit", "Edit", new { id = p.ProductId }) |
-        @Html.ActionLink("Details", "Details", new { id = p.ProductId }) |
-        @Html.ActionLink("Delete", "Delete", new { id = p.ProductId })*@
-
 </tr>
