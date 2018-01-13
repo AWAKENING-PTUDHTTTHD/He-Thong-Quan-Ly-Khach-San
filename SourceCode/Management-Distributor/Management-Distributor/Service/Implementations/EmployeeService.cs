@@ -77,13 +77,6 @@ namespace Distributor.Service.Implementations
             return repoEmployee.GetById(id);
         }
 
-        Employee IEmployeeService.GetOne(int id)
-        {
-            Employee emp = null;
-            emp = repoEmployee.GetById(id);
-            return emp;
-        }
-
         List<Employee> IEmployeeService.Load_Page(int PageNumb)
         {
             List<Employee> L = new List<Employee>();

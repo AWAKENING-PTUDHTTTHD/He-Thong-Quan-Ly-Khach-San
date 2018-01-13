@@ -56,6 +56,20 @@ namespace Distributor.Controllers
         }
 
 
+        public ActionResult Details(int id)
+        {
+            if (id == 0)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            Product product = productService.GetOne(id);
+            if (product == null)
+            {
+                return HttpNotFound();
+            }
+            return View(product);
+        }
+
         [HttpGet]
         public ActionResult AddOrEdit(int id = 0)
         {

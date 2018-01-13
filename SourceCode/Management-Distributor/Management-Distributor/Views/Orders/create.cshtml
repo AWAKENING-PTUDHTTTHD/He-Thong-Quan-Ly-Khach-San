@@ -208,7 +208,7 @@
 
 		$('select#Distributor').on('change', function () {
 		    $('#DistributorID').val(this.value);
-		    alert($('#DistributorID').val());
+		    //alert($('#DistributorID').val());
 		})
 
 	});
@@ -439,7 +439,7 @@
 	};
 
 	$('#btnSubmit').click(function () {
-	    alert($('#DistributorID').val());
+	    //alert($('#DistributorID').val());
 	    if (($('.setTotal').val() == "" || $('.setTotal').val() == NaN || $('.setTotal').val() == null)) {
 	        alert("No data. Please add at least 1 product to sell");
 	        //closeModal();

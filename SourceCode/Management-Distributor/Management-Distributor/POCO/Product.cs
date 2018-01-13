@@ -16,11 +16,13 @@ namespace Distributor.POCO
             ImageUrl = "/Uploads/ProductImages/No_Image_Available.jpg";
         }
         [Key]
+        [Display(Name = "ID")]
         public int ProductId { get; set; }
 
         [Required(ErrorMessage = "Name is required")]
         [MaxLength(100)]
         [Index(IsUnique = true)]
+        [Display(Name = "Product Name")]
         public string ProductName { get; set; }
 
         [Required(ErrorMessage = "Price is required")]
@@ -37,7 +39,7 @@ namespace Distributor.POCO
         // One to Many with OrderDetail
         public virtual ICollection<OrderDetail> OrderDetails { get; set; }
 
-        [Display(Name = "Image Url")]
+        [Display(Name = "Image")]
         public string ImageUrl { get; set; }
 
         [DefaultValue(0)]

@@ -2,6 +2,12 @@
 @{
     ViewBag.Title = "Page";
 }
+<style>
+    .product-Image {
+        height: 100px;
+        width: 100px;
+    }
+</style>
 
 @*<p>
         @Html.ActionLink("Create New", "Create")
@@ -23,34 +29,48 @@
                     </div>
                     <div class="card-body">
                         @if (Model.Products.Count() == 0)
-                         {
+                        {
                             <p>No Result Found!</p>
-                         }
+                        }
 
-                        else{
-                        <table class="table table-hover text-center">
-                            <thead>
+                        else
+                        {
+                            <table class="table table-hover text-center">
+                                <thead>
 
-                                <tr>
-                                    <th width="20%">#</th>
-                                    <th width="25%">Product Name</th>
-                                    <th width="15%">Category</th>
-                                    <th width="15%">Price</th>
-                                    <th>Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach (var p in Model.Products)
+                                    <tr>
+                                        <th width="20%">#</th>
+                                        <th width="25%">Product Name</th>
+                                        <th width="15%">Category</th>
+                                        <th width="15%">Price</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var p in Model.Products)
                         {
 
-                             RenderPartialExtensions.RenderPartial(Html, "_Product", p);
+                                  //RenderPartialExtensions.RenderPartial(Html, "_Product", p);
+                                <tr>
+                                    <td><img class="product-Image" src="@Url.Content(p.ImageUrl)" alt="not found"></td>
+                                    <td>@Html.DisplayFor(ModelItem => p.ProductName)</td>
+                                    <td>@Html.DisplayFor(ModelItem => p.CategoryId)</td>
+                                    <td>@Html.DisplayFor(ModelItem => p.Price)</td>
 
-                        }
-                            </tbody>
-                        </table>
-                        <div class="btn-group pull-right">
-                            @Html.PageLinks(Model.PagingInfo, x => Url.Action("Page", new { page = x }))
-                        </div>
+                                    <td>
+
+                                        <a class='btn btn-success btn-sm' onclick=PopupForm('@Url.Action("AddOrEdit","Products")/@p.ProductId')><i class='fa fa-pencil-square-o' aria-hidden='true'></i></a>
+                                        <a class='btn btn-danger btn-sm' onclick=Delete('@p.ProductId')><i class='fa fa-trash' aria-hidden='true'></i></a>
+                                    </td>
+                                </tr>
+
+
+                            }
+                                </tbody>
+                            </table>
+                            <div class="btn-group pull-right">
+                                @Html.PageLinks(Model.PagingInfo, x => Url.Action("Page", new { page = x }))
+                            </div>
                         }
 
                     </div>
@@ -60,7 +80,7 @@
     </div>
 </section>
 @section Scripts {
-<script src="~/Scripts/ProductAddition.js"></script>
+    <script src="~/Scripts/ProductAddition.js"></script>
     <script>
         var Popup;
         function PopupForm(url)
